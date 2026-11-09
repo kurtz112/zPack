@@ -169,6 +169,8 @@ type
     FNumeroFetch: Integer;
     FCronometroFetch: TStopWatch;
     FAutoCommit: boolean;
+    // Mantis #334 - 2026-11-09: vedi TentativiSuConflitto
+    FTentativiSuConflitto: Integer;
     // Firma dei parametri (tipo, dimensione, precisione, scala, verso) al
     // momento della preparazione conservata da BuildFields. Vuota = nessuna
     // preparazione da riusare.
@@ -294,6 +296,10 @@ type
     procedure DoAfterPost; override;
     procedure DoAfterDelete; override;
     procedure ConfermaAutoCommit;
+    // Mantis #334 - 2026-11-09: True se il salvataggio fallito per E va ripetuto
+    // (conflitto con una transazione concorrente gia' conclusa, tentativi non
+    // esauriti, transazione read committed)
+    function SalvataggioRipetibile(E: Exception; const TentativiFatti: Integer): boolean;
     procedure DoBeforeInsert; override;
     procedure DoOnNewRecord; override;
     procedure DoBeforeDelete; override;
@@ -465,6 +471,15 @@ type
     property ActivationMode: TActivationMode read FActivationMode write SetActivationMode default amAutomatic;
     property Active stored false;
     property AutoCommit: boolean read FAutoCommit write FAutoCommit default true;
+    // Mantis #334 - 2026-11-09: quante volte ripetere il salvataggio (Post) che
+    // fallisce per un conflitto con un'altra transazione (isc_deadlock, "update
+    // conflicts with concurrent update"). La transazione di scrittura e' senza
+    // attesa (MON$LOCK_TIMEOUT = 0 sul banco): l'errore arriva subito, mentre
+    // l'altra transazione tiene la riga di solito solo fra il suo Post e la sua
+    // conferma automatica. Le pause crescono (0,5 - 1 - 1,5 secondi): con 3
+    // tentativi il programma aspetta al massimo 3 secondi prima dell'errore.
+    // 0 = nessun tentativo, come prima.
+    property TentativiSuConflitto: Integer read FTentativiSuConflitto write FTentativiSuConflitto default 3;
     property AutoCreateFields: boolean read FAutoCreateFields write FAutoCreateFields default true;
     property Database: TFDCustomConnection read GetDatabase write SetDatabase;
     property IdDataSet: string read FIdDataSet write SetIdDataSet;
@@ -655,6 +670,14 @@ uses
   FireDAC.Stan.Util,
   zExceptions.FireDAC,
   zDiagnostica.Log.Perf;
+
+const
+  // Mantis #334 - 2026-11-09: codice di Firebird del conflitto con una
+  // transazione concorrente (isc_deadlock, il messaggio dice "deadlock / update
+  // conflicts with concurrent update") e pausa prima di ripetere il salvataggio,
+  // moltiplicata per il numero del tentativo
+  CodiceConflittoTransazione = 335544336;
+  PausaTentativoSuConflittoMs = 500;
 
 var
   sizFbDataSet: TSiSession;
@@ -1366,6 +1389,7 @@ begin
   ParamsChangedByLoadParamsFromMaster := false;
 
   FAutoCommit := true;
+  FTentativiSuConflitto := 3; // Mantis #334 - 2026-11-09
 
   FlagRecordLimitReached := false;
   FOnRecordLimitReached := nil;
@@ -2429,6 +2453,38 @@ begin
       end;
 end;
 
+function TzFbDataSet.SalvataggioRipetibile(E: Exception; const TentativiFatti: Integer): boolean;
+var
+  ErroreDatabase: EFDDBEngineException;
+  Isolamento: TFDTxIsolation;
+begin
+  Result := false;
+
+  if TentativiFatti >= TentativiSuConflitto then
+    Exit;
+
+  if not (E is EFDDBEngineException) then
+    Exit;
+
+  ErroreDatabase := EFDDBEngineException(E);
+  if ErroreDatabase.ErrorCount = 0 then
+    Exit;
+
+  if ErroreDatabase.Errors[0].ErrorCode <> CodiceConflittoTransazione then
+    Exit;
+
+  // con una transazione snapshot (xiSnapshot, xiSerializible) la riga resta
+  // invisibile fino alla fine della transazione: ripetere fallirebbe di nuovo
+  if Assigned(UpdateTransaction) then
+    Isolamento := UpdateTransaction.Options.Isolation
+  else if Assigned(Connection) then
+    Isolamento := Connection.TxOptions.Isolation
+  else
+    Exit;
+
+  Result := Isolamento in [xiUnspecified, xiDirtyRead, xiReadCommitted];
+end;
+
 procedure TzFbDataSet.DoAfterScroll;
 begin
   sizFbDataSet.EnterMethod(self, 'DoAfterScroll');
@@ -3481,6 +3537,8 @@ begin
 end;
 
 procedure TzFbDataSet.InternalPost;
+var
+  TentativiFatti: Integer;
 begin
   CheckBeforePost;
   // Mantis #257 - 2026-10-29: qui i valori sono definitivi (DoBeforePost,
@@ -3490,7 +3548,32 @@ begin
   // Post se il testo e' cambiato).
   ComponiUpdateSQL;
   RegistraPost;
-  inherited;
+
+  // Mantis #334 - 2026-11-09: un conflitto con una transazione concorrente si
+  // ripete fino a TentativiSuConflitto volte, con pause crescenti, prima di
+  // mostrare l'errore. Firebird annulla per intero l'istruzione fallita (trigger
+  // e procedure compresi), la transazione resta aperta e la riga resta in
+  // modifica (verificato sul banco): ripetere equivale a premere di nuovo
+  // Conferma, che e' quello che l'utente fa a mano.
+  TentativiFatti := 0;
+  while true do
+    try
+      inherited;
+      Break;
+    except
+      on E: Exception do
+      begin
+        if not SalvataggioRipetibile(E, TentativiFatti) then
+          raise;
+
+        Inc(TentativiFatti);
+        sizFbDataSet.LogWarning(Format('%s.InternalPost: conflitto con una transazione concorrente, tentativo %d di %d', [Name, TentativiFatti, TentativiSuConflitto]));
+        Sleep(PausaTentativoSuConflittoMs * TentativiFatti);
+      end;
+    end;
+
+  if TentativiFatti > 0 then
+    sizFbDataSet.LogMessage(Format('%s.InternalPost: salvato al tentativo %d', [Name, TentativiFatti + 1]));
 
   // 20.09.2022
   // Il componente non pùò recuperare valori calcolati da view o altro:

@@ -408,12 +408,19 @@ var
   idTransazione: integer;
   s: String;
 begin
-  result := 'I dati sono in attesa di salvataggio/annullamento da parte di un altro utente.';
+  // Mantis #334 - 2026-11-09: il testo dice cosa e' successo e cosa fare. Il
+  // salvataggio di un dataset arriva qui solo dopo i tentativi ripetuti di
+  // TzFbDataSet (TentativiSuConflitto); i valori inseriti restano nella scheda,
+  // che rimane in modifica (verificato sul banco).
+  result := 'Un altro utente o un''elaborazione sta modificando gli stessi dati in questo momento.' + sLineBreak + //
+    'Le modifiche non sono state salvate: attendere qualche secondo e riprovare.';
 
+  // il numero della transazione serve a chi analizza il problema, non all'utente
+  // che legge il messaggio: resta in fondo, separato
   idTransazione := GetTransactionNumber(E);
 
   if (idTransazione <> -1) then
-    result := result + sLineBreak + sLineBreak + 'Transazione: ' + idTransazione.ToString;
+    result := result + sLineBreak + sLineBreak + '(transazione concorrente: ' + idTransazione.ToString + ')';
 end;
 
 /// // Token Unknow
