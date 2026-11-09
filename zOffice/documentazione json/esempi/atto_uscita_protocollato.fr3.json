@@ -1,0 +1,10 @@
+{
+  "id": "atto-uscita-protocollato",
+  "group": "Protocollo",
+  "mainDataset": "qryAtti",
+  "azioni": {
+    "protocollo":    { "enabled": true },
+    "conservazione": { "enabled": true, "req": ["PRO"] },
+    "inviaPec":      { "enabled": true, "req": ["PRO"] }
+  }
+}

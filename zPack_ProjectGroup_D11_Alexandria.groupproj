@@ -1,0 +1,72 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{BD6B0DA6-8EBD-4CF4-8129-7471559CAAEE}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="zCommon\zBase_Common_Delphi11_Alexandria.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="zFIB\zBase_FIB_Delphi11_Alexandria.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="zBase\zBase_Delphi11_Alexandria.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\dxItalian\Generatore\_src\dxItalianGenerator.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="zBase_Common_Delphi11_Alexandria">
+        <MSBuild Projects="zCommon\zBase_Common_Delphi11_Alexandria.dproj"/>
+    </Target>
+    <Target Name="zBase_Common_Delphi11_Alexandria:Clean">
+        <MSBuild Projects="zCommon\zBase_Common_Delphi11_Alexandria.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="zBase_Common_Delphi11_Alexandria:Make">
+        <MSBuild Projects="zCommon\zBase_Common_Delphi11_Alexandria.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="zBase_FIB_Delphi11_Alexandria">
+        <MSBuild Projects="zFIB\zBase_FIB_Delphi11_Alexandria.dproj"/>
+    </Target>
+    <Target Name="zBase_FIB_Delphi11_Alexandria:Clean">
+        <MSBuild Projects="zFIB\zBase_FIB_Delphi11_Alexandria.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="zBase_FIB_Delphi11_Alexandria:Make">
+        <MSBuild Projects="zFIB\zBase_FIB_Delphi11_Alexandria.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="zBase_Delphi11_Alexandria">
+        <MSBuild Projects="zBase\zBase_Delphi11_Alexandria.dproj"/>
+    </Target>
+    <Target Name="zBase_Delphi11_Alexandria:Clean">
+        <MSBuild Projects="zBase\zBase_Delphi11_Alexandria.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="zBase_Delphi11_Alexandria:Make">
+        <MSBuild Projects="zBase\zBase_Delphi11_Alexandria.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="dxItalianGenerator">
+        <MSBuild Projects="..\dxItalian\Generatore\_src\dxItalianGenerator.dproj"/>
+    </Target>
+    <Target Name="dxItalianGenerator:Clean">
+        <MSBuild Projects="..\dxItalian\Generatore\_src\dxItalianGenerator.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="dxItalianGenerator:Make">
+        <MSBuild Projects="..\dxItalian\Generatore\_src\dxItalianGenerator.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="zBase_Common_Delphi11_Alexandria;zBase_FIB_Delphi11_Alexandria;zBase_Delphi11_Alexandria;dxItalianGenerator"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="zBase_Common_Delphi11_Alexandria:Clean;zBase_FIB_Delphi11_Alexandria:Clean;zBase_Delphi11_Alexandria:Clean;dxItalianGenerator:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="zBase_Common_Delphi11_Alexandria:Make;zBase_FIB_Delphi11_Alexandria:Make;zBase_Delphi11_Alexandria:Make;dxItalianGenerator:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

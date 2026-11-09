@@ -1,0 +1,16 @@
+{
+  "id": "ingiunzione-fiscale",
+  "group": "Riscossione coattiva",
+  "mainDataset": "qryIngiunzioni",
+  "azioni": {
+    "firma":         { "enabled": true, "engine": "SIGNHUB" },
+    "protocollo":    { "enabled": true },
+    "conservazione": { "enabled": true, "req": ["PRO"], "target": "PRO" },
+    "inviaPec":      { "enabled": true, "req": ["FIR"], "target": "FIR" },
+    "inviaMail":     { "enabled": false }
+  },
+  "fastreport": {
+    "showDialog": false,
+    "embeddedFonts": true
+  }
+}

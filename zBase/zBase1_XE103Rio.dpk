@@ -1,0 +1,113 @@
+// JCL_DEBUG_EXPERT_INSERTJDBG OFF
+package zBase1_XE103Rio;
+{$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION OFF}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES ON}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE DEBUG}
+{$ENDIF IMPLICITBUILDING}
+{$DESCRIPTION 'zBase 1'}
+{$IMPLICITBUILD ON}
+
+requires
+  rtl,
+  vcl,
+  designide,
+  xmlrtl,
+  vclactnband,
+  vclx,
+  dbrtl,
+  soaprtl,
+  dbexpress,
+  DbxCommonDriver,
+  DataSnapProviderClient,
+  TeeUI,
+  Tee,
+  DataSnapCommon,
+  vcldb,
+  vcldsnap,
+  SynEditDR,
+  DataSnapClient,
+  IndyIPClient,
+  IndyIPCommon,
+  IndySystem,
+  IndyProtocols,
+  IndyCore,
+  AbbreviaD,
+  vclie,
+  zBase_Common_103,
+  zBase_FIB_103,
+  TeeDB,
+  acQueryBuilderD26,
+  dxPDFViewerRS26,
+  vclFireDAC,
+  FireDAC,
+  FireDACCommonDriver,
+  FireDACCommon,
+  FireDACIBDriver,
+  fs26,
+  frx26,
+  dxRichEditControlRS26,
+  dxRichEditControlCoreRS26,
+  dxRichEditDocumentModelRS26,
+  dxRichEditCoreRS26,
+  acSqlTextEditorD26,
+  dxPScxPCProdRS26,
+  dxPScxCommonRS26,
+  dxPScxExtCommonRS26,
+  dxPSdxPDFViewerLnkRS26,
+  dxPsPrVwAdvRS26,
+  dxPSPrVwRibbonRS26,
+  dxSpreadSheetCoreConditionalFormattingDialogsRS26,
+  dcldxOrgChartAdvancedCustomizeFormRS26,
+  dxPSdxSpreadSheetLnkRS26,
+  dxPScxGridLnkRS26,
+  dxPScxVGridLnkRS26,
+  dxPScxTLLnkRS26,
+  dxPScxSchedulerLnkRS26,
+  dxCoreRS26,
+  cxLibraryRS26,
+  dxGDIPlusRS26,
+  cxVerticalGridRS26,
+  dxSpellCheckerRS26,
+  dxSkinsCoreRS26,
+  cxPivotGridRS26,
+  cxTreeListdxBarPopupMenuRS26,
+  cxSchedulerRS26,
+  dxNavBarRS26,
+  frxDB26,
+  TatukGIS_DK9_DXE103_WIN32,
+  TMSWebGMapsPkgDXE12,
+  dxWizardControlRS26,
+  dxDockingRS26,
+  dxBarDBNavRS26,
+  dxFlowChartRS26,
+  dxFlowChartLayoutsRS26,
+  dxMapControlRS26,
+  fcxd26,
+  fcxcd26,
+  fcxed26;
+
+contains
+  zBaseRegister in 'zBaseRegister.pas';
+
+end.

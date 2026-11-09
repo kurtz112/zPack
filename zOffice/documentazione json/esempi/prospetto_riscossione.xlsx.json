@@ -1,0 +1,12 @@
+{
+  "id": "prospetto-riscossione",
+  "group": "Prospetti",
+  "mainDataset": "qryProspetto",
+  "excel": {
+    "readOnly": false,
+    "allowBuildReport": true
+  },
+  "azioni": {
+    "inviaMail": { "enabled": true }
+  }
+}

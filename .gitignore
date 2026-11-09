@@ -1,0 +1,32 @@
+# Scritto da zBuilder. Esclude i prodotti della compilazione per estensione:
+# la cartella _bin resta, perche' dentro ci sono anche file che non si
+# ricostruiscono (dizionario LZ, skin, dizionari, DLL di terze parti).
+
+# Delphi
+*.exe
+*.dcu
+*.map
+*.jdbg
+*.drc
+*.rsm
+*.tds
+*.identcache
+*.local
+*.stat
+*.dsk
+*.~*
+*.bak
+__history/
+__recovery/
+_dcu/
+dcu/
+Win32/
+Win64/
+
+*.rar
+*.zip
+___STORICO/
+
+# zBuilder e Windows
+*.zbtmp
+Thumbs.db

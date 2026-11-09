@@ -1,0 +1,89 @@
+<div class="zz-meta-editor">
+  @if (erroreAvvio(); as errore) {
+    <div class="dx-card zz-meta-riquadro zz-meta-avviso">
+      <h3>L'editor dei metadati non si apre</h3>
+      <p>{{ errore }}</p>
+      <p class="zz-meta-nota">
+        Le cause possibili: l'utente non ha l'autorizzazione BASE_WEB_METADATI, oppure le tabelle e il pacchetto
+        BASE_WEB_TABLE_IO di questo database non sono allineati con quelli che l'editor si aspetta.
+      </p>
+    </div>
+  } @else if (pronto()) {
+    <dx-tab-panel
+      [dataSource]="sezioni"
+      [selectedIndex]="sezioneAttiva()"
+      (selectedIndexChange)="sezioneAttiva.set($event)"
+      [swipeEnabled]="false"
+      [animationEnabled]="false"
+      [deferRendering]="true"
+    >
+      <div *dxTemplate="let sezione of 'item'" class="zz-meta-scheda">
+        @switch (sezione.id) {
+          @case ('datasets') {
+            <div class="zz-meta-divisa">
+              <div class="zz-meta-divisa__elenco">
+                <div class="zz-meta-azioni">
+                  <dx-button text="Nuovo dataset" icon="add" (onClick)="nuovoDataset()"></dx-button>
+                  <dx-button
+                    icon="refresh"
+                    hint="Rigenera il JSON dei metadati di tutti i dataset"
+                    (onClick)="rigeneraTutti()"
+                  ></dx-button>
+                </div>
+                <dx-data-grid
+                  [dataSource]="datasets()"
+                  keyExpr="DATASET"
+                  [showBorders]="true"
+                  [hoverStateEnabled]="true"
+                  [focusedRowEnabled]="true"
+                  [focusedRowKey]="datasetScelto() ?? null"
+                  [autoNavigateToFocusedRow]="true"
+                  [height]="640"
+                  noDataText="Nessun dataset"
+                  (onRowClick)="scegliDataset($event)"
+                >
+                  <dxo-search-panel [visible]="true" placeholder="Cerca..."></dxo-search-panel>
+                  <dxo-grouping [autoExpandAll]="true"></dxo-grouping>
+                  <dxo-scrolling mode="virtual"></dxo-scrolling>
+                  <dxi-column dataField="DM" caption="Modulo" [groupIndex]="0"></dxi-column>
+                  <dxi-column dataField="NAME" caption="Dataset"></dxi-column>
+                  <dxi-column dataField="CAPTION" caption="Titolo"></dxi-column>
+                  <dxi-column dataField="AUTHORIZATION" caption="Autorizzazione" [visible]="false"></dxi-column>
+                </dx-data-grid>
+              </div>
+              <div class="zz-meta-divisa__dettaglio">
+                @if (datasetScelto() !== undefined) {
+                  <zz-meta-dataset
+                    [datasetId]="datasetScelto() ?? null"
+                    [schedaIniziale]="schedaDataset()"
+                    [campoIniziale]="campoEvidenziato()"
+                    [domini]="domini()"
+                    [elenchiComuni]="elenchi()"
+                    (salvato)="ricaricaDatasets($event)"
+                    (eliminato)="datasetEliminato()"
+                  />
+                } @else {
+                  <p class="zz-meta-nota">Scegli un dataset dall'elenco o creane uno nuovo.</p>
+                }
+              </div>
+            </div>
+          }
+          @case ('lookups') {
+            <zz-meta-lookup
+              [righe]="lookups()"
+              [domini]="domini()"
+              [elenchi]="elenchi()"
+              (cambiati)="ricaricaLookups()"
+            />
+          }
+          @case ('picklists') {
+            <zz-meta-picklist [righe]="picklists()" (cambiate)="ricaricaPicklists()" />
+          }
+          @case ('trasporto') {
+            <zz-meta-trasporto [datasets]="elenchi().datasets ?? []" [moduli]="moduli()" />
+          }
+        }
+      </div>
+    </dx-tab-panel>
+  }
+</div>

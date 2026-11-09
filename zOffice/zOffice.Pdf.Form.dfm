@@ -1,0 +1,1927 @@
+object zViewerPdfForm: TzViewerPdfForm
+  Left = 0
+  Top = 0
+  Caption = 'Pdf'
+  ClientHeight = 639
+  ClientWidth = 1154
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  Position = poScreenCenter
+  OnShow = FormShow
+  TextHeight = 13
+  object dxRibbon: TdxRibbon
+    Left = 0
+    Top = 0
+    Width = 1154
+    Height = 132
+    ApplicationButton.Visible = False
+    BarManager = dxBarManager
+    CapitalizeTabCaptions = bDefault
+    Style = rs2019
+    ColorSchemeAccent = rcsaGreen
+    ColorSchemeName = 'Colorful'
+    PopupMenuItems = [rpmiQATPosition, rpmiQATAddRemoveItem, rpmiMinimizeRibbon]
+    SupportNonClientDrawing = True
+    Contexts = <>
+    TabAreaToolbar.Toolbar = dxBarManager1Bar2
+    TabOrder = 0
+    TabStop = False
+    object dxRibbonTabHome: TdxRibbonTab
+      Active = True
+      Caption = 'File'
+      Groups = <
+        item
+          Caption = 'File'
+          ToolbarName = 'dxBarFile'
+        end
+        item
+          Caption = 'Trova'
+          ToolbarName = 'dxBarFind'
+        end
+        item
+          Caption = 'Strumenti'
+          ToolbarName = 'dxBarTools'
+        end
+        item
+          Caption = 'Navigazione'
+          ToolbarName = 'dxRibbonNavigationGroup'
+        end
+        item
+          Caption = 'Vista'
+          ToolbarName = 'dxBarZoom'
+        end
+        item
+          ToolbarName = 'barExport'
+        end
+        item
+          ToolbarName = 'dxBarManagerBar1'
+        end>
+      Index = 0
+    end
+    object dxRibbon1Tab2: TdxRibbonTab
+      Caption = 'Scheda Interattiva'
+      Groups = <
+        item
+          ToolbarName = 'dxBarManager1Bar3'
+        end
+        item
+          ToolbarName = 'dxBarManager1Bar1'
+        end>
+      Index = 1
+    end
+  end
+  object dxPDFViewer: TdxPDFViewer
+    Left = 0
+    Top = 132
+    Width = 1154
+    Height = 482
+    Align = alClient
+    OptionsFindPanel.Alignment = fpalTopRight
+    OptionsNavigationPane.Attachments.Glyph.SourceDPI = 96
+    OptionsNavigationPane.Attachments.Glyph.Data = {
+      3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D227574
+      662D38223F3E0D0A3C212D2D2047656E657261746F723A2041646F626520496C
+      6C7573747261746F722032302E312E302C20535647204578706F727420506C75
+      672D496E202E205356472056657273696F6E3A20362E3030204275696C642030
+      2920202D2D3E0D0A3C21444F435459504520737667205055424C494320222D2F
+      2F5733432F2F4454442053564720312E312F2F454E222022687474703A2F2F77
+      77772E77332E6F72672F47726170686963732F5356472F312E312F4454442F73
+      766731312E647464223E0D0A3C7376672076657273696F6E3D22312E31222069
+      643D224C617965725F312220786D6C6E733D22687474703A2F2F7777772E7733
+      2E6F72672F323030302F7376672220786D6C6E733A786C696E6B3D2268747470
+      3A2F2F7777772E77332E6F72672F313939392F786C696E6B2220783D22307078
+      2220793D22307078220D0A092076696577426F783D2230203020333220333222
+      207374796C653D22656E61626C652D6261636B67726F756E643A6E6577203020
+      302033322033323B2220786D6C3A73706163653D227072657365727665223E0D
+      0A3C7374796C6520747970653D22746578742F637373223E0D0A092E426C6163
+      6B7B66696C6C3A233732373237323B7D0D0A3C2F7374796C653E0D0A3C706174
+      682069643D224174746163686D656E742220636C6173733D22426C61636B2220
+      643D224D31372C3263332E392C302C372C332E312C372C37763133682D325639
+      63302D322E382D322E322D352D352D35732D352C322E322D352C357631366330
+      2C312E372C312E332C332C332C3373332D312E332C332D335631310D0A096330
+      2D302E362D302E342D312D312D31732D312C302E342D312C31763131682D3256
+      313163302D312E372C312E332D332C332D3373332C312E332C332C3376313463
+      302C322E382D322E322C352D352C35732D352D322E322D352D3556394331302C
+      352E312C31332E312C322C31372C327A222F3E0D0A3C2F7376673E0D0A}
+    OptionsNavigationPane.Bookmarks.Glyph.SourceDPI = 96
+    OptionsNavigationPane.Bookmarks.Glyph.Data = {
+      3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D227574
+      662D38223F3E0D0A3C212D2D2047656E657261746F723A2041646F626520496C
+      6C7573747261746F722032302E312E302C20535647204578706F727420506C75
+      672D496E202E205356472056657273696F6E3A20362E3030204275696C642030
+      2920202D2D3E0D0A3C21444F435459504520737667205055424C494320222D2F
+      2F5733432F2F4454442053564720312E312F2F454E222022687474703A2F2F77
+      77772E77332E6F72672F47726170686963732F5356472F312E312F4454442F73
+      766731312E647464223E0D0A3C7376672076657273696F6E3D22312E31222069
+      643D224C617965725F312220786D6C6E733D22687474703A2F2F7777772E7733
+      2E6F72672F323030302F7376672220786D6C6E733A786C696E6B3D2268747470
+      3A2F2F7777772E77332E6F72672F313939392F786C696E6B2220783D22307078
+      2220793D22307078220D0A092076696577426F783D2230203020333220333222
+      207374796C653D22656E61626C652D6261636B67726F756E643A6E6577203020
+      302033322033323B2220786D6C3A73706163653D227072657365727665223E0D
+      0A3C7374796C6520747970653D22746578742F637373223E0D0A092E426C6163
+      6B7B66696C6C3A233732373237323B7D0D0A3C2F7374796C653E0D0A3C706F6C
+      79676F6E2069643D22426F6F6B6D61726B732220636C6173733D22426C61636B
+      2220706F696E74733D2232342C33302031362C323220382C333020382C342032
+      342C3420222F3E0D0A3C2F7376673E0D0A}
+    OptionsNavigationPane.Thumbnails.Glyph.SourceDPI = 96
+    OptionsNavigationPane.Thumbnails.Glyph.Data = {
+      3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D227574
+      662D38223F3E0D0A3C212D2D2047656E657261746F723A2041646F626520496C
+      6C7573747261746F722032302E312E302C20535647204578706F727420506C75
+      672D496E202E205356472056657273696F6E3A20362E3030204275696C642030
+      2920202D2D3E0D0A3C21444F435459504520737667205055424C494320222D2F
+      2F5733432F2F4454442053564720312E312F2F454E222022687474703A2F2F77
+      77772E77332E6F72672F47726170686963732F5356472F312E312F4454442F73
+      766731312E647464223E0D0A3C7376672076657273696F6E3D22312E31222069
+      643D224C617965725F312220786D6C6E733D22687474703A2F2F7777772E7733
+      2E6F72672F323030302F7376672220786D6C6E733A786C696E6B3D2268747470
+      3A2F2F7777772E77332E6F72672F313939392F786C696E6B2220783D22307078
+      2220793D22307078220D0A092076696577426F783D2230203020333220333222
+      207374796C653D22656E61626C652D6261636B67726F756E643A6E6577203020
+      302033322033323B2220786D6C3A73706163653D227072657365727665223E0D
+      0A3C7374796C6520747970653D22746578742F637373223E0D0A092E426C6163
+      6B7B66696C6C3A233732373237323B7D0D0A3C2F7374796C653E0D0A3C706174
+      682069643D225468756D626E61696C732220636C6173733D22426C61636B2220
+      643D224D32382C38682D34563448313276364836763138683136762D36683656
+      387A204D32302C32364838563132683476313068385632367A204D32362C3230
+      682D34682D32682D36762D38762D3256366838763468345632307A220D0A092F
+      3E0D0A3C2F7376673E0D0A}
+    OptionsNavigationPane.Visible = True
+    OptionsView.HighlightCurrentPage = False
+    OnAttachmentOpen = dxPDFViewerAttachmentOpen
+    OnAttachmentSave = dxPDFViewerAttachmentSave
+    OnCustomDrawPreRenderPage = dxPDFViewerCustomDrawPreRenderPage
+    OnCustomDrawPreRenderPageThumbnail = dxPDFViewerCustomDrawPreRenderPageThumbnail
+    OnDocumentLoaded = dxPDFViewerDocumentLoaded
+    OnDocumentUnloaded = dxPDFViewerDocumentUnloaded
+    OnHideFindPanel = dxPDFViewerHideFindPanel
+    OnHyperlinkClick = dxPDFViewerHyperlinkClick
+    OnShowFindPanel = dxPDFViewerShowFindPanel
+    OnSearchProgress = dxPDFViewerSearchProgress
+    OnSelectedPageChanged = dxPDFViewerSelectedPageChanged
+    OnZoomFactorChanged = dxPDFViewerZoomFactorChanged
+  end
+  object dxRibbonStatusBar: TdxRibbonStatusBar
+    Left = 0
+    Top = 614
+    Width = 1154
+    Height = 25
+    Color = clBtnFace
+    Panels = <
+      item
+        PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
+        Fixed = False
+      end
+      item
+        PanelStyleClassName = 'TdxStatusBarToolbarPanelStyle'
+        PanelStyle.ToolbarName = 'bmiNavigation'
+        Fixed = False
+        MinWidth = 100
+        Width = 100
+      end
+      item
+        PanelStyleClassName = 'TdxStatusBarToolbarPanelStyle'
+        PanelStyle.ToolbarName = 'biStatusBarZoom'
+        MinWidth = 76
+        Text = 'TdxStatusBarPanel'
+        Width = 76
+      end
+      item
+        PanelStyleClassName = 'TdxStatusBarContainerPanelStyle'
+        PanelStyle.Container = dxRibbonStatusBar1Container5
+        MinWidth = 150
+        Width = 150
+      end
+      item
+        PanelStyleClassName = 'TdxStatusBarToolbarPanelStyle'
+        PanelStyle.ToolbarName = 'dxTextSearchStatusBar'
+      end
+      item
+        PanelStyleClassName = 'TdxStatusBarContainerPanelStyle'
+        PanelStyle.AlignControl = False
+        PanelStyle.Container = dxRibbonStatusBar1Container6
+        Width = 100
+      end>
+    Ribbon = dxRibbon
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clDefault
+    Font.Height = -11
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    object dxRibbonStatusBar1Container5: TdxStatusBarContainerControl
+      Left = 722
+      Top = 0
+      Width = 152
+      Height = 25
+      object tbZoom: TdxZoomTrackBar
+        Left = 0
+        Top = 0
+        Align = alClient
+        Properties.FirstRange.Frequency = 5
+        Properties.OnChange = tbZoomPropertiesChange
+        TabOrder = 0
+        Height = 25
+        Width = 152
+      end
+    end
+    object dxRibbonStatusBar1Container6: TdxStatusBarContainerControl
+      Left = 1033
+      Top = 0
+      Width = 102
+      Height = 25
+    end
+  end
+  object dxBarManager: TdxBarManager
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    Categories.Strings = (
+      'Default'
+      'PDF Viewer | Zoom'
+      'PDF Viewer | File'
+      'PDF Viewer | Navigation'
+      'Home | File'
+      'Home | Tools'
+      'Home | Navigation'
+      'Home | Find')
+    Categories.ItemsVisibles = (
+      2
+      2
+      2
+      2
+      2
+      2
+      2
+      2)
+    Categories.Visibles = (
+      True
+      True
+      True
+      True
+      True
+      True
+      True
+      True)
+    ImageOptions.Images = dx.Immagini
+    LookAndFeel.NativeStyle = False
+    PopupMenuLinks = <>
+    UseSystemFont = True
+    Left = 200
+    Top = 208
+    PixelsPerInch = 96
+    object dxBarManager1Bar2: TdxBar
+      Caption = 'Tab Area Toolbar'
+      CaptionButtons = <>
+      DockedLeft = 0
+      DockedTop = 0
+      FloatLeft = 0
+      FloatTop = 0
+      FloatClientWidth = 0
+      FloatClientHeight = 0
+      ItemLinks = <>
+      OneOnRow = True
+      Row = 0
+      UseOwnFont = False
+      Visible = True
+      WholeRow = False
+    end
+    object dxBarFile: TdxBar
+      Caption = 'File'
+      CaptionButtons = <>
+      DockedLeft = 0
+      DockedTop = 0
+      FloatLeft = 1105
+      FloatTop = 8
+      FloatClientWidth = 0
+      FloatClientHeight = 0
+      Glyph.SourceDPI = 96
+      Glyph.Data = {
+        3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D225554
+        462D38223F3E0D0A3C7376672076657273696F6E3D22312E31222069643D224C
+        617965725F312220786D6C6E733D22687474703A2F2F7777772E77332E6F7267
+        2F323030302F7376672220786D6C6E733A786C696E6B3D22687474703A2F2F77
+        77772E77332E6F72672F313939392F786C696E6B2220783D223070782220793D
+        22307078222076696577426F783D2230203020333220333222207374796C653D
+        22656E61626C652D6261636B67726F756E643A6E657720302030203332203332
+        3B2220786D6C3A73706163653D227072657365727665223E262331333B262331
+        303B3C7374796C6520747970653D22746578742F6373732220786D6C3A737061
+        63653D227072657365727665223E2E59656C6C6F777B66696C6C3A2346464231
+        31353B7D262331333B262331303B2623393B2E5265647B66696C6C3A23443131
+        4331433B7D262331333B262331303B2623393B2E426C75657B66696C6C3A2331
+        31373744373B7D262331333B262331303B2623393B2E477265656E7B66696C6C
+        3A233033394332333B7D262331333B262331303B2623393B2E426C61636B7B66
+        696C6C3A233732373237323B7D262331333B262331303B2623393B2E57686974
+        657B66696C6C3A234646464646463B7D262331333B262331303B2623393B2E73
+        74307B6F7061636974793A302E37353B7D3C2F7374796C653E0D0A3C67206964
+        3D22446F63756D656E74504446223E0D0A09093C7061746820636C6173733D22
+        426C61636B2220643D224D32322C3234763448325632683134763563302C302E
+        362C302E342C312C312C3168357634683256376C2D372D37483143302E342C30
+        2C302C302E342C302C3176323863302C302E362C302E342C312C312C31683232
+        63302E362C302C312D302E342C312D3120202623393B2623393B762D35483232
+        7A222F3E0D0A09093C7061746820636C6173733D225265642220643D224D3139
+        2E322C313663302E332C302E352C302E342C312E312C302E342C312E3963302C
+        302E392D302E322C312E352D302E352C32632D302E332C302E352D302E372C30
+        2E372D312E332C302E37682D302E36762D352E3368302E3620202623393B2623
+        393B4331382E342C31352E332C31382E392C31352E362C31392E322C31367A20
+        4D31322E312C31352E33682D302E3576322E3668302E3563302E372C302C312E
+        312D302E342C312E312D312E3363302D302E342D302E312D302E382D302E332D
+        314331322E362C31352E342C31322E342C31352E332C31322E312C31352E337A
+        20202623393B2623393B204D33302C313276313248365631324833307A204D31
+        342E382C31362E3563302D302E382D302E322D312E352D302E362D312E39632D
+        302E342D302E342D312D302E372D312E382D302E37483130763868312E36762D
+        322E3768302E3663302E382C302C312E342D302E332C312E392D302E38202026
+        23393B2623393B4331342E352C31382C31342E382C31372E332C31342E382C31
+        362E357A204D32312E322C31372E3963302D322E362D312E312D332E392D332E
+        342D332E39682D322E31763868322E3263312E312C302C312E392D302E342C32
+        2E352D312E314332302E392C32302E322C32312E322C31392E322C32312E322C
+        31372E397A20202623393B2623393B204D32362C3134682D332E37763868312E
+        36762D332E316832762D312E33682D32762D322E324832365631347A222F3E0D
+        0A093C2F673E0D0A3C2F7376673E0D0A}
+      ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'dxBarLargeButton11'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarLargeButton5'
+        end
+        item
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'dxBarLargeButtonPrint'
+        end>
+      OneOnRow = False
+      Row = 0
+      UseOwnFont = False
+      Visible = True
+      WholeRow = False
+    end
+    object dxBarZoom: TdxBar
+      Caption = 'Visualizzazione'
+      CaptionButtons = <>
+      DockedLeft = 676
+      DockedTop = 0
+      FloatLeft = 1105
+      FloatTop = 8
+      FloatClientWidth = 71
+      FloatClientHeight = 136
+      Glyph.SourceDPI = 96
+      Glyph.Data = {
+        3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D225554
+        462D38223F3E0D0A3C7376672076657273696F6E3D22312E31222069643D224C
+        617965725F312220786D6C6E733D22687474703A2F2F7777772E77332E6F7267
+        2F323030302F7376672220786D6C6E733A786C696E6B3D22687474703A2F2F77
+        77772E77332E6F72672F313939392F786C696E6B2220783D223070782220793D
+        22307078222076696577426F783D2230203020333220333222207374796C653D
+        22656E61626C652D6261636B67726F756E643A6E657720302030203332203332
+        3B2220786D6C3A73706163653D227072657365727665223E262331333B262331
+        303B3C7374796C6520747970653D22746578742F6373732220786D6C3A737061
+        63653D227072657365727665223E2E59656C6C6F777B66696C6C3A2346464231
+        31353B7D262331333B262331303B2623393B2E5265647B66696C6C3A23443131
+        4331433B7D262331333B262331303B2623393B2E426C75657B66696C6C3A2331
+        31373744373B7D262331333B262331303B2623393B2E477265656E7B66696C6C
+        3A233033394332333B7D262331333B262331303B2623393B2E426C61636B7B66
+        696C6C3A233732373237323B7D262331333B262331303B2623393B2E57686974
+        657B66696C6C3A234646464646463B7D262331333B262331303B2623393B2E73
+        74307B6F7061636974793A302E37353B7D3C2F7374796C653E0D0A3C67206964
+        3D225A6F6F6D223E0D0A09093C7061746820636C6173733D22426C61636B2220
+        643D224D32392E372C32372E334C32322C31392E366C2D302E312D302E316331
+        2E332D312E382C322E312D342E312C322E312D362E3563302D362E312D342E39
+        2D31312D31312D313153322C362E392C322C313373342E392C31312C31312C31
+        3120202623393B2623393B63322E342C302C342E372D302E382C362E352D322E
+        3163302C302C302C302E312C302E312C302E316C372E372C372E3763302E332C
+        302E332C302E392C302E332C312E322C306C312E322D312E324333302E312C32
+        382E322C33302E312C32372E362C32392E372C32372E337A204D342C31332020
+        2623393B2623393B63302D352C342D392C392D3973392C342C392C39732D342C
+        392D392C3953342C31382C342C31337A222F3E0D0A093C2F673E0D0A3C2F7376
+        673E0D0A}
+      ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'lbtnSinglePageMode'
+        end
+        item
+          BeginGroup = True
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'dxBarLargeButtonZoomOut'
+        end
+        item
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'dxBarLargeButtonZoomIn'
+        end
+        item
+          BeginGroup = True
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'lbtnZoomGroup'
+        end>
+      OneOnRow = False
+      Row = 0
+      UseOwnFont = False
+      Visible = True
+      WholeRow = False
+    end
+    object bmiNavigation: TdxBar
+      AllowCustomizing = False
+      AllowQuickCustomizing = False
+      AllowReset = False
+      Caption = 'StatusBarNavigation'
+      CaptionButtons = <>
+      DockedLeft = 77
+      DockedTop = 0
+      FloatLeft = 1105
+      FloatTop = 8
+      FloatClientWidth = 90
+      FloatClientHeight = 243
+      ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'dxBarLargeButtonFirstPage'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarLargeButtonPreviousPage'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarStatic1'
+        end
+        item
+          UserDefine = [udWidth]
+          UserWidth = 33
+          Visible = True
+          ItemName = 'sseActivePage'
+        end
+        item
+          Visible = True
+          ItemName = 'sbPageCount'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarLargeButtonNextPage'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarLargeButtonLastPage'
+        end>
+      OneOnRow = True
+      Row = 0
+      UseOwnFont = False
+      Visible = True
+      WholeRow = False
+    end
+    object biStatusBarZoom: TdxBar
+      AllowCustomizing = False
+      AllowQuickCustomizing = False
+      AllowReset = False
+      Caption = 'StatusBarZoom'
+      CaptionButtons = <>
+      DockedLeft = 0
+      DockedTop = 0
+      FloatLeft = 1105
+      FloatTop = 8
+      FloatClientWidth = 0
+      FloatClientHeight = 0
+      ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'lbtnZoomGroup'
+        end
+        item
+          Visible = True
+          ItemName = 'biStatusBarCurrentZoom'
+        end>
+      OneOnRow = True
+      Row = 0
+      UseOwnFont = False
+      Visible = True
+      WholeRow = False
+    end
+    object dxRibbonNavigationGroup: TdxBar
+      Caption = 'Navigation'
+      CaptionButtons = <>
+      DockedLeft = 505
+      DockedTop = 0
+      FloatLeft = 1017
+      FloatTop = 8
+      FloatClientWidth = 95
+      FloatClientHeight = 136
+      Glyph.SourceDPI = 96
+      Glyph.Data = {
+        3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D225554
+        462D38223F3E0D0A3C7376672076657273696F6E3D22312E31222069643D224C
+        617965725F312220786D6C6E733D22687474703A2F2F7777772E77332E6F7267
+        2F323030302F7376672220786D6C6E733A786C696E6B3D22687474703A2F2F77
+        77772E77332E6F72672F313939392F786C696E6B2220783D223070782220793D
+        22307078222076696577426F783D2230203020333220333222207374796C653D
+        22656E61626C652D6261636B67726F756E643A6E657720302030203332203332
+        3B2220786D6C3A73706163653D227072657365727665223E262331333B262331
+        303B3C7374796C6520747970653D22746578742F637373223E2E426C75657B66
+        696C6C3A233131373744373B7D3C2F7374796C653E0D0A3C7061746820636C61
+        73733D22426C75652220643D224D32312E362C31342E3463302E352C302E332C
+        302E352C302E382C302C312E314C31322C32322E3776322E3663302C302E362C
+        302E342C302E382C302E392C302E356C31322E372D31302E3463302E352D302E
+        332C302E352D302E372C302D312E3120202623393B4C31322E392C342E314331
+        322E342C332E382C31322C342C31322C342E3676322E364C32312E362C31342E
+        347A222F3E0D0A3C7061746820636C6173733D22426C75652220643D224D3137
+        2E362C31352E3563302E352D302E332C302E352D302E382C302D312E314C322E
+        392C342E3143322E342C332E382C322C342C322C342E367632302E3763302C30
+        2E362C302E342C302E382C302E392C302E354C31372E362C31352E357A222F3E
+        0D0A3C7061746820636C6173733D22426C75652220643D224D32392C34683263
+        302E362C302C312C302E342C312C3176323063302C302E362D302E342C312D31
+        2C31682D32632D302E362C302D312D302E342D312D3156354332382C342E342C
+        32382E342C342C32392C347A222F3E0D0A3C2F7376673E0D0A}
+      ItemLinks = <
+        item
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'lbtnNavigation'
+        end
+        item
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'lbtnRotateView'
+        end>
+      OneOnRow = False
+      Row = 0
+      UseOwnFont = False
+      Visible = True
+      WholeRow = False
+    end
+    object dxBarTools: TdxBar
+      Caption = 'Tools'
+      CaptionButtons = <>
+      DockedLeft = 266
+      DockedTop = 0
+      FloatLeft = 1118
+      FloatTop = 8
+      FloatClientWidth = 0
+      FloatClientHeight = 0
+      Glyph.SourceDPI = 96
+      Glyph.Data = {
+        3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D225554
+        462D38223F3E0D0A3C7376672076657273696F6E3D22312E31222069643D224C
+        617965725F312220786D6C6E733D22687474703A2F2F7777772E77332E6F7267
+        2F323030302F7376672220786D6C6E733A786C696E6B3D22687474703A2F2F77
+        77772E77332E6F72672F313939392F786C696E6B2220783D223070782220793D
+        22307078222076696577426F783D2230203020333220333222207374796C653D
+        22656E61626C652D6261636B67726F756E643A6E657720302030203332203332
+        3B2220786D6C3A73706163653D227072657365727665223E262331333B262331
+        303B3C7374796C6520747970653D22746578742F6373732220786D6C3A737061
+        63653D227072657365727665223E2E59656C6C6F777B66696C6C3A2346464231
+        31353B7D262331333B262331303B2623393B2E5265647B66696C6C3A23443131
+        4331433B7D262331333B262331303B2623393B2E426C75657B66696C6C3A2331
+        31373744373B7D262331333B262331303B2623393B2E477265656E7B66696C6C
+        3A233033394332333B7D262331333B262331303B2623393B2E426C61636B7B66
+        696C6C3A233732373237323B7D262331333B262331303B2623393B2E57686974
+        657B66696C6C3A234646464646463B7D262331333B262331303B2623393B2E73
+        74307B6F7061636974793A302E37353B7D3C2F7374796C653E0D0A3C67206964
+        3D2253656C656374223E0D0A09093C7061746820636C6173733D22426C61636B
+        2220643D224D31382E322C32304832364C31302C347632326C352E332D352E33
+        6C322E372C362E3763302E322C302E352C302E382C302E382C312E332C302E35
+        6C302E392D302E3463302E352D302E322C302E382D302E382C302E352D312E33
+        4C31382E322C32307A222F3E0D0A093C2F673E0D0A3C2F7376673E0D0A}
+      ItemLinks = <
+        item
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'dxBarLargeButtonSelectTool'
+        end
+        item
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'dxBarLargeButtonHandTool'
+        end
+        item
+          BeginGroup = True
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'dxBarLargeButtonSelectAll'
+        end>
+      OneOnRow = False
+      Row = 0
+      UseOwnFont = False
+      Visible = True
+      WholeRow = False
+    end
+    object dxTextSearchStatusBar: TdxBar
+      AllowCustomizing = False
+      AllowQuickCustomizing = False
+      AllowReset = False
+      Caption = 'TextSearchStatusBar'
+      CaptionButtons = <>
+      DockedLeft = 0
+      DockedTop = 0
+      FloatLeft = 1145
+      FloatTop = 8
+      FloatClientWidth = 0
+      FloatClientHeight = 0
+      ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'cxBarEditItem4'
+        end
+        item
+          Visible = True
+          ItemName = 'bbAbortTextSearch'
+        end>
+      OneOnRow = True
+      Row = 0
+      UseOwnFont = False
+      Visible = True
+      WholeRow = False
+    end
+    object dxBarFind: TdxBar
+      Caption = 'Find'
+      CaptionButtons = <>
+      DockedLeft = 200
+      DockedTop = 0
+      FloatLeft = 1145
+      FloatTop = 8
+      FloatClientWidth = 0
+      FloatClientHeight = 0
+      Glyph.SourceDPI = 96
+      Glyph.Data = {
+        3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D225554
+        462D38223F3E0D0A3C7376672076657273696F6E3D22312E31222069643D224C
+        617965725F312220786D6C6E733D22687474703A2F2F7777772E77332E6F7267
+        2F323030302F7376672220786D6C6E733A786C696E6B3D22687474703A2F2F77
+        77772E77332E6F72672F313939392F786C696E6B2220783D223070782220793D
+        22307078222076696577426F783D2230203020333220333222207374796C653D
+        22656E61626C652D6261636B67726F756E643A6E657720302030203332203332
+        3B2220786D6C3A73706163653D227072657365727665223E262331333B262331
+        303B3C7374796C6520747970653D22746578742F6373732220786D6C3A737061
+        63653D227072657365727665223E2E426C75657B66696C6C3A23313137374437
+        3B7D262331333B262331303B2623393B2E59656C6C6F777B66696C6C3A234646
+        423131353B7D262331333B262331303B2623393B2E426C61636B7B66696C6C3A
+        233732373237323B7D262331333B262331303B2623393B2E477265656E7B6669
+        6C6C3A233033394332333B7D262331333B262331303B2623393B2E5265647B66
+        696C6C3A234431314331433B7D262331333B262331303B2623393B2E7374307B
+        6F7061636974793A302E37353B7D262331333B262331303B2623393B2E737431
+        7B6F7061636974793A302E353B7D3C2F7374796C653E0D0A3C672069643D2246
+        696E64223E0D0A09093C7061746820636C6173733D22426C61636B2220643D22
+        4D32392E352C31392E374C32392E352C31392E374C32392E352C31392E374332
+        392E352C31392E372C32392E352C31392E372C32392E352C31392E374C32332E
+        382C366C302C30632D302E342D312E322D312E352D322D322E382D3220202623
+        393B2623393B632D312E372C302D332C312E332D332C337633682D3456376330
+        2D312E372D312E332D332D332D3343392E372C342C382E362C342E392C382E32
+        2C366C302C304C322E352C31392E3763302C302C302C302C302C306C302C3068
+        3043322E322C32302E342C322C32312E322C322C323220202623393B2623393B
+        63302C332E332C322E372C362C362C3673362D322E372C362D36762D34683476
+        3463302C332E332C322E372C362C362C3673362D322E372C362D364333302C32
+        312E322C32392E382C32302E342C32392E352C31392E377A204D382C3236632D
+        322E322C302D342D312E382D342D3473312E382D342C342D3420202623393B26
+        23393B73342C312E382C342C345331302E322C32362C382C32367A204D32342C
+        3236632D322E322C302D342D312E382D342D3473312E382D342C342D3473342C
+        312E382C342C345332362E322C32362C32342C32367A222F3E0D0A093C2F673E
+        0D0A3C2F7376673E0D0A}
+      ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'dxBarLargeButtonFind1'
+        end>
+      OneOnRow = False
+      Row = 0
+      UseOwnFont = False
+      Visible = True
+      WholeRow = False
+    end
+    object barExport: TdxBar
+      Caption = 'Esporta'
+      CaptionButtons = <>
+      DockedLeft = 966
+      DockedTop = 0
+      FloatLeft = 1145
+      FloatTop = 8
+      FloatClientWidth = 0
+      FloatClientHeight = 0
+      Glyph.SourceDPI = 96
+      Glyph.Data = {
+        3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D227574
+        662D38223F3E0D0A3C212D2D2047656E657261746F723A2041646F626520496C
+        6C7573747261746F722032312E312E302C20535647204578706F727420506C75
+        672D496E202E205356472056657273696F6E3A20362E3030204275696C642030
+        2920202D2D3E0D0A3C7376672076657273696F6E3D22312E31222069643D224C
+        617965725F312220786D6C6E733D22687474703A2F2F7777772E77332E6F7267
+        2F323030302F7376672220786D6C6E733A786C696E6B3D22687474703A2F2F77
+        77772E77332E6F72672F313939392F786C696E6B2220783D223070782220793D
+        22307078220D0A092076696577426F783D223020302033322033322220737479
+        6C653D22656E61626C652D6261636B67726F756E643A6E657720302030203332
+        2033323B2220786D6C3A73706163653D227072657365727665223E0D0A3C7374
+        796C6520747970653D22746578742F637373223E0D0A092E426C61636B7B6669
+        6C6C3A233732373237323B7D0D0A092E477265656E7B66696C6C3A2330333943
+        32333B7D0D0A3C2F7374796C653E0D0A3C7061746820636C6173733D22426C61
+        636B2220643D224D31342C3648367638683856367A204D31302C313248385638
+        68325631327A222F3E0D0A3C7061746820636C6173733D22426C61636B222064
+        3D224D32302C31364C32302C313648345636483143302E342C362C302C362E34
+        2C302C3776323263302C302E362C302E342C312C312C3168323263302E362C30
+        2C312D302E342C312D315631364832307A204D32302C32364834762D36683136
+        5632367A222F3E0D0A3C706F6C79676F6E20636C6173733D22477265656E2220
+        706F696E74733D2231362C31302032342C31302032342C31342033322C382032
+        342C322032342C362031362C3620222F3E0D0A3C2F7376673E0D0A}
+      ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'lbtnExportGroup'
+        end>
+      OneOnRow = False
+      Row = 0
+      UseOwnFont = False
+      Visible = True
+      WholeRow = False
+    end
+    object dxBarManager1Bar1: TdxBar
+      Caption = 'Dati'
+      CaptionButtons = <>
+      DockedLeft = 72
+      DockedTop = 0
+      FloatLeft = 1212
+      FloatTop = 2
+      FloatClientWidth = 0
+      FloatClientHeight = 0
+      ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'dxBarLargeButton2'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarLargeButton6'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarLargeButton4'
+        end>
+      OneOnRow = False
+      Row = 0
+      UseOwnFont = False
+      Visible = True
+      WholeRow = False
+    end
+    object dxBarManager1Bar3: TdxBar
+      Caption = 'Opzioni'
+      CaptionButtons = <>
+      DockedLeft = 0
+      DockedTop = 0
+      FloatLeft = 1212
+      FloatTop = 2
+      FloatClientWidth = 0
+      FloatClientHeight = 0
+      ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'dxBarLargeButton7'
+        end>
+      OneOnRow = False
+      Row = 0
+      UseOwnFont = False
+      Visible = True
+      WholeRow = False
+    end
+    object dxBarManagerBar1: TdxBar
+      Caption = 'Chiudi'
+      CaptionButtons = <>
+      DockedLeft = 1043
+      DockedTop = 0
+      FloatLeft = 1200
+      FloatTop = 2
+      FloatClientWidth = 0
+      FloatClientHeight = 0
+      ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'dxBarLargeButton9'
+        end>
+      OneOnRow = False
+      Row = 0
+      UseOwnFont = False
+      Visible = True
+      WholeRow = False
+    end
+    object cxBarEditItem1: TcxBarEditItem
+      Caption = 'Text Edit Item'
+      Category = 0
+      Visible = ivAlways
+      PropertiesClassName = 'TcxTextEditProperties'
+    end
+    object dxSkinChooserGalleryItem1: TdxSkinChooserGalleryItem
+      Caption = 'New Skin Chooser'
+      Category = 0
+      Visible = ivAlways
+      ItemLinks = <>
+    end
+    object btnAbout: TdxBarLargeButton
+      Caption = 'About'
+      Category = 0
+      Hint = 'About'
+      Visible = ivAlways
+      ImageIndex = 504
+      LargeImageIndex = 504
+    end
+    object lbExportToTIFF: TdxBarLargeButton
+      Caption = 'TIFF'
+      Category = 0
+      Hint = 'TIFF'
+      Visible = ivAlways
+      OnClick = dxBarButtonExportToTIFFClick
+      LargeImageIndex = 224
+      SyncImageIndex = False
+      ImageIndex = 224
+    end
+    object lbExportToPNG: TdxBarLargeButton
+      Caption = 'PNG'
+      Category = 0
+      Hint = 'PNG'
+      Visible = ivAlways
+      OnClick = dxBarButtonExportToPNGClick
+      ImageIndex = 224
+      LargeImageIndex = 224
+    end
+    object dxBarExit1: TdxBarLargeButton
+      Caption = 'Exit'
+      Category = 0
+      Visible = ivAlways
+      ImageIndex = 60
+      LargeImageIndex = 60
+    end
+    object dxBarButtonAbout: TdxBarLargeButton
+      Caption = 'About'
+      Category = 0
+      Hint = 'About'
+      Visible = ivAlways
+      LargeImageIndex = 504
+      SyncImageIndex = False
+      ImageIndex = 504
+    end
+    object cxBarEditItem2: TcxBarEditItem
+      Caption = 'Page'
+      Category = 0
+      Hint = 'Page'
+      Visible = ivAlways
+      PropertiesClassName = 'TcxLabelProperties'
+    end
+    object bilPageCount: TcxBarEditItem
+      Caption = 'of'
+      Category = 0
+      Hint = 'of'
+      Visible = ivAlways
+      PropertiesClassName = 'TcxLabelProperties'
+    end
+    object biStatusBarCurrentZoom: TdxBarStatic
+      Caption = '100%'
+      Category = 0
+      Hint = '100%'
+      Visible = ivAlways
+    end
+    object cxBarEditItem3: TcxBarEditItem
+      Caption = 'Actual Size:'
+      Category = 0
+      Hint = 'Actual Size:'
+      Visible = ivAlways
+      PropertiesClassName = 'TcxSpinEditProperties'
+    end
+    object dxBarSeparator1: TdxBarSeparator
+      Caption = 'New Separator'
+      Category = 0
+      Hint = 'New Separator'
+      Visible = ivAlways
+    end
+    object bteActualZoom: TcxBarEditItem
+      Caption = 'Dimensione attuale:'
+      Category = 0
+      Enabled = False
+      Hint = 'Actual Size'
+      Visible = ivAlways
+      OnChange = bteActualZoomChange
+      PropertiesClassName = 'TcxTextEditProperties'
+    end
+    object bseActivePage: TcxBarEditItem
+      Caption = 'Pagina:'
+      Category = 0
+      Enabled = False
+      Hint = 'Active Page'
+      Visible = ivAlways
+      OnChange = bseActivePageChange
+      PropertiesClassName = 'TcxSpinEditProperties'
+      Properties.ImmediatePost = True
+    end
+    object dxRibbonStatusBarActivePage: TdxBarSpinEdit
+      Category = 0
+      Visible = ivAlways
+    end
+    object sseActivePage: TcxBarEditItem
+      Caption = 'New Item'
+      Category = 0
+      Visible = ivAlways
+      OnChange = sseActivePageChange
+      PropertiesClassName = 'TcxSpinEditProperties'
+      Properties.ImmediatePost = True
+      Properties.SpinButtons.Visible = False
+    end
+    object dxBarLargeButton1: TdxBarLargeButton
+      Caption = 'Demo Description'
+      Category = 0
+      Hint = 'Demo Description'
+      Visible = ivAlways
+    end
+    object dxBarStatic1: TdxBarStatic
+      Caption = 'Pagina'
+      Category = 0
+      Hint = 'Pagina'
+      Visible = ivAlways
+    end
+    object sbPageCount: TdxBarStatic
+      Caption = 'di'
+      Category = 0
+      Hint = 'di'
+      Visible = ivAlways
+    end
+    object dxBarProgressItem1: TdxBarProgressItem
+      Caption = 'New Item'
+      Category = 0
+      Hint = 'New Item'
+      Visible = ivAlways
+    end
+    object cxBarEditItem4: TcxBarEditItem
+      Caption = 'New Item'
+      Category = 0
+      Hint = 'New Item'
+      Visible = ivAlways
+      PropertiesClassName = 'TcxProgressBarProperties'
+      Properties.PeakValue = 100.000000000000000000
+      InternalEditValue = nil
+    end
+    object cxBarEditItem5: TcxBarEditItem
+      Caption = 'New Item'
+      Category = 0
+      Hint = 'New Item'
+      Visible = ivAlways
+      PropertiesClassName = 'TcxProgressBarProperties'
+    end
+    object bbAbortTextSearch: TdxBarButton
+      Caption = 'Annulla'
+      Category = 0
+      Enabled = False
+      Hint = 'Annulla'
+      Visible = ivAlways
+      OnClick = bbAbortTextSearchClick
+    end
+    object dxBarButton1: TdxBarButton
+      Caption = 'Touch Mode'
+      Category = 0
+      Hint = 'Toggle Touch Mode'
+      Visible = ivAlways
+      ButtonStyle = bsChecked
+      Glyph.SourceDPI = 96
+      Glyph.SourceHeight = 16
+      Glyph.SourceWidth = 16
+      Glyph.Data = {
+        3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D225554
+        462D38223F3E0D0A3C7376672076657273696F6E3D22312E312220786D6C6E73
+        3D22687474703A2F2F7777772E77332E6F72672F323030302F7376672220786D
+        6C6E733A786C696E6B3D22687474703A2F2F7777772E77332E6F72672F313939
+        392F786C696E6B2220783D223070782220793D22307078222076696577426F78
+        3D22302030203130303020313030302220656E61626C652D6261636B67726F75
+        6E643D226E657720302030203130303020313030302220786D6C3A7370616365
+        3D227072657365727665223E262331333B262331303B2623393B2623393B2623
+        393B2623393B2623393B3C7374796C6520747970653D22746578742F63737322
+        20786D6C3A73706163653D227072657365727665223E2E426C61636B7B66696C
+        6C3A233732373237323B7D262331333B262331303B2623393B2E5265647B6669
+        6C6C3A234431314331433B7D262331333B262331303B2623393B2E59656C6C6F
+        777B66696C6C3A234646423131353B7D262331333B262331303B2623393B2E47
+        7265656E7B66696C6C3A233033394332333B7D3C2F7374796C653E0D0A3C6720
+        636C6173733D22426C61636B22207472616E73666F726D3D227472616E736C61
+        746528302E3030303030302C3531312E30303030303029207363616C6528302E
+        3130303030302C2D302E31303030303029223E0D0A09093C7061746820643D22
+        4D343032362E342C343939382E39632D3838332E392D39362E322D313637342E
+        312D3732362E392D313936372E392D313537302E33632D3132362E362D333634
+        2E372D3135372D3831352E352D38312D313138352E336337332E342D3335392E
+        362C3135372D3438362E332C3331362E362D3438362E336337332E342C302C31
+        30382E392C31372E372C3135392E362C37382E356337382E352C39332E372C38
+        312C3132312E362C31322E372C3331342E31632D3130332E382C3239382E382D
+        3130382E392C3736342E392D372E362C313130312E37633131362E352C333937
+        2E362C3433302E362C3830372E392C3738302E312C313032332E32633837332E
+        382C3533392E352C323035392E312C3239312E332C323539362D353432633239
+        362E332D3435352E392C3337372E342D313035362E312C3231372E382D313536
+        372E37632D34382E312D3134392E342D35382E322D3231352E332D34302E352D
+        3236332E346335302E372D3133312E372C3233332D3138372E342C3334392E35
+        2D3130362E346337332E342C35332E322C3137372E332C3337392E392C323130
+        2E322C3636332E366335302E362C3435352E392D36382E342C3938352E322D33
+        31392E312C313430352E36632D3135372C3236352E392D3531342E312C363238
+        2E312D3736392E392C3738352E3143353033392E352C343932352E352C343531
+        302E322C353034392E362C343032362E342C343939382E397A222F3E0D0A0909
+        3C7061746820643D224D333935302E342C343137352E38632D3534372E312D31
+        32312E362D313030302E342D3535322E312D313136372E362D313131342E3463
+        2D39312E322D3330332E392D33352E352D3837362E332C39332E372D3938302E
+        326337332E342D36332E332C3232372E392D35382E332C3239362E332C352E31
+        6337382E352C37332E342C38382E362C3134342E342C34332E312C3331362E36
+        632D3132312E362C3437312E312C37382E352C3938302E322C3438312E322C31
+        3231352E37633136342E362C39382E382C3430302E322C3134362E392C363333
+        2E322C3133342E32633437382E372D33302E342C3831382D3239312E332C3935
+        342E382D3733376335332E322D3137342E382C35332E322D3334312E392C352E
+        312D3733342E35632D31322E372D3130332E382D372E362D3133312E372C3433
+        2E312D3138342E396336382E342D37302E392C3230372E372D38332E362C3239
+        332E382D32322E38633132392E322C39312E322C3139352C3538322E352C3132
+        342E312C3930362E37632D36382E342C3330362E352D3139352C3532392E332D
+        3433302E362C3736342E3943343933332E312C343133302E322C343434342E33
+        2C343238342E372C333935302E342C343137352E387A222F3E0D0A09093C7061
+        746820643D224D343030362E322C333339332E32632D3232322E392D38312E31
+        2D3432302E342D3238382E372D3438382E382D3531342E32632D32372E392D39
+        332E372D33352E352D3431322E382D33352E352D313539352E36562D3139352E
+        376C2D35352E372C32302E33632D33322E392C31302E312D3134392E342C3230
+        2E322D3236302E392C32302E32632D3137342E382C302D3231372E382D31302E
+        312D3331392E312D36382E34632D3134312E382D38332E362D3239312E332D32
+        34352E372D3335342E362D333835632D34332E312D39362E322D34382E312D31
+        38342E392D34382E312D313337322E3763302D313138302E322C322E352D3132
+        38312E352C35302E372D313436332E39633135372D3631382C3634302E382D31
+        3130312E372C313238342E312D313238362E36633139322E352D35382E332C32
+        32322E392D35382E332C313437362E362D35382E3363313235332E372C302C31
+        3238342E312C302C313437362E362C35382E33633539352E322C3137322E322C
+        313033352E392C3538352E312C313235332E372C313137352E326C36382E342C
+        3138342E396C372E362C313532392E3763372E362C313733322E342C31322E37
+        2C313637362E372D3138372E342C313839392E35632D36332E332C37302E392D
+        3137342E382C3135372D3235302E372C313935632D3132312E352C35382E332D
+        3136322E312C36352E392D3332312E362C35352E37632D3130312E332D372E36
+        2D3230322E362D32302E332D3232322E392D33302E34632D33302E342D31322E
+        372D34382E312C372E362D37332E352C37382E35632D35302E372C3134312E38
+        2D3239332E382C3336392E382D3434332E322C3432302E34632D3134392E342C
+        35302E372D3334372C35332E322D3437362E312C372E36632D39312E322D3332
+        2E392D39332E372D33322E392D3130382E392C33352E34632D34302E352C3139
+        302D3331312E352C3434352E382D3533312E392C3530362E35632D3131312E34
+        2C33302E342D3332392E332C32352E332D3432332D31322E37632D34332D3137
+        2E372D34352E362C32372E392D34352E362C3733392E3663302C3632332D372E
+        362C3738302E312D34302E352C3837362E33632D39312E322C3236352E392D34
+        31352E342C3439392D3639312E342C34393943343136352E372C333432362E31
+        2C343035392E342C333431302E392C343030362E322C333339332E327A204D34
+        3433312E372C323933322E32633131312E342D37332E342C3131392D3137322E
+        322C3131342D313333392E38632D322E352D3539372E372D352E312D31333139
+        2E362D322E352D313630332E3263322E352D3530392E312C322E352D3531342E
+        322C36352E382D3537342E396337362D37382E352C3231302E322D38332E362C
+        3239332E382D31352E326336302E382C34382E312C36302E382C35332E322C37
+        332E352C3731312E376C31322E372C3636332E366C37302E392C36302E386331
+        30312E332C38362E312C3331342E312C38362E312C3431352E342C306C37302E
+        392D36302E386C31322E372D3635302E396C31322E372D3635302E396C37302E
+        392D36302E386339382E382D38332E362C3230352E312D37382E352C3239382E
+        392C31322E376C37332E342C37332E35763333312E3863302C3137392E382C31
+        302E312C3335372E312C32352E332C3339322E366333352E352C39362E332C31
+        33342E332C3134362E392C3237382E362C3134362E39633234332E312C302C33
+        32342E322D3132342E312C3239312E332D3435382E34632D32302E322D323230
+        2E342D32302E322D3331342C322E352D3639312E346331352E322D3236332E34
+        2C31372E382D3237362E312C39312E322D3333362E386338362E312D37332E35
+        2C3134342E342D37382E352C3234352E372D32352E33633130362E332C35332E
+        322C3132392E322C3135342E352C3132392E322C3536372E3363302C3332362E
+        372C352E312C3337322E332C34352E362C3339372E36633133392E332C38382E
+        362C3337392E392C35352E372C3435352E392D35382E336334302E352D36332E
+        332C34332D3138322E342C34332D313532372E3263302D313331342E352D352E
+        312D313437312E352D34352E362D313631382E34632D3133312E372D3438312E
+        322D3439362E342D3832302E362D3939352E342D393237632D3236352E392D35
+        352E372D323338382E332D35352E372D323636312E392C322E35632D3438332E
+        372C39382E382D3832382E322C3431322E392D3938352E322C3839362E36632D
+        34302E352C3132342E312D34352E362C3236382E352D35332E322C313336372E
+        37632D372E362C313133372E322D352E312C313233352E392C33352E352C3133
+        31376338312C3135392E362C3333312E382C3139322E352C3438312E322C3633
+        2E336C37302E392D35382E336C31322E372D3636382E366331322E372D363738
+        2E382C32352E332D3735342E372C3131362E352D3739302E326335302E372D32
+        302E332C3137322E322D32302E332C3232352E342C30633131362E352C34352E
+        362C3131342C372E362C3131342C323538302E3876323432332E386C37332E34
+        2C37332E346336352E382C36332E332C39332E372C37332E342C3231372E382C
+        37332E3443343331352E322C323937322E372C343339332E372C323935372E35
+        2C343433312E372C323933322E327A222F3E0D0A093C2F673E0D0A3C2F737667
+        3E0D0A}
+    end
+    object lbtnSinglePageMode: TdxBarLargeButton
+      Action = acSinglePageContinuous
+      Category = 0
+      ButtonStyle = bsChecked
+      Glyph.SourceDPI = 96
+      Glyph.Data = {
+        3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D225554
+        462D38223F3E0D0A3C7376672076657273696F6E3D22312E31222069643D224C
+        617965725F312220786D6C6E733D22687474703A2F2F7777772E77332E6F7267
+        2F323030302F7376672220786D6C6E733A786C696E6B3D22687474703A2F2F77
+        77772E77332E6F72672F313939392F786C696E6B2220783D223070782220793D
+        22307078222076696577426F783D2230203020333220333222207374796C653D
+        22656E61626C652D6261636B67726F756E643A6E657720302030203332203332
+        3B2220786D6C3A73706163653D227072657365727665223E262331333B262331
+        303B3C7374796C6520747970653D22746578742F6373732220786D6C3A737061
+        63653D227072657365727665223E2E59656C6C6F777B66696C6C3A2346464231
+        31353B7D262331333B262331303B2623393B2E5265647B66696C6C3A23443131
+        4331433B7D262331333B262331303B2623393B2E426C75657B66696C6C3A2331
+        31373744373B7D262331333B262331303B2623393B2E477265656E7B66696C6C
+        3A233033394332333B7D262331333B262331303B2623393B2E426C61636B7B66
+        696C6C3A233732373237323B7D262331333B262331303B2623393B2E57686974
+        657B66696C6C3A234646464646463B7D262331333B262331303B2623393B2E73
+        74307B6F7061636974793A302E37353B7D3C2F7374796C653E0D0A3C67206964
+        3D22456E61626C655363726F6C6C696E67223E0D0A09093C7061746820636C61
+        73733D22426C61636B2220643D224D32362C3076313248385630483676313363
+        302C302E362C302E342C312C312C3168323063302E362C302C312D302E342C31
+        2D3156304832367A204D32362C33325632304838763132483656313963302D30
+        2E362C302E342D312C312D3168323020202623393B2623393B63302E362C302C
+        312C302E342C312C317631334832367A222F3E0D0A09093C7061746820636C61
+        73733D22426C75652220643D224D32322C36483132763268313056367A204D32
+        322C34483132563268313056347A204D32322C3330483132762D326831305633
+        307A204D32322C323448313276326831305632347A222F3E0D0A093C2F673E0D
+        0A3C2F7376673E0D0A}
+    end
+    object dxBarSubItem6: TdxBarSubItem
+      Caption = 'Export'
+      Category = 0
+      Visible = ivAlways
+      ItemLinks = <>
+    end
+    object dxBarSubItem7: TdxBarSubItem
+      Caption = 'To Image'
+      Category = 0
+      Visible = ivAlways
+      ImageIndex = 221
+      ItemLinks = <>
+    end
+    object lbtnExportGroup: TdxBarSubItem
+      Caption = 'Esporta'
+      Category = 0
+      Visible = ivAlways
+      Glyph.SourceDPI = 96
+      Glyph.Data = {
+        3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D225554
+        462D38223F3E0D0A3C7376672076657273696F6E3D22312E31222069643D224C
+        617965725F312220786D6C6E733D22687474703A2F2F7777772E77332E6F7267
+        2F323030302F7376672220786D6C6E733A786C696E6B3D22687474703A2F2F77
+        77772E77332E6F72672F313939392F786C696E6B2220783D223070782220793D
+        22307078222076696577426F783D2230203020333220333222207374796C653D
+        22656E61626C652D6261636B67726F756E643A6E657720302030203332203332
+        3B2220786D6C3A73706163653D227072657365727665223E262331333B262331
+        303B3C7374796C6520747970653D22746578742F6373732220786D6C3A737061
+        63653D227072657365727665223E2E426C61636B7B66696C6C3A233732373237
+        323B7D262331333B262331303B2623393B2E59656C6C6F777B66696C6C3A2346
+        46423131353B7D262331333B262331303B2623393B2E426C75657B66696C6C3A
+        233131373744373B7D262331333B262331303B2623393B2E477265656E7B6669
+        6C6C3A233033394332333B7D262331333B262331303B2623393B2E5265647B66
+        696C6C3A234431314331433B7D262331333B262331303B2623393B2E57686974
+        657B66696C6C3A234646464646463B7D262331333B262331303B2623393B2E73
+        74307B6F7061636974793A302E37353B7D262331333B262331303B2623393B2E
+        7374317B6F7061636974793A302E353B7D262331333B262331303B2623393B2E
+        7374327B6F7061636974793A302E32353B7D3C2F7374796C653E0D0A3C672069
+        643D224578706F7274223E0D0A09093C7061746820636C6173733D22426C6163
+        6B2220643D224D31302C31324836563668345631327A204D32322C3132763676
+        3963302C302E362D302E342C312D312C314831632D302E362C302D312D302E34
+        2D312D31563763302D302E362C302E342D312C312D3168337638683134762D32
+        4832327A204D31382C3138483420202623393B2623393B76366831345631387A
+        222F3E0D0A09093C706F6C79676F6E20636C6173733D22477265656E2220706F
+        696E74733D2231362C31302032342C31302032342C31342033322C382032342C
+        322032342C362031362C36202623393B222F3E0D0A093C2F673E0D0A3C2F7376
+        673E0D0A}
+      ImageIndex = 221
+      ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'lbExportToTIFF'
+        end
+        item
+          Visible = True
+          ItemName = 'lbExportToPNG'
+        end>
+    end
+    object dxBarLargeButton5: TdxBarLargeButton
+      Action = acSaveAs
+      Category = 0
+    end
+    object dxBarLargeButton2: TdxBarLargeButton
+      Action = acFormDataExport
+      Caption = 'Esporta'
+      Category = 0
+    end
+    object dxBarLargeButton3: TdxBarLargeButton
+      Action = acFormDataImport
+      Category = 0
+    end
+    object dxBarLargeButton4: TdxBarLargeButton
+      Action = acFormDataReset
+      Category = 0
+    end
+    object dxBarLargeButton7: TdxBarLargeButton
+      Action = acAllowEdit
+      Caption = 'Sola lettura'
+      Category = 0
+      ButtonStyle = bsChecked
+    end
+    object dxBarLargeButton8: TdxBarLargeButton
+      Caption = 'New Button'
+      Category = 0
+      Hint = 'New Button'
+      Visible = ivAlways
+    end
+    object dxBarLargeButton9: TdxBarLargeButton
+      Action = Chiudi
+      Category = 0
+    end
+    object dxBarLargeButton6: TdxBarLargeButton
+      Action = acFormDataImport
+      Category = 0
+    end
+    object dxBarLargeButton11: TdxBarLargeButton
+      Action = actShellExecute
+      Category = 0
+    end
+    object dxBarLargeButtonZoomOut: TdxBarLargeButton
+      Action = dxPDFViewerZoomOutAction
+      Category = 1
+      SyncImageIndex = False
+      ImageIndex = 460
+    end
+    object dxBarLargeButtonZoomIn: TdxBarLargeButton
+      Action = dxPDFViewerZoomInAction
+      Category = 1
+      SyncImageIndex = False
+      ImageIndex = 459
+    end
+    object lbtnZoomGroup: TdxBarSubItem
+      Caption = 'Zoom'
+      Category = 1
+      Visible = ivAlways
+      ImageIndex = 457
+      LargeImageIndex = 457
+      ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'bteActualZoom'
+        end
+        item
+          BeginGroup = True
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'dxBarLargeButton10'
+        end
+        item
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'dxBarLargeButton25'
+        end
+        item
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'dxBarLargeButton50'
+        end
+        item
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'dxBarLargeButton75'
+        end
+        item
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'dxBarLargeButton100'
+        end
+        item
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'dxBarLargeButton125'
+        end
+        item
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'dxBarLargeButton150'
+        end
+        item
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'dxBarLargeButton200'
+        end
+        item
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'dxBarLargeButton400'
+        end
+        item
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'dxBarLargeButton500'
+        end
+        item
+          BeginGroup = True
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'dxBarLargeButtonActualSize'
+        end
+        item
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'dxBarLargeButtonZoomtoPageLevel'
+        end
+        item
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'dxBarLargeButtonFitWidth'
+        end>
+    end
+    object dxBarLargeButton10: TdxBarLargeButton
+      Action = dxPDFViewerZoom10Action
+      Category = 1
+      ButtonStyle = bsChecked
+      SyncImageIndex = False
+      ImageIndex = -1
+    end
+    object dxBarLargeButton25: TdxBarLargeButton
+      Action = dxPDFViewerZoom25Action
+      Category = 1
+      ButtonStyle = bsChecked
+      SyncImageIndex = False
+      ImageIndex = -1
+    end
+    object dxBarLargeButton50: TdxBarLargeButton
+      Action = dxPDFViewerZoom50Action
+      Category = 1
+      ButtonStyle = bsChecked
+      SyncImageIndex = False
+      ImageIndex = -1
+    end
+    object dxBarLargeButton75: TdxBarLargeButton
+      Action = dxPDFViewerZoom75Action
+      Category = 1
+      ButtonStyle = bsChecked
+      SyncImageIndex = False
+      ImageIndex = -1
+    end
+    object dxBarLargeButton100: TdxBarLargeButton
+      Action = dxPDFViewerZoom100Action
+      Category = 1
+      ButtonStyle = bsChecked
+      SyncImageIndex = False
+      ImageIndex = -1
+    end
+    object dxBarLargeButton125: TdxBarLargeButton
+      Action = dxPDFViewerZoom125Action
+      Category = 1
+      ButtonStyle = bsChecked
+      SyncImageIndex = False
+      ImageIndex = -1
+    end
+    object dxBarLargeButton150: TdxBarLargeButton
+      Action = dxPDFViewerZoom150Action
+      Category = 1
+      ButtonStyle = bsChecked
+      SyncImageIndex = False
+      ImageIndex = -1
+    end
+    object dxBarLargeButton200: TdxBarLargeButton
+      Action = dxPDFViewerZoom200Action
+      Category = 1
+      ButtonStyle = bsChecked
+      SyncImageIndex = False
+      ImageIndex = -1
+    end
+    object dxBarLargeButton400: TdxBarLargeButton
+      Action = dxPDFViewerZoom400Action
+      Category = 1
+      ButtonStyle = bsChecked
+      SyncImageIndex = False
+      ImageIndex = -1
+    end
+    object dxBarLargeButton500: TdxBarLargeButton
+      Action = dxPDFViewerZoom500Action
+      Category = 1
+      ButtonStyle = bsChecked
+      SyncImageIndex = False
+      ImageIndex = -1
+    end
+    object dxBarLargeButtonActualSize: TdxBarLargeButton
+      Action = dxPDFViewerZoomActualSizeAction
+      Category = 1
+      ButtonStyle = bsChecked
+      SyncImageIndex = False
+      ImageIndex = 457
+    end
+    object dxBarLargeButtonZoomtoPageLevel: TdxBarLargeButton
+      Action = dxPDFViewerZoomToPageLevelAction
+      Category = 1
+      ButtonStyle = bsChecked
+      SyncImageIndex = False
+      ImageIndex = -1
+    end
+    object dxBarLargeButtonFitWidth: TdxBarLargeButton
+      Action = dxPDFViewerZoomFitWidthAction
+      Category = 1
+      ButtonStyle = bsChecked
+      SyncImageIndex = False
+      ImageIndex = -1
+    end
+    object dxBarSubItem3: TdxBarSubItem
+      Caption = 'Zoom'
+      Category = 1
+      Visible = ivAlways
+      ImageIndex = 457
+      LargeImageIndex = 457
+      ItemLinks = <
+        item
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'dxBarLargeButton10'
+        end
+        item
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'dxBarLargeButton25'
+        end
+        item
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'dxBarLargeButton50'
+        end
+        item
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'dxBarLargeButton75'
+        end
+        item
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'dxBarLargeButton100'
+        end
+        item
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'dxBarLargeButton125'
+        end
+        item
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'dxBarLargeButton150'
+        end
+        item
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'dxBarLargeButton200'
+        end
+        item
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'dxBarLargeButton400'
+        end
+        item
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'dxBarLargeButton500'
+        end
+        item
+          BeginGroup = True
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'dxBarLargeButtonActualSize'
+        end
+        item
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'dxBarLargeButtonZoomtoPageLevel'
+        end
+        item
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'dxBarLargeButtonFitWidth'
+        end>
+    end
+    object dxBarLargeButtonPreviousPage: TdxBarLargeButton
+      Action = dxPDFViewerGoToPrevPageAction
+      Category = 3
+      SyncImageIndex = False
+      ImageIndex = 168
+    end
+    object dxBarLargeButtonNextPage: TdxBarLargeButton
+      Action = dxPDFViewerGoToNextPageAction
+      Category = 3
+      SyncImageIndex = False
+      ImageIndex = 161
+    end
+    object dxBarSubItem1: TdxBarSubItem
+      Caption = 'Navigation'
+      Category = 3
+      Visible = ivAlways
+      ImageIndex = 545
+      LargeImageIndex = 545
+      ItemLinks = <
+        item
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'dxBarLargeButtonFirstPage'
+        end
+        item
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'dxBarLargeButtonLastPage'
+        end>
+    end
+    object dxBarLargeButtonFirstPage: TdxBarLargeButton
+      Action = dxPDFViewerGoToFirstPageAction
+      Category = 3
+      SyncImageIndex = False
+      ImageIndex = 146
+    end
+    object dxBarLargeButtonLastPage: TdxBarLargeButton
+      Action = dxPDFViewerGoToLastPageAction
+      Category = 3
+      SyncImageIndex = False
+      ImageIndex = 156
+    end
+    object lbtnNavigation: TdxBarSubItem
+      Caption = 'Navigazione'
+      Category = 3
+      Visible = ivAlways
+      ImageIndex = 545
+      LargeImageIndex = 545
+      ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'bseActivePage'
+        end
+        item
+          BeginGroup = True
+          Visible = True
+          ItemName = 'dxBarLargeButtonPreviousPage'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarLargeButtonNextPage'
+        end
+        item
+          BeginGroup = True
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'dxBarLargeButtonFirstPage'
+        end
+        item
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'dxBarLargeButtonLastPage'
+        end
+        item
+          BeginGroup = True
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'dxBarLargeButtonPreviousView'
+        end
+        item
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'dxBarLargeButtonNextView'
+        end>
+    end
+    object dxBarLargeButtonPrint: TdxBarLargeButton
+      Action = dxPDFViewerShowPrintForm
+      Category = 4
+      SyncImageIndex = False
+      ImageIndex = 208
+    end
+    object dxBarLargeButtonSelectTool: TdxBarLargeButton
+      Action = dxPDFViewerSelectTool
+      Category = 5
+      ButtonStyle = bsChecked
+      SyncImageIndex = False
+      ImageIndex = 197
+    end
+    object dxBarLargeButtonHandTool: TdxBarLargeButton
+      Action = dxPDFViewerHandTool
+      Category = 5
+      ButtonStyle = bsChecked
+      SyncImageIndex = False
+      ImageIndex = 520
+    end
+    object dxBarLargeButtonSelectAll: TdxBarLargeButton
+      Action = dxPDFViewerSelectAll
+      Category = 5
+      SyncImageIndex = False
+      ImageIndex = 193
+    end
+    object dxBarLargeButtonPreviousView: TdxBarLargeButton
+      Action = dxPDFViewerGoToPrevView
+      Category = 6
+      SyncImageIndex = False
+      ImageIndex = 171
+    end
+    object dxBarLargeButtonNextView: TdxBarLargeButton
+      Action = dxPDFViewerGoToNextView
+      Category = 6
+      SyncImageIndex = False
+      ImageIndex = 163
+    end
+    object lbtnRotateView: TdxBarSubItem
+      Caption = 'Rotazione'
+      Category = 6
+      Visible = ivAlways
+      ImageIndex = 88
+      LargeImageIndex = 88
+      ItemLinks = <
+        item
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'dxBarLargeButtonRotateClockwise'
+        end
+        item
+          Position = ipContinuesRow
+          Visible = True
+          ItemName = 'dxBarLargeButtonRotateCounterclockwise'
+        end>
+    end
+    object dxBarLargeButtonRotateClockwise: TdxBarLargeButton
+      Action = dxPDFViewerRotateClockwise
+      Category = 6
+      SyncImageIndex = False
+      ImageIndex = 88
+    end
+    object dxBarLargeButtonRotateCounterclockwise: TdxBarLargeButton
+      Action = dxPDFViewerRotateCounterClockwise
+      Category = 6
+      SyncImageIndex = False
+      ImageIndex = 428
+    end
+    object dxBarLargeButtonFind: TdxBarLargeButton
+      Category = 7
+      Visible = ivAlways
+      ButtonStyle = bsChecked
+      SyncImageIndex = False
+      ImageIndex = 189
+    end
+    object dxBarLargeButtonFind1: TdxBarLargeButton
+      Action = dxPDFViewerFind
+      Category = 7
+      ButtonStyle = bsChecked
+      SyncImageIndex = False
+      ImageIndex = 189
+    end
+  end
+  object sbdSelectFolderDialog: TcxShellBrowserDialog
+    Left = 344
+    Top = 208
+  end
+  object ActionList: TActionList
+    Images = dx.Immagini
+    Left = 200
+    Top = 264
+    object dxPDFViewerOpenDocumentAction: TdxPDFViewerOpenDocument
+      Category = 'DevExpress ExpressPDFViewer.Home.File'
+      Caption = 'Apri'
+      ImageIndex = 36
+      AssignedValues.Caption = True
+    end
+    object dxPDFViewerGoToPrevPageAction: TdxPDFViewerGoToPrevPage
+      Category = 'DevExpress ExpressPDFViewer.Home.Navigation'
+      Caption = 'Pagina precedente'
+      ImageIndex = 168
+      AssignedValues.Caption = True
+    end
+    object dxPDFViewerGoToNextPageAction: TdxPDFViewerGoToNextPage
+      Category = 'DevExpress ExpressPDFViewer.Home.Navigation'
+      Caption = 'Pagina successiva'
+      ImageIndex = 161
+      AssignedValues.Caption = True
+    end
+    object dxPDFViewerGoToFirstPageAction: TdxPDFViewerGoToFirstPage
+      Category = 'DevExpress ExpressPDFViewer.Home.Navigation'
+      Caption = 'Prima pagina'
+      ImageIndex = 146
+      AssignedValues.Caption = True
+    end
+    object dxPDFViewerGoToLastPageAction: TdxPDFViewerGoToLastPage
+      Category = 'DevExpress ExpressPDFViewer.Home.Navigation'
+      Caption = 'Ultima pagina'
+      ImageIndex = 156
+      AssignedValues.Caption = True
+    end
+    object dxPDFViewerZoomOutAction: TdxPDFViewerZoomOut
+      Category = 'DevExpress ExpressPDFViewer.Home.Zoom'
+      Caption = 'Riduci'
+      ImageIndex = 460
+      AssignedValues.Caption = True
+    end
+    object dxPDFViewerZoomInAction: TdxPDFViewerZoomIn
+      Category = 'DevExpress ExpressPDFViewer.Home.Zoom'
+      Caption = 'Ingrandisci'
+      ImageIndex = 459
+      AssignedValues.Caption = True
+    end
+    object dxPDFViewerZoom10Action: TdxPDFViewerZoom10
+      Category = 'DevExpress ExpressPDFViewer.Home.Zoom'
+      AutoCheck = True
+    end
+    object dxPDFViewerZoom25Action: TdxPDFViewerZoom25
+      Category = 'DevExpress ExpressPDFViewer.Home.Zoom'
+      AutoCheck = True
+    end
+    object dxPDFViewerZoom50Action: TdxPDFViewerZoom50
+      Category = 'DevExpress ExpressPDFViewer.Home.Zoom'
+      AutoCheck = True
+    end
+    object dxPDFViewerZoom75Action: TdxPDFViewerZoom75
+      Category = 'DevExpress ExpressPDFViewer.Home.Zoom'
+      AutoCheck = True
+    end
+    object dxPDFViewerZoom100Action: TdxPDFViewerZoom100
+      Category = 'DevExpress ExpressPDFViewer.Home.Zoom'
+      AutoCheck = True
+    end
+    object dxPDFViewerZoom125Action: TdxPDFViewerZoom125
+      Category = 'DevExpress ExpressPDFViewer.Home.Zoom'
+      AutoCheck = True
+    end
+    object dxPDFViewerZoom150Action: TdxPDFViewerZoom150
+      Category = 'DevExpress ExpressPDFViewer.Home.Zoom'
+      AutoCheck = True
+    end
+    object dxPDFViewerZoom200Action: TdxPDFViewerZoom200
+      Category = 'DevExpress ExpressPDFViewer.Home.Zoom'
+      AutoCheck = True
+    end
+    object dxPDFViewerZoom400Action: TdxPDFViewerZoom400
+      Category = 'DevExpress ExpressPDFViewer.Home.Zoom'
+      AutoCheck = True
+    end
+    object dxPDFViewerZoom500Action: TdxPDFViewerZoom500
+      Category = 'DevExpress ExpressPDFViewer.Home.Zoom'
+      AutoCheck = True
+    end
+    object dxPDFViewerZoomActualSizeAction: TdxPDFViewerZoomActualSize
+      Category = 'DevExpress ExpressPDFViewer.Home.Zoom'
+      AutoCheck = True
+      Caption = 'Dimensioni attuali'
+      ImageIndex = 457
+      AssignedValues.Caption = True
+    end
+    object dxPDFViewerZoomToPageLevelAction: TdxPDFViewerZoomToPageLevel
+      Category = 'DevExpress ExpressPDFViewer.Home.Zoom'
+      AutoCheck = True
+      Caption = 'Adatta a pagina intera'
+      AssignedValues.Caption = True
+    end
+    object dxPDFViewerZoomFitWidthAction: TdxPDFViewerZoomFitWidth
+      Category = 'DevExpress ExpressPDFViewer.Home.Zoom'
+      AutoCheck = True
+      Caption = 'Larghezza pagina'
+      AssignedValues.Caption = True
+    end
+    object dxPDFViewerShowPrintForm: TdxPDFViewerShowPrintForm
+      Category = 'DevExpress ExpressPDFViewer.Home.File'
+      Caption = 'Stampa'
+      ImageIndex = 208
+      OnExecute = dxPDFViewerShowPrintFormExecute
+      AssignedValues.Caption = True
+    end
+    object dxPDFViewerSelectTool: TdxPDFViewerSelectTool
+      Category = 'DevExpress ExpressPDFViewer.Home.Tools'
+      AutoCheck = True
+      Caption = 'Strumento selezione'
+      ImageIndex = 197
+      AssignedValues.Caption = True
+    end
+    object dxPDFViewerHandTool: TdxPDFViewerHandTool
+      Category = 'DevExpress ExpressPDFViewer.Home.Tools'
+      AutoCheck = True
+      Caption = 'Strumento mano'
+      ImageIndex = 520
+      AssignedValues.Caption = True
+    end
+    object dxPDFViewerSelectAll: TdxPDFViewerSelectAll
+      Category = 'DevExpress ExpressPDFViewer.Home.Tools'
+      Caption = 'Seleziona tutto'
+      ImageIndex = 193
+      AssignedValues.Caption = True
+    end
+    object dxPDFViewerGoToPrevView: TdxPDFViewerGoToPrevView
+      Category = 'DevExpress ExpressPDFViewer.Home.Navigation'
+      Caption = 'Vista precedente'
+      ImageIndex = 171
+      AssignedValues.Caption = True
+    end
+    object dxPDFViewerGoToNextView: TdxPDFViewerGoToNextView
+      Category = 'DevExpress ExpressPDFViewer.Home.Navigation'
+      Caption = 'Vista successiva'
+      ImageIndex = 163
+      AssignedValues.Caption = True
+    end
+    object dxPDFViewerRotateClockwise: TdxPDFViewerRotateClockwise
+      Category = 'DevExpress ExpressPDFViewer.Home.Navigation'
+      Caption = 'Ruota in senso orario'
+      ImageIndex = 88
+      AssignedValues.Caption = True
+    end
+    object dxPDFViewerRotateCounterClockwise: TdxPDFViewerRotateCounterClockwise
+      Category = 'DevExpress ExpressPDFViewer.Home.Navigation'
+      Caption = 'Ruota in senso antiorario'
+      ImageIndex = 428
+      AssignedValues.Caption = True
+    end
+    object dxPDFViewerFind: TdxPDFViewerFind
+      Category = 'DevExpress ExpressPDFViewer.Home.Find'
+      AutoCheck = True
+      Caption = 'Trova'
+      ImageIndex = 189
+      AssignedValues.Caption = True
+    end
+    object acSinglePageContinuous: TAction
+      AutoCheck = True
+      Caption = 'Scorrimento continuo'
+      ImageIndex = 307
+      OnExecute = acSinglePageContinuousExecute
+    end
+    object acSaveAs: TAction
+      Caption = 'Salva con nome'
+      ImageIndex = 92
+      OnExecute = acSaveAsExecute
+      OnUpdate = acSaveAsUpdate
+    end
+    object acSave: TAction
+      Caption = 'Save'
+      ImageIndex = 92
+      OnExecute = acSaveExecute
+      OnUpdate = acSaveUpdate
+    end
+    object acFormDataImport: TAction
+      Caption = 'Importa'
+      ImageIndex = 238
+      OnExecute = acFormDataImportExecute
+      OnUpdate = acFormDataImportUpdate
+    end
+    object acFormDataExport: TAction
+      Caption = 'Export'
+      ImageIndex = 221
+      OnExecute = acFormDataExportExecute
+      OnUpdate = acFormDataExportUpdate
+    end
+    object acFormDataReset: TAction
+      Caption = 'Reset'
+      ImageIndex = 427
+      OnExecute = acFormDataResetExecute
+      OnUpdate = acFormDataResetUpdate
+    end
+    object acAllowEdit: TAction
+      AutoCheck = True
+      Caption = 'Read Only'
+      ImageIndex = 493
+      OnExecute = acAllowEditExecute
+      OnUpdate = acAllowEditUpdate
+    end
+    object Chiudi: TAction
+      Caption = 'Chiudi'
+      ImageIndex = 60
+      OnExecute = ChiudiExecute
+    end
+    object actShellExecute: TAction
+      Caption = 'Editor sistema'
+      ImageIndex = 37
+      OnExecute = actShellExecuteExecute
+    end
+  end
+  object dxComponentPrinter: TdxComponentPrinter
+    CurrentLink = dxComponentPrinterLink1
+    Version = 0
+    Left = 200
+    Top = 320
+    PixelsPerInch = 96
+    object dxComponentPrinterLink1: TdxPDFViewerReportLink
+      Component = dxPDFViewer
+      PrinterPage.CenterOnPageH = True
+      PrinterPage.CenterOnPageV = True
+      PrinterPage.DMPaper = 9
+      PrinterPage.Footer = 5080
+      PrinterPage.Header = 5080
+      PrinterPage.Margins.Bottom = 12700
+      PrinterPage.Margins.Left = 12700
+      PrinterPage.Margins.Right = 12700
+      PrinterPage.Margins.Top = 12700
+      PrinterPage.Orientation = poAuto
+      PrinterPage.PageSize.X = 210820
+      PrinterPage.PageSize.Y = 297180
+      PrinterPage.ScaleMode = smFit
+      PrinterPage.PrintAsImage = True
+      PrinterPage._dxMeasurementUnits_ = 0
+      PrinterPage._dxLastMU_ = 2
+      ShrinkToPageWidth = True
+      PixelsPerInch = 96
+      BuiltInReportLink = True
+    end
+  end
+  object SaveDialog: TdxSaveFileDialog
+    DefaultExt = 'pdf'
+    Filter = 'PDF Document (*.pdf)|*.pdf'
+    Options = [ofOverwritePrompt, ofHideReadOnly, ofEnableSizing]
+    Left = 344
+    Top = 336
+  end
+  object ofdOpenFormDataDialog: TdxOpenFileDialog
+    Left = 344
+    Top = 272
+  end
+  object ProgressBox: TProgressBox
+    MaxValue = 0
+    Progress = 0
+    CancelEnabled = True
+    Left = 200
+    Top = 384
+  end
+end

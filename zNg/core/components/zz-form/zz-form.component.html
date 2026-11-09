@@ -1,0 +1,202 @@
+<!-- ═══════════════════════════════════════════════════════════════════════
+     ZZ-FORM — Inline o modale
+     FIX applicati:
+     1. Custom buttons ora visibili anche in modalità inline (aggiunta toolbar)
+     2. Lookup mounting in inline usa defer per garantire DOM pronto
+     3. Context menu DevTools inline/modale con id unici per evitare conflitti
+     ═══════════════════════════════════════════════════════════════════════ -->
+
+<!-- ═══ MODAL MODE ═══ -->
+@if (modal()) {
+  <dx-popup
+    [(visible)]="visible"
+    [title]="computedTitle"
+    [showCloseButton]="true"
+    [dragEnabled]="true"
+    [resizeEnabled]="computedResizable" 
+    [minWidth]="400" 
+    [width]="computedWidth"
+    [height]="computedHeight"
+    [maxHeight]="'90vh'"
+    [showTitle]="true"
+    [deferRendering]="false"
+    [animation]="animazionePopup"
+    (onHiding)="onPopupHiding()"
+    (onShown)="onPopupShown()">
+
+    <div *dxTemplate="let data of 'content'"
+         style="display:flex; flex-direction:column; height:100%;">
+
+      <!-- Contenuto scrollabile -->
+      <!-- il margine interno sta qui e non sull'elemento con *dxTemplate:
+           DevExtreme gli impone display: flow-root e ne ignora la disposizione -->
+      <div class="form-modal-content" style="flex:1; overflow:auto; min-height:0; width:100%;"> <!-- //*** POPUP -->
+        <ng-container *ngTemplateOutlet="formBody"></ng-container>
+      </div>
+
+      <!-- ── Footer pulsanti (modale) ─────────────────────────────── -->
+      <ng-container *ngTemplateOutlet="formFooter"></ng-container>
+
+    </div>
+  </dx-popup>
+}
+
+<!-- ═══ INLINE MODE ═══ -->
+@if (!modal()) {
+  <div class="zz-form-inline">
+    <ng-container *ngTemplateOutlet="formBody"></ng-container>
+
+    <!-- ── Footer pulsanti (inline) — FIX: era assente ────────────── -->
+    @if (metadata() && formItems.length > 0) {
+      <ng-container *ngTemplateOutlet="formFooter"></ng-container>
+    }
+  </div>
+}
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     TEMPLATE: footer pulsanti (condiviso tra inline e modal)
+     ═══════════════════════════════════════════════════════════════════════ -->
+<ng-template #formFooter>
+  <div class="zz-form-footer">
+
+    <!-- Sinistra: DevTools + custom before -->
+    <div class="zz-form-footer-left">
+      @if (showDevTools()) {
+        <dx-button icon="preferences" hint="Dev Tools"
+                   type="normal" stylingMode="text"
+                   [id]="devToolsBtnId">
+        </dx-button>
+        <dx-context-menu
+          [target]="'#' + devToolsBtnId"
+          showEvent="click"
+          [items]="devToolsMenuItems"
+          (onItemClick)="onMenuItemClick($event)">
+        </dx-context-menu>
+      }
+      @for (btn of visibleCustomButtons; track btn.id) {
+        @if ((btn.location ?? 'after') === 'before') {
+          <dx-button
+            [text]="btn.text"
+            [icon]="btn.icon ?? ''"
+            [type]="btn.type ?? 'normal'"
+            [stylingMode]="btn.stylingMode ?? 'outlined'"
+            [disabled]="btn.disabled ?? false"
+            (onClick)="onCustomButtonClick(btn)">
+          </dx-button>
+        }
+      }
+    </div>
+
+    <!-- Destra: custom after + Annulla/Chiudi + Salva -->
+    <div class="zz-form-footer-right">
+      @for (btn of visibleCustomButtons; track btn.id) {
+        @if ((btn.location ?? 'after') === 'after') {
+          <dx-button
+            [text]="btn.text"
+            [icon]="btn.icon ?? ''"
+            [type]="btn.type ?? 'normal'"
+            [stylingMode]="btn.stylingMode ?? 'outlined'"
+            [disabled]="btn.disabled ?? false"
+            (onClick)="onCustomButtonClick(btn)">
+          </dx-button>
+        }
+      }
+      @if (modal()) {
+        <dx-button
+          [text]="closeButtonText"
+          [icon]="closeButtonIcon"
+          type="normal"
+          (onClick)="onPopupHiding()">
+        </dx-button>
+      }
+      @if (showSaveButton || (!modal() && mode() !== 'view')) {
+        <dx-button
+          text="Salva"
+          icon="save"
+          type="default"
+          [disabled]="saving()"
+          (onClick)="save()">
+        </dx-button>
+      }
+    </div>
+
+  </div>
+</ng-template>
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     TEMPLATE: form body (condiviso)
+     ═══════════════════════════════════════════════════════════════════════ -->
+<ng-template #formBody>
+  @if (loading()) {
+    <div class="zz-loading">
+      <div class="zz-spinner"></div>
+      <span>Caricamento form...</span>
+    </div>
+  }
+
+  @if (error()) {
+    <div class="zz-error">{{ error() }}</div>
+  }
+
+  @if (metadata() && formItems.length > 0) {
+    <!-- //*** POPUP added width: 100%; height: 100%; -->
+    <div #formBodyEl
+         class="form-body-wrapper"
+         style="width: 100%; height: 100%;" 
+         (mousedown)="onFormMouseDown($event)">
+
+      @if (showDevTools() && designMenuTarget()) {
+        <dx-context-menu
+          [target]="designMenuTarget()"
+          [items]="designMenuItems"
+          (onShowing)="onDesignMenuShowing()"
+          (onItemClick)="onMenuItemClick($event)">
+
+          <div *dxTemplate="let item of tmplColCount" class="design-menu-inline">
+            <span>{{ item.text }}</span>
+            <input type="number" min="1" max="12"
+                   aria-label="Numero di colonne"
+                   [value]="metadata()?.formSettings?.colCount ?? 3"
+                   (change)="onDesignColCountChange($event)"
+                   class="design-input"
+                   (click)="$event.stopPropagation()">
+          </div>
+
+          <div *dxTemplate="let item of tmplCaption" class="design-menu-inline">
+            <span>{{ item.text }}</span>
+            <input type="text"
+                   aria-label="Titolo"
+                   [value]="focusTracker.info?.caption ?? ''"
+                   (change)="onDesignCaptionChange($event)"
+                   class="design-input design-input-wide"
+                   (click)="$event.stopPropagation()">
+          </div>
+
+          <div *dxTemplate="let item of tmplCardIndex" class="design-menu-inline">
+            <span>{{ item.text }}</span>
+            <input type="number" min="0"
+                   aria-label="Indice scheda"
+                   [value]="focusTracker.info?.cardIndex ?? 0"
+                   (change)="onDesignCardIndexChange($event)"
+                   class="design-input"
+                   (click)="$event.stopPropagation()">
+          </div>
+        </dx-context-menu>
+      }
+
+      <!-- //*** POPUP added width="100%" height="auto" -->
+      <dx-form #form
+        width="100%" height="auto"
+        [class.zz-form--modificabile]="!isReadOnly"
+        [formData]="formData()"
+        [items]="formItems"
+        [colCount]="metadata()!.formSettings.colCount"
+        [labelLocation]="metadata()!.formSettings.labelLocation"
+        [showColonAfterLabel]="metadata()!.formSettings.showColonAfterLabel"
+        [readOnly]="isReadOnly"
+        (onContentReady)="onFormContentReady()"
+        (onFieldDataChanged)="onFieldChanged($event)">
+      </dx-form>
+    </div>
+  }
+</ng-template>

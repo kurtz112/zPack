@@ -1,0 +1,113 @@
+// JCL_DEBUG_EXPERT_INSERTJDBG OFF
+// JCL_DEBUG_EXPERT_GENERATEJDBG OFF
+// JCL_DEBUG_EXPERT_DELETEMAPFILE OFF
+package zBase_Delphi13_Florence;
+{$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION OFF}
+{$OVERFLOWCHECKS ON}
+{$RANGECHECKS ON}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES ON}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE DEBUG}
+{$ENDIF IMPLICITBUILDING}
+{$DESCRIPTION 'zBase 1'}
+{$IMPLICITBUILD ON}
+
+requires
+  rtl,
+  vcl,
+  designide,
+  xmlrtl,
+  dbrtl,
+  vclx,
+  vcldb,
+  vclie,
+  VclSmp,
+  vclFireDAC,
+  FireDAC,
+  FireDACCommon,
+  FireDACCommonDriver,
+  FireDACIBDriver,
+  RESTComponents,
+  IndyIPClient,
+  IndyIPCommon,
+  IndySystem,
+  IndyProtocols,
+  IndyCore,
+  soaprtl,
+  TeeUI,
+  Tee,
+  TeeDB,
+  cxLibraryRS37,
+  cxPivotGridRS37,
+  cxSchedulerRS37,
+  cxTreeListdxBarPopupMenuRS37,
+  cxVerticalGridRS37,
+  dclcxLibraryRS37,
+  dcldxOrgChartAdvancedCustomizeFormRS37,
+  dxBarDBNavRS37,
+  dxCoreRS37,
+  dxDockingRS37,
+  dxFlowChartLayoutsRS37,
+  dxFlowChartRS37,
+  dxGDIPlusRS37,
+  dxMapControlRS37,
+  dxNavBarRS37,
+  dxPDFViewerRS37,
+  dxPScxCommonRS37,
+  dxPScxExtCommonRS37,
+  dxPScxGridLnkRS37,
+  dxPScxPCProdRS37,
+  dxPScxSchedulerLnkRS37,
+  dxPScxTLLnkRS37,
+  dxChartControlRS37,
+  dxPSdxChartControlLnkRS37,
+  dxPScxVGridLnkRS37,
+  dxPSdxPDFViewerLnkRS37,
+  dxPSdxSpreadSheetLnkRS37,
+  dxPsPrVwAdvRS37,
+  dxPSPrVwRibbonRS37,
+  dxPSRichEditControlLnkRS37,
+  dxRibbonCustomizationFormRS37,
+  dxRichEditControlCoreRS37,
+  dxRichEditControlRS37,
+  dxRichEditCoreRS37,
+  dxRichEditDocumentModelRS37,
+  dxSkinsCoreRS37,
+  dxSpellCheckerRS37,
+  dxSpreadSheetConditionalFormattingDialogsRS37,
+  dxSpreadSheetCoreConditionalFormattingDialogsRS37,
+  dxWizardControlRS37,
+  frx37,
+  frxDB37,
+  fs37,
+  VCLTMSFNCCorePkg,
+  VCLTMSFNCMapsPkg,
+  QExport4RT,
+  SynEditDR,
+  AbbreviaD,
+  zBase_FIB_Delphi13_Florence,
+  acQueryBuilderD37,
+  dxSplashFormsRS37;
+
+contains
+  zBaseRegister in 'zBaseRegister.pas';
+
+end.

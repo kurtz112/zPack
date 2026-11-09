@@ -1,0 +1,15 @@
+procedure TfrmMain.TableViewMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+var
+  AHitTest: TcxCustomGridHitTest;
+  APoint: TPoint;
+begin
+
+  if Button = mbLeft then
+  begin
+    APoint := ClientToScreen(Point(X, Y));
+    AHitTest := (Sender as TcxGridSite).ViewInfo.GetHitTest(X, Y);
+    if AHitTest.HitTestCode = htIndicatorHeader then
+      TableView.ApplyBestFit(nil);
+  end;
+
+end;

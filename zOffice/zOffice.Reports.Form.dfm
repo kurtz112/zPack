@@ -1,0 +1,589 @@
+object zReportsForm: TzReportsForm
+  Left = 847
+  Top = 47
+  BorderIcons = [biSystemMenu, biMaximize]
+  BorderStyle = bsSizeToolWin
+  Caption = 'Reports'
+  ClientHeight = 469
+  ClientWidth = 660
+  Color = clBtnFace
+  Font.Charset = ANSI_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -13
+  Font.Name = 'Segoe UI'
+  Font.Style = [fsBold]
+  Padding.Top = 3
+  Position = poScreenCenter
+  ShowHint = True
+  TextHeight = 17
+  object tree: TcxTreeList
+    Left = 0
+    Top = 35
+    Width = 660
+    Height = 434
+    Align = alClient
+    Bands = <
+      item
+      end>
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    Images = treeImages
+    OptionsBehavior.ImmediateEditor = False
+    OptionsBehavior.CopyCaptionsToClipboard = False
+    OptionsBehavior.IncSearch = True
+    OptionsBehavior.IncSearchItem = treeColumn
+    OptionsData.Editing = False
+    OptionsData.Deleting = False
+    OptionsSelection.InvertSelect = False
+    OptionsView.ScrollBars = ssVertical
+    OptionsView.ColumnAutoWidth = True
+    OptionsView.Footer = True
+    OptionsView.Headers = False
+    ParentFont = False
+    PopupMenu = PopupMenu
+    ScrollbarAnnotations.CustomAnnotations = <>
+    TabOrder = 0
+    OnDblClick = treeDblClick
+    OnSelectionChanged = treeSelectionChanged
+    ExplicitTop = 33
+    ExplicitHeight = 436
+    object treeColumn: TcxTreeListColumn
+      Position.ColIndex = 0
+      Position.RowIndex = 0
+      Position.BandIndex = 0
+      Summary.FooterSummaryItems = <
+        item
+          AlignHorz = taLeftJustify
+          OnGetText = treeColumnTcxTreeListColumnSummaryFooterSummaryItems0GetText
+        end>
+    end
+  end
+  object ActionList: TActionList
+    Images = dx.Immagini
+    OnUpdate = ActionListUpdate
+    Left = 44
+    Top = 64
+    object Anteprima: TAction
+      Caption = 'Anteprima'
+      Hint = 'anteprima di stampa'
+      ImageIndex = 169
+      SecondaryShortCuts.Strings = (
+        'F9')
+      ShortCut = 13
+      OnExecute = AnteprimaExecute
+      OnUpdate = AnteprimaUpdate
+    end
+    object Chiudi: TAction
+      Caption = 'Chiudi'
+      Hint = 'chiudi'
+      ImageIndex = 60
+      ShortCut = 27
+      OnExecute = ChiudiExecute
+    end
+    object Cartella: TAction
+      Caption = 'Cartella'
+      Hint = 'apri cartella reports'
+      ImageIndex = 35
+      OnExecute = CartellaExecute
+    end
+    object Nuovo: TAction
+      Caption = 'Nuovo '
+      Hint = 'nuovo report/template'
+      ImageIndex = 38
+      OnExecute = NuovoExecute
+    end
+    object Modifica: TAction
+      Caption = 'Modifica'
+      Hint = 'modifica il report/template'
+      ImageIndex = 44
+      OnExecute = ModificaExecute
+    end
+    object Stampanti: TAction
+      Caption = 'Stampanti'
+      ImageIndex = 289
+      OnExecute = StampantiExecute
+    end
+    object actPoliticheAccessi: TAction
+      Caption = 'Politiche Accessi'
+      ImageIndex = 213
+      OnExecute = actPoliticheAccessiExecute
+    end
+    object actRicaricaPolitiche: TAction
+      Caption = 'Ricarica Politiche'
+      ImageIndex = 53
+      OnExecute = actRicaricaPoliticheExecute
+    end
+    object ElencoDataset: TAction
+      Caption = 'Elenco Dataset'
+      ImageIndex = 219
+      OnExecute = ElencoDatasetExecute
+    end
+    object Proprieta: TAction
+      Caption = 'Propriet'#224
+      ImageIndex = 16
+      OnExecute = ProprietaExecute
+      OnUpdate = ProprietaUpdate
+    end
+    object actPermessiAzione: TAction
+      Caption = 'Permessi'
+      ImageIndex = 81
+      OnExecute = actPermessiAzioneExecute
+    end
+    object Aggiorna: TAction
+      Caption = 'Aggiorna'
+      ImageIndex = 45
+      ShortCut = 116
+      OnExecute = AggiornaExecute
+    end
+  end
+  object dxBarManager: TdxBarManager
+    AutoAlignBars = True
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    CanCustomize = False
+    Categories.Strings = (
+      'Default')
+    Categories.ItemsVisibles = (
+      2)
+    Categories.Visibles = (
+      True)
+    ImageOptions.Images = dx.Immagini
+    ImageOptions.LargeImages = dx.Immagini
+    ImageOptions.LargeIcons = True
+    ImageOptions.UseLargeImagesForLargeIcons = True
+    NotDocking = [dsNone, dsLeft, dsTop, dsRight, dsBottom]
+    PopupMenuLinks = <>
+    UseSystemFont = True
+    OnBarVisibleChange = dxBarManagerBarVisibleChange
+    Left = 40
+    Top = 136
+    PixelsPerInch = 96
+    DockControlHeights = (
+      0
+      0
+      32
+      0)
+    object dxBarManagerBar: TdxBar
+      AllowClose = False
+      AllowCustomizing = False
+      AllowQuickCustomizing = False
+      AllowReset = False
+      BorderStyle = bbsNone
+      Caption = 'Toolbar'
+      CaptionButtons = <>
+      DockedDockingStyle = dsTop
+      DockedLeft = 0
+      DockedTop = 0
+      DockingStyle = dsTop
+      FloatLeft = 445
+      FloatTop = 8
+      FloatClientWidth = 0
+      FloatClientHeight = 0
+      ItemLinks = <
+        item
+          UserDefine = [udPaintStyle]
+          UserPaintStyle = psCaptionGlyph
+          Visible = True
+          ItemName = 'dxBarButtonAnteprima'
+        end
+        item
+          BeginGroup = True
+          Visible = True
+          ItemName = 'dxBarSubItemSistema'
+        end
+        item
+          UserDefine = [udPaintStyle]
+          UserPaintStyle = psCaptionGlyph
+          Visible = True
+          ItemName = 'dxBarButtonChiudi'
+        end>
+      OneOnRow = True
+      Row = 0
+      UseOwnFont = False
+      UseRestSpace = True
+      Visible = True
+      WholeRow = True
+    end
+    object dxBarButtonAnteprima: TdxBarButton
+      Action = Anteprima
+      Category = 0
+      ImageIndex = 293
+    end
+    object dxBarButtonChiudi: TdxBarButton
+      Action = Chiudi
+      Align = iaRight
+      Category = 0
+    end
+    object dxBarSubItemSistema: TdxBarSubItem
+      Align = iaRight
+      Caption = 'Sistema'
+      Category = 0
+      Visible = ivAlways
+      ImageIndex = 512
+      ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'dxBarButtonNuovo'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarButtonModifica'
+        end
+        item
+          BeginGroup = True
+          Visible = True
+          ItemName = 'dxBarButtonCartella'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarButton9'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarButtonStampanti'
+        end
+        item
+          BeginGroup = True
+          Visible = True
+          ItemName = 'dxBarSubItem1'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarSubItem2'
+        end
+        item
+          BeginGroup = True
+          Visible = True
+          ItemName = 'dxBarButton7'
+        end>
+    end
+    object dxBarButtonNuovo: TdxBarButton
+      Action = Nuovo
+      Category = 0
+    end
+    object dxBarButtonModifica: TdxBarButton
+      Action = Modifica
+      Category = 0
+      ImageIndex = 17
+    end
+    object dxBarButtonCartella: TdxBarButton
+      Action = Cartella
+      Category = 0
+      ImageIndex = 34
+    end
+    object dxBarButtonStampanti: TdxBarButton
+      Action = Stampanti
+      Category = 0
+      ImageIndex = 209
+    end
+    object dxBarSubItem1: TdxBarSubItem
+      Caption = 'Politiche Accessi'
+      Category = 0
+      Visible = ivAlways
+      ImageIndex = 497
+      ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'dxBarButton2'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarButton3'
+        end>
+    end
+    object dxBarButton2: TdxBarButton
+      Action = actPoliticheAccessi
+      Category = 0
+      ImageIndex = 497
+    end
+    object dxBarButton3: TdxBarButton
+      Action = actRicaricaPolitiche
+      Category = 0
+      ImageIndex = 22
+    end
+    object dxBarSubItem2: TdxBarSubItem
+      Caption = 'Debug'
+      Category = 0
+      Visible = ivAlways
+      ImageIndex = 203
+      ItemLinks = <
+        item
+          Visible = True
+          ItemName = 'dxBarButton4'
+        end>
+    end
+    object dxBarButton4: TdxBarButton
+      Action = ElencoDataset
+      Category = 0
+      ImageIndex = 232
+    end
+    object dxBarButton5: TdxBarButton
+      Action = Cartella
+      Category = 0
+      ImageIndex = 34
+    end
+    object dxBarButton1: TdxBarButton
+      Action = actPermessiAzione
+      Category = 0
+    end
+    object dxBarButton7: TdxBarButton
+      Action = Proprieta
+      Category = 0
+    end
+    object dxBarButton8: TdxBarButton
+      Action = Proprieta
+      Category = 0
+    end
+    object dxBarButton6: TdxBarButton
+      Action = Aggiorna
+      Category = 0
+      ImageIndex = 89
+    end
+    object dxBarButton9: TdxBarButton
+      Action = Aggiorna
+      Category = 0
+      ImageIndex = 89
+    end
+  end
+  object PopupMenu: TdxBarPopupMenu
+    BarManager = dxBarManager
+    ItemLinks = <
+      item
+        Visible = True
+        ItemName = 'dxBarButtonAnteprima'
+      end
+      item
+        BeginGroup = True
+        Visible = True
+        ItemName = 'dxBarButton5'
+      end
+      item
+        Visible = True
+        ItemName = 'dxBarButton1'
+      end
+      item
+        BeginGroup = True
+        Visible = True
+        ItemName = 'dxBarSubItemSistema'
+      end
+      item
+        BeginGroup = True
+        Visible = True
+        ItemName = 'dxBarButton8'
+      end>
+    UseOwnFont = False
+    Left = 120
+    Top = 136
+    PixelsPerInch = 96
+  end
+  object TdxBarSeparator
+    Category = -1
+    Visible = ivAlways
+  end
+  object popActions: TdxBarPopupMenu
+    BarManager = dxBarManager
+    ItemLinks = <
+      item
+        Visible = True
+        ItemName = 'dxBarButton1'
+      end>
+    UseOwnFont = False
+    OnPopup = popActionsPopup
+    Left = 200
+    Top = 136
+    PixelsPerInch = 96
+  end
+  object treeImages: TcxImageList
+    SourceDPI = 96
+    FormatVersion = 1
+    DesignInfo = 13107240
+    ImageInfo = <
+      item
+        ImageClass = 'TdxSmartImage'
+        Image.Data = {
+          3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D227574
+          662D38223F3E0A3C212D2D2047656E657261746F723A2041646F626520496C6C
+          7573747261746F722032322E312E302C20535647204578706F727420506C7567
+          2D496E202E205356472056657273696F6E3A20362E3030204275696C64203029
+          20202D2D3E0A3C7376672076657273696F6E3D22312E31222069643D224C6179
+          65725F312220786D6C6E733D22687474703A2F2F7777772E77332E6F72672F32
+          3030302F7376672220786D6C6E733A786C696E6B3D22687474703A2F2F777777
+          2E77332E6F72672F313939392F786C696E6B2220783D223070782220793D2230
+          7078220A092076696577426F783D2230203020333220333222207374796C653D
+          22656E61626C652D6261636B67726F756E643A6E657720302030203332203332
+          3B2220786D6C3A73706163653D227072657365727665223E0A3C7374796C6520
+          747970653D22746578742F637373223E0A092E426C75657B66696C6C3A233131
+          373744373B7D0A092E59656C6C6F777B66696C6C3A234646423131353B7D0A09
+          2E5265647B66696C6C3A234431314331433B7D0A092E477265656E7B66696C6C
+          3A233033394332333B7D0A092E59656C6C6F777B66696C6C3A23464642313135
+          3B7D0A092E57686974657B66696C6C3A234646464646463B7D0A092E7374307B
+          6F7061636974793A302E353B7D0A092E7374317B6F7061636974793A302E3735
+          3B7D0A092E7374327B646973706C61793A6E6F6E653B7D0A092E7374337B6469
+          73706C61793A696E6C696E653B66696C6C3A234646423131353B7D0A092E7374
+          347B646973706C61793A696E6C696E653B7D0A092E7374357B646973706C6179
+          3A696E6C696E653B6F7061636974793A302E37353B7D0A092E7374367B646973
+          706C61793A696E6C696E653B6F7061636974793A302E353B7D0A092E7374377B
+          646973706C61793A696E6C696E653B66696C6C3A233033394332333B7D0A092E
+          7374387B646973706C61793A696E6C696E653B66696C6C3A234431314331433B
+          7D0A092E7374397B646973706C61793A696E6C696E653B66696C6C3A23313137
+          3744373B7D0A092E737431307B646973706C61793A696E6C696E653B66696C6C
+          3A234646464646463B7D0A3C2F7374796C653E0A3C672069643D22466F6C6465
+          72223E0A093C6720636C6173733D22737431223E0A09093C7061746820636C61
+          73733D2259656C6C6F772220643D224D322E322C32352E326C352E352D313043
+          382C31342E352C382E372C31342C392E352C3134483234762D3363302D302E36
+          2D302E342D312D312D31483132563763302D302E362D302E342D312D312D3148
+          3343322E342C362C322C362E352C322C377631380A09090963302C302E322C30
+          2C302E332C302E312C302E3443322E312C32352E342C322E322C32352E332C32
+          2E322C32352E327A222F3E0A093C2F673E0A093C7061746820636C6173733D22
+          59656C6C6F772220643D224D32392E332C313648392E364C342C32366831392E
+          3863302E352C302C312E312D302E322C312E332D302E366C342E392D382E3943
+          33302E312C31362E322C32392E382C31362C32392E332C31367A222F3E0A3C2F
+          673E0A3C2F7376673E0A}
+        FileName = 'bo_folder.svg'
+      end
+      item
+        ImageClass = 'TdxSmartImage'
+        Image.Data = {
+          3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D227574
+          662D38223F3E0A3C212D2D2047656E657261746F723A2041646F626520496C6C
+          7573747261746F722032312E312E302C20535647204578706F727420506C7567
+          2D496E202E205356472056657273696F6E3A20362E3030204275696C64203029
+          20202D2D3E0A3C7376672076657273696F6E3D22312E31222069643D224C6179
+          65725F312220786D6C6E733D22687474703A2F2F7777772E77332E6F72672F32
+          3030302F7376672220786D6C6E733A786C696E6B3D22687474703A2F2F777777
+          2E77332E6F72672F313939392F786C696E6B2220783D223070782220793D2230
+          7078220A092076696577426F783D2230203020333220333222207374796C653D
+          22656E61626C652D6261636B67726F756E643A6E657720302030203332203332
+          3B2220786D6C3A73706163653D227072657365727665223E0A3C7374796C6520
+          747970653D22746578742F637373223E0A092E426C75657B66696C6C3A233131
+          373744373B7D0A092E59656C6C6F777B66696C6C3A234646423131353B7D0A09
+          2E477265656E7B66696C6C3A233033394332333B7D0A092E477265656E7B6669
+          6C6C3A233033394332333B7D0A092E5265647B66696C6C3A234431314331433B
+          7D0A092E7374307B6F7061636974793A302E37353B7D0A092E7374317B6F7061
+          636974793A302E353B7D0A3C2F7374796C653E0A3C672069643D22416464223E
+          0A093C7061746820636C6173733D22477265656E2220643D224D32372C313468
+          2D39563563302D302E352D302E352D312D312D31682D32632D302E352C302D31
+          2C302E352D312C3176394835632D302E352C302D312C302E352D312C31763263
+          302C302E352C302E352C312C312C31683976390A090963302C302E352C302E35
+          2C312C312C31683263302E352C302C312D302E352C312D31762D39683963302E
+          352C302C312D302E352C312D31762D324332382C31342E352C32372E352C3134
+          2C32372C31347A222F3E0A3C2F673E0A3C2F7376673E0A}
+        FileName = 'actions_add.svg'
+      end
+      item
+        ImageClass = 'TdxSmartImage'
+        Image.Data = {
+          3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D227574
+          662D38223F3E0A3C212D2D2047656E657261746F723A2041646F626520496C6C
+          7573747261746F722032322E312E302C20535647204578706F727420506C7567
+          2D496E202E205356472056657273696F6E3A20362E3030204275696C64203029
+          20202D2D3E0A3C7376672076657273696F6E3D22312E31222069643D224C6179
+          65725F312220786D6C6E733D22687474703A2F2F7777772E77332E6F72672F32
+          3030302F7376672220786D6C6E733A786C696E6B3D22687474703A2F2F777777
+          2E77332E6F72672F313939392F786C696E6B2220783D223070782220793D2230
+          7078220A092076696577426F783D2230203020333220333222207374796C653D
+          22656E61626C652D6261636B67726F756E643A6E657720302030203332203332
+          3B2220786D6C3A73706163653D227072657365727665223E0A3C7374796C6520
+          747970653D22746578742F637373223E0A092E426C75657B66696C6C3A233131
+          373744373B7D0A092E59656C6C6F777B66696C6C3A234646423131353B7D0A09
+          2E5265647B66696C6C3A234431314331433B7D0A092E477265656E7B66696C6C
+          3A233033394332333B7D0A092E426C61636B7B66696C6C3A233732373237323B
+          7D0A092E57686974657B66696C6C3A234646464646463B7D0A092E7374307B6F
+          7061636974793A302E353B7D0A092E7374317B6F7061636974793A302E37353B
+          7D0A092E7374327B646973706C61793A6E6F6E653B7D0A092E7374337B646973
+          706C61793A696E6C696E653B66696C6C3A234646423131353B7D0A092E737434
+          7B646973706C61793A696E6C696E653B7D0A092E7374357B646973706C61793A
+          696E6C696E653B6F7061636974793A302E37353B7D0A092E7374367B64697370
+          6C61793A696E6C696E653B6F7061636974793A302E353B7D0A092E7374377B64
+          6973706C61793A696E6C696E653B66696C6C3A233033394332333B7D0A092E73
+          74387B646973706C61793A696E6C696E653B66696C6C3A234431314331433B7D
+          0A092E7374397B646973706C61793A696E6C696E653B66696C6C3A2331313737
+          44373B7D0A092E737431307B646973706C61793A696E6C696E653B66696C6C3A
+          234646464646463B7D0A3C2F7374796C653E0A3C672069643D22446F63756D65
+          6E745F315F223E0A093C7061746820636C6173733D22426C75652220643D224D
+          31352C32306C392D396C352C356C2D392C394C31352C32307A204D33312E372C
+          31312E396C2D332E362D332E36632D302E342D302E342D312D302E342D312E34
+          2C304C32352C31306C352C356C312E372D312E370A09094333322E312C31322E
+          392C33322E312C31322E332C33312E372C31312E397A204D31342C323668356C
+          2D352D355632367A222F3E0A093C7061746820636C6173733D22426C61636B22
+          20643D224D32342C32332E38563238682D342E32483132483656346831387634
+          2E326C322D32563363302D302E352D302E352D312D312D31483543342E342C32
+          2C342C322E352C342C3376323663302C302E352C302E352C312C312C31683230
+          0A090963302E352C302C312D302E352C312D31762D372E324C32342C32332E38
+          7A222F3E0A3C2F673E0A3C2F7376673E0A}
+        FileName = 'bo_document.svg'
+      end
+      item
+        ImageClass = 'TdxSmartImage'
+        Image.Data = {
+          3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D227574
+          662D38223F3E0A3C7376672076657273696F6E3D22312E31222069643D224C61
+          7965725F312220786D6C6E733D22687474703A2F2F7777772E77332E6F72672F
+          323030302F7376672220786D6C6E733A786C696E6B3D22687474703A2F2F7777
+          772E77332E6F72672F313939392F786C696E6B2220783D223070782220793D22
+          307078220A092076696577426F783D2230203020333220333222207374796C65
+          3D22656E61626C652D6261636B67726F756E643A6E6577203020302033322033
+          323B2220786D6C3A73706163653D227072657365727665223E0A3C7374796C65
+          20747970653D22746578742F637373223E0A092E426C61636B7B66696C6C3A23
+          3732373237323B7D0A3C2F7374796C653E0A3C672069643D2266696C652D776F
+          726422207472616E73666F726D3D227363616C6528312E33333333333329223E
+          0A093C7061746820643D224D31342C32483641322C32203020302C3020342C34
+          56323041322C32203020302C3020362C323248313841322C32203020302C3020
+          32302C323056384C31342C324D31352E322C32304831332E384C31322C31332E
+          324C31302E322C323048382E384C362E362C313148382E314C392E352C31372E
+          384C31312E332C31314831322E364C31342E342C31372E384C31352E382C3131
+          4831372E334C31352E322C32304D31332C3956332E354C31382E352C39483133
+          5A2220636C6173733D22426C61636B22202F3E0A3C2F673E0A3C2F7376673E0A}
+        FileName = 'file-word.svg'
+      end
+      item
+        ImageClass = 'TdxSmartImage'
+        Image.Data = {
+          3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D227574
+          662D38223F3E0A3C212D2D2047656E657261746F723A2041646F626520496C6C
+          7573747261746F722032322E312E302C20535647204578706F727420506C7567
+          2D496E202E205356472056657273696F6E3A20362E3030204275696C64203029
+          20202D2D3E0A3C7376672076657273696F6E3D22312E31222069643D224C6179
+          65725F312220786D6C6E733D22687474703A2F2F7777772E77332E6F72672F32
+          3030302F7376672220786D6C6E733A786C696E6B3D22687474703A2F2F777777
+          2E77332E6F72672F313939392F786C696E6B2220783D223070782220793D2230
+          7078220A092076696577426F783D2230203020333220333222207374796C653D
+          22656E61626C652D6261636B67726F756E643A6E657720302030203332203332
+          3B2220786D6C3A73706163653D227072657365727665223E0A3C7374796C6520
+          747970653D22746578742F637373223E0A092E426C75657B66696C6C3A233131
+          373744373B7D0A092E59656C6C6F777B66696C6C3A234646423131353B7D0A09
+          2E5265647B66696C6C3A234431314331433B7D0A092E477265656E7B66696C6C
+          3A233033394332333B7D0A092E426C61636B7B66696C6C3A233732373237323B
+          7D0A092E57686974657B66696C6C3A234646464646463B7D0A092E7374307B6F
+          7061636974793A302E353B7D0A092E7374317B6F7061636974793A302E37353B
+          7D0A092E7374327B646973706C61793A6E6F6E653B7D0A092E7374337B646973
+          706C61793A696E6C696E653B66696C6C3A234646423131353B7D0A092E737434
+          7B646973706C61793A696E6C696E653B7D0A092E7374357B646973706C61793A
+          696E6C696E653B6F7061636974793A302E37353B7D0A092E7374367B64697370
+          6C61793A696E6C696E653B6F7061636974793A302E353B7D0A092E7374377B64
+          6973706C61793A696E6C696E653B66696C6C3A233033394332333B7D0A092E73
+          74387B646973706C61793A696E6C696E653B66696C6C3A234431314331433B7D
+          0A092E7374397B646973706C61793A696E6C696E653B66696C6C3A2331313737
+          44373B7D0A092E737431307B646973706C61793A696E6C696E653B66696C6C3A
+          234646464646463B7D0A3C2F7374796C653E0A3C672069643D22446F63756D65
+          6E745F315F223E0A093C7061746820636C6173733D22426C75652220643D224D
+          31352C32306C392D396C352C356C2D392C394C31352C32307A204D33312E372C
+          31312E396C2D332E362D332E36632D302E342D302E342D312D302E342D312E34
+          2C304C32352C31306C352C356C312E372D312E370A09094333322E312C31322E
+          392C33322E312C31322E332C33312E372C31312E397A204D31342C323668356C
+          2D352D355632367A222F3E0A093C7061746820636C6173733D22426C61636B22
+          20643D224D32342C32332E38563238682D342E32483132483656346831387634
+          2E326C322D32563363302D302E352D302E352D312D312D31483543342E342C32
+          2C342C322E352C342C3376323663302C302E352C302E352C312C312C31683230
+          0A090963302E352C302C312D302E352C312D31762D372E324C32342C32332E38
+          7A222F3E0A3C2F673E0A3C2F7376673E0A}
+        FileName = 'bo_document.svg'
+      end>
+  end
+end

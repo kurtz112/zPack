@@ -1,0 +1,19 @@
+/* zz-lookup.component.scss */
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.zz-lookup-popup {
+  padding: 0;
+
+  dx-data-grid {
+    width:  100%;
+    height: 100%;
+
+    .dx-row.dx-datagrid-filter-row .dx-editor-cell {
+      padding: 2px 4px;
+    }
+  }
+}

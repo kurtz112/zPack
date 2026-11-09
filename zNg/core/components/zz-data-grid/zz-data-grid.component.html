@@ -1,0 +1,306 @@
+<!-- ═══════════════════════════════════════════════════════════════════════
+     ZZ-DATA-GRID — Inline o modale, con form dialog per insert/edit/view
+     FIX applicati:
+     1. ID DevTools unici (gridDevBtnId) per evitare conflitti DOM
+     2. dxo-editing: allowAdding SEMPRE false — l'insert è gestito dal
+        pulsante custom "Nuovo" che chiama onInsertClick()
+     3. onInitNewRow: solo e.cancel=true, niente openForm (evita doppio open)
+     ═══════════════════════════════════════════════════════════════════════ -->
+
+<!-- ═══ MODAL MODE: grid dentro un popup ════════════════════════════════════ -->
+@if (modal()) {
+  <dx-popup
+    [(visible)]="visible"
+    [title]="gridTitle"
+    [showCloseButton]="true"
+    [dragEnabled]="true"
+    [width]="gridPopupWidth"
+    [height]="gridPopupHeight"
+    [showTitle]="true"
+    [deferRendering]="false"
+    (onHiding)="onGridPopupHiding()"
+    (onShown)="onGridPopupShown()">
+
+    @if (showDevTools()) {
+      <dxi-toolbar-item toolbar="top" location="after">
+        <div *dxTemplate>
+          <dx-button [id]="gridDevBtnId + '_modal'"
+                     icon="preferences" hint="Dev Tools"
+                     type="normal" stylingMode="text">
+          </dx-button>
+          <dx-context-menu
+            [target]="'#' + gridDevBtnId + '_modal'"
+            showEvent="click"
+            [items]="devToolsMenuItems"
+            (onItemClick)="onDevToolsItemClick($event)">
+          </dx-context-menu>
+        </div>
+      </dxi-toolbar-item>
+    }
+
+    <div *dxTemplate="let _ of 'content'" class="grid-modal-content">
+      <ng-container *ngTemplateOutlet="gridBody"></ng-container>
+    </div>
+  </dx-popup>
+}
+
+<!-- ═══ INLINE MODE ══════════════════════════════════════════════════════════ -->
+@if (!modal()) {
+  <div class="zz-grid-inline">
+    <ng-container *ngTemplateOutlet="gridBody"></ng-container>
+  </div>
+}
+
+<!-- ═══ TEMPLATE CONDIVISO: grid body ════════════════════════════════════════ -->
+<ng-template #gridBody>
+
+  @if (loading()) {
+    <div class="zz-loading">
+      <div class="zz-spinner"></div>
+      <span>Caricamento metadati...</span>
+    </div>
+  }
+
+  @if (error()) {
+    <div class="zz-error">{{ error() }}</div>
+  }
+
+  @if (metadata()) {
+
+    <!-- ═══ Filter Builder panel ════════════════════════════════════════════ -->
+    @if (filterVisible) {
+      <div class="filter-builder-panel">
+        <div class="filter-builder-header">
+          <span class="filter-builder-title">
+            <i class="dx-icon dx-icon-filter"></i>
+            Filtri avanzati
+          </span>
+          <dx-button
+            icon="close"
+            stylingMode="text"
+            type="normal"
+            hint="Chiudi"
+            (onClick)="toggleFilterPanel()">
+          </dx-button>
+        </div>
+        <dx-filter-builder #filterBuilder
+          [fields]="filterFields"
+          (onOptionChanged)="onFilterBuilderOptionChanged($event)">
+        </dx-filter-builder>
+      </div>
+    }
+
+    <!-- ═══ Batch actions bar ═══════════════════════════════════════════════ -->
+    @if (hasSelection) {
+      <div class="batch-actions-bar">
+        <span class="batch-count">
+          {{ selectionCount }} record selezionati
+        </span>
+        <dx-button
+          text="Deseleziona tutto"
+          icon="unselectall"
+          type="normal"
+          stylingMode="text"
+          (onClick)="grid.instance.clearSelection()">
+        </dx-button>
+        @if (allowDeleting) {
+          <dx-button
+            [text]="'Elimina ' + selectionCount"
+            icon="trash"
+            type="danger"
+            stylingMode="outlined"
+            (onClick)="deleteSelected()">
+          </dx-button>
+        }
+      </div>
+    }
+
+    <!-- ═══ DX-DATA-GRID ════════════════════════════════════════════════════ -->
+    <div class="zz-griglia" [class.zz-vuota]="vuota()">
+    <dx-data-grid #grid
+      [noDataText]="''"
+      (onContentReady)="onGridContentReady($event)"
+      [dataSource]="dataStore!"
+      [columns]="gridColumns"
+      [remoteOperations]="remoteOps"
+      [columnAutoWidth]="true"
+      [showBorders]="true"
+      [showRowLines]="true"
+      [errorRowEnabled]="false"
+      [allowColumnReordering]="true"
+      [allowColumnResizing]="true"
+      [rowAlternationEnabled]="true"
+      [focusedRowEnabled]="true"
+      [height]="modal() ? '100%' : height()"
+      [keyExpr]="metadata()!.primaryKey"
+      (onRowClick)="handleRowClick($event)"
+      (onRowDblClick)="handleRowDblClick($event)"
+      (onFocusedRowChanged)="onGridFocusedRowChanged($event)"
+      (onFocusedCellChanged)="onGridFocusedCellChanged($event)"
+      (onSelectionChanged)="handleSelectionChanged($event)"
+      (onInitNewRow)="onInitNewRow($event)"
+      (onEditingStart)="onEditingStart($event)"
+      (onOptionChanged)="onGridOptionChanged($event)"
+      (onKeyDown)="onKeyDown($event)"
+      (onContextMenuPreparing)="onContextMenuPreparing($event)">
+
+      <!-- Toolbar ──────────────────────────────────────────────────────────── -->
+      <dxo-toolbar [visible]="!compatta() || allowAdding || visibleGridButtons.length > 0">
+        @if (!compatta()) {
+          <dxi-item location="before" name="searchPanel"></dxi-item>
+        }
+
+        <!-- Pulsante Nuovo (custom, NON usa addRow di DevExtreme) -->
+        @if (allowAdding) {
+          <dxi-item location="after">
+            <div *dxTemplate>
+              <dx-button
+                text="Nuovo" icon="plus" type="default"
+                (onClick)="onInsertClick()">
+              </dx-button>
+            </div>
+          </dxi-item>
+        }
+
+        <!-- Toggle filtri avanzati -->
+        @if (!compatta()) {
+          <dxi-item location="after">
+            <div *dxTemplate>
+              <dx-button
+                icon="filterpanel"
+                hint="Filtri avanzati"
+                type="normal"
+                [stylingMode]="filterVisible ? 'contained' : 'text'"
+                (onClick)="toggleFilterPanel()">
+              </dx-button>
+            </div>
+          </dxi-item>
+        }
+
+        <!-- Pulsanti custom ────────────────────────────────────────────────── -->
+        @for (btn of visibleGridButtons; track btn.id) {
+          <dxi-item [location]="btn.location ?? 'after'">
+            <div *dxTemplate>
+              <dx-button
+                [text]="btn.text"
+                [icon]="btn.icon ?? ''"
+                [type]="btn.type ?? 'normal'"
+                [stylingMode]="btn.stylingMode ?? 'outlined'"
+                [disabled]="!!(btn.disabled) || !!(btn.requiresSelection && !hasFocusedRow)"
+                (onClick)="onGridCustomButtonClick(btn)">
+              </dx-button>
+            </div>
+          </dxi-item>
+        }
+
+        @if (!compatta()) {
+          <dxi-item location="after" name="exportButton"></dxi-item>
+          <dxi-item location="after" name="columnChooserButton"></dxi-item>
+        }
+
+        <!-- Dev Tools (solo inline mode) — FIX: id unico -->
+        @if (showDevTools() && !modal()) {
+          <dxi-item location="after">
+            <div *dxTemplate>
+              <dx-button
+                [id]="gridDevBtnId + '_inline'"
+                icon="preferences" hint="Dev Tools"
+                type="normal" stylingMode="text">
+              </dx-button>
+              <dx-context-menu
+                [target]="'#' + gridDevBtnId + '_inline'"
+                showEvent="click"
+                [items]="devToolsMenuItems"
+                (onItemClick)="onDevToolsItemClick($event)">
+              </dx-context-menu>
+            </div>
+          </dxi-item>
+        }
+      </dxo-toolbar>
+
+      <!-- Search + Filtri ──────────────────────────────────────────────────── -->
+      <dxo-search-panel  [visible]="!compatta()" [width]="240" placeholder="Cerca..."></dxo-search-panel>
+      <dxo-filter-row    [visible]="!compatta()"></dxo-filter-row>
+      <dxo-header-filter [visible]="true"></dxo-header-filter>
+      <dxo-filter-panel  [visible]="filterVisible"></dxo-filter-panel>
+      <dxo-sorting       mode="multiple"></dxo-sorting>
+
+      <!-- Paginazione ────────────────────────────────────────────────────────── -->
+      <dxo-paging [pageSize]="metadata()!.gridSettings.pageSize"></dxo-paging>
+      <dxo-pager
+        [showPageSizeSelector]="true"
+        [allowedPageSizes]="metadata()!.gridSettings.allowedPageSizes"
+        [showInfo]="true"
+        [showNavigationButtons]="true">
+      </dxo-pager>
+
+      <!-- Selezione ────────────────────────────────────────────────────────── -->
+      <dxo-selection
+        [mode]="metadata()!.gridSettings.selection.mode"
+        [showCheckBoxesMode]="metadata()!.gridSettings.selection.showCheckBoxesMode"
+        [selectAllMode]="metadata()!.gridSettings.selection.selectAllMode">
+      </dxo-selection>
+
+      <!--
+        FIX #1: Editing — allowAdding è SEMPRE false.
+        L'inserimento è gestito dal pulsante custom "Nuovo" nella toolbar,
+        che chiama onInsertClick() → openForm('insert').
+        Questo impedisce a DevExtreme di creare il suo editing form nativo.
+      -->
+      <dxo-editing
+        [mode]="useFormForEdit ? 'row' : editingMode"
+        [allowAdding]="false"
+        [allowUpdating]="!useFormForEdit && allowUpdating"
+        [allowDeleting]="!useFormForEdit && allowDeleting"
+        [confirmDelete]="!useFormForEdit">
+      </dxo-editing>
+
+      <!-- Export ───────────────────────────────────────────────────────────── -->
+      <dxo-export
+        [enabled]="metadata()!.gridSettings.export.enabled"
+        [allowExportSelectedData]="metadata()!.gridSettings.export.allowExportSelectedData">
+      </dxo-export>
+
+      <!-- Column Chooser ───────────────────────────────────────────────────── -->
+      <dxo-column-chooser [enabled]="true" mode="select"></dxo-column-chooser>
+
+    </dx-data-grid>
+
+    <!-- Nessuna riga: tre livelli di testo (filtri attivi, testo della pagina, ripiego) -->
+    @if (vuota()) {
+      <div class="zz-vuoto" [style.top.px]="vuotaSopra()" role="status">
+        @if (vuotaConFiltri()) {
+          <i class="dx-icon dx-icon-search zz-vuoto__icona"></i>
+          <span class="zz-vuoto__testo">Nessun risultato con i filtri impostati</span>
+          <dx-button text="Togli i filtri" icon="clearsquare" stylingMode="outlined"
+                     (onClick)="togliFiltri()"></dx-button>
+        } @else {
+          <i [class]="'dx-icon zz-vuoto__icona dx-icon-' + (iconaVuota() || 'info')"></i>
+          <span class="zz-vuoto__testo">{{ testoVuoto() || 'Nessun dato da mostrare' }}</span>
+        }
+      </div>
+    }
+    </div>
+
+  }<!-- /metadata -->
+
+</ng-template><!-- /gridBody -->
+
+<!--
+  ═══ FORM DIALOG per insert / edit / view ════════════════════════════════════
+  Posizionato FUORI dal ng-template per evitare distruzione/ricreazione.
+  ════════════════════════════════════════════════════════════════════════════
+-->
+<zz-form #embeddedForm
+  [dataset]="dataset()"
+  [modal]="true"
+  [visible]="formVisible"
+  [mode]="formMode"
+  [formData]="formData"
+  [showDevTools]="showDevTools()"
+  [customButtons]="formPassthroughButtons"
+  (visibleChange)="formVisible = $event"
+  (saved)="onFormSaved($event)"
+  (cancelled)="onFormCancelled()"
+  (actionButtonClick)="onFormActionButtonClick($event)">
+</zz-form>

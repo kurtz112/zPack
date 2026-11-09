@@ -1,0 +1,267 @@
+<div class="zz-meta-dataset">
+  <div class="zz-meta-barra">
+    <h3 class="zz-meta-barra__titolo">
+      {{ nuovo() ? 'Nuovo dataset' : datasetId() }}
+      @if (!nuovo() && dataset()?.['CAPTION']) {
+        <small>{{ dataset()?.['CAPTION'] }}</small>
+      }
+    </h3>
+    @if (!nuovo()) {
+      <dx-check-box
+        text="Personalizzazioni del cliente"
+        hint="Mostra accanto alle righe di base le righe _CUSTOM di questo database"
+        [value]="mostraCustom()"
+        (onValueChanged)="mostraCustom.set($event.value)"
+      ></dx-check-box>
+    }
+  </div>
+
+  <dx-tab-panel
+    [dataSource]="schedeVisibili()"
+    [selectedIndex]="schedaAttiva()"
+    (selectedIndexChange)="schedaAttiva.set($event)"
+    [swipeEnabled]="false"
+    [animationEnabled]="false"
+    [deferRendering]="true"
+  >
+    <div *dxTemplate="let scheda of 'item'" class="zz-meta-scheda">
+      @switch (scheda.id) {
+        @case ('generale') {
+          <div class="zz-meta-azioni">
+            <dx-button text="Salva" icon="save" type="default" (onClick)="salvaDataset()"></dx-button>
+            @if (!nuovo()) {
+              <dx-button text="Verifica SQL" icon="check" (onClick)="verificaIstruzioni()"></dx-button>
+              <dx-button text="Elimina" icon="trash" type="danger" stylingMode="outlined" (onClick)="eliminaDataset()"></dx-button>
+              <span class="zz-meta-azioni__spazio"></span>
+              <dx-select-box
+                [items]="elenchiComuni().authorizations ?? []"
+                valueExpr="value"
+                displayExpr="text"
+                [searchEnabled]="true"
+                [showClearButton]="true"
+                placeholder="Nessuna autorizzazione richiesta"
+                [width]="320"
+                [(value)]="autorizzazione"
+                hint="Autorizzazione che l'utente deve avere per usare il dataset"
+              ></dx-select-box>
+              <dx-button text="Applica autorizzazione" icon="key" (onClick)="salvaAutorizzazione()"></dx-button>
+            }
+          </div>
+
+          <div class="zz-meta-affiancati" [class.zz-meta-affiancati--due]="mostraCustom()">
+            <div>
+              @if (mostraCustom()) {
+                <h4>Base (dal master)</h4>
+              }
+              <dx-form [formData]="bozza" [items]="elementiForm()" [colCount]="1" labelLocation="top"></dx-form>
+            </div>
+            @if (mostraCustom()) {
+              <div>
+                <h4>
+                  Cliente (_CUSTOM)
+                  @if (!esisteCustom()) {
+                    <small>nessuna personalizzazione: i campi vuoti ereditano la base</small>
+                  }
+                </h4>
+                <div class="zz-meta-azioni">
+                  <dx-button text="Salva personalizzazione" icon="save" type="default" (onClick)="salvaPersonalizzazione()"></dx-button>
+                  @if (esisteCustom()) {
+                    <dx-button text="Togli" icon="undo" stylingMode="outlined" (onClick)="togliPersonalizzazione()"></dx-button>
+                  }
+                </div>
+                <dx-form [formData]="bozzaCustom" [items]="elementiFormCustom()" [colCount]="1" labelLocation="top"></dx-form>
+              </div>
+            }
+          </div>
+        }
+
+        @case ('campi') {
+          <div class="zz-meta-azioni">
+            <dx-button
+              text="Genera campi dalla SELECT"
+              icon="refresh"
+              type="default"
+              hint="Legge le colonne della SELECT del dataset e crea campi, colonne della griglia e posizioni nella form"
+              (onClick)="anteprimaGeneraCampi()"
+            ></dx-button>
+          </div>
+          <zz-meta-tabella
+            [sezione]="sezioneCampi"
+            [righe]="campi()"
+            [evidenziata]="campoIniziale()"
+            [domini]="domini()"
+            [elenchi]="elenchi()"
+            titoloScheda="Campo"
+            testoVuoto="Nessun campo: usa Genera campi dalla SELECT"
+            [salva]="salvaCampo"
+            [elimina]="eliminaCampo"
+            (cambiate)="ricaricaCampi()"
+          />
+          @if (mostraCustom()) {
+            <h4>Personalizzazioni dei campi (_CUSTOM)</h4>
+            <zz-meta-tabella
+              [sezione]="sezioneCampi"
+              modo="custom"
+              [righe]="custom()['fields'] ?? []"
+              [righeBase]="campi()"
+              [domini]="domini()"
+              [elenchi]="elenchi()"
+              titoloScheda="Personalizzazione del campo"
+              testoVuoto="Nessun campo personalizzato"
+              [salva]="salvaCustomCampi"
+              [elimina]="eliminaCustomCampi"
+              (cambiate)="ricaricaCustom()"
+            />
+          }
+        }
+
+        @case ('griglia') {
+          <zz-meta-tabella
+            [sezione]="sezioneColonne"
+            [righe]="colonneGriglia()"
+            [evidenziata]="campoIniziale()"
+            [domini]="domini()"
+            [elenchi]="elenchi()"
+            titoloScheda="Colonna della griglia"
+            testoVuoto="Nessuna colonna: nascono con i campi"
+            [salva]="salvaColonna"
+            [elimina]="eliminaColonna"
+            (cambiate)="ricaricaColonne()"
+          />
+          @if (mostraCustom()) {
+            <h4>Personalizzazioni delle colonne (_CUSTOM)</h4>
+            <zz-meta-tabella
+              [sezione]="sezioneColonne"
+              modo="custom"
+              [righe]="custom()['gridColumns'] ?? []"
+              [righeBase]="colonneGriglia()"
+              [domini]="domini()"
+              [elenchi]="elenchi()"
+              titoloScheda="Personalizzazione della colonna"
+              testoVuoto="Nessuna colonna personalizzata"
+              [salva]="salvaCustomColonne"
+              [elimina]="eliminaCustomColonne"
+              (cambiate)="ricaricaCustom()"
+            />
+          }
+        }
+
+        @case ('form') {
+          <p class="zz-meta-nota">
+            Contenitore vuoto = il campo sta nella radice della scheda. Gruppi, pannelli a schede, pulsanti e
+            spazi vuoti arrivano con la seconda consegna dell'editor.
+          </p>
+          <zz-meta-tabella
+            [sezione]="sezioneCampiForm"
+            [righe]="campiForm()"
+            [evidenziata]="campoIniziale()"
+            [domini]="domini()"
+            [elenchi]="elenchi()"
+            titoloScheda="Campo nella form"
+            testoVuoto="Nessun campo nella form: nascono con i campi"
+            [salva]="salvaCampoForm"
+            [elimina]="eliminaCampoForm"
+            (cambiate)="ricaricaCampiForm()"
+          />
+          @if (mostraCustom()) {
+            <h4>Personalizzazioni della form (_CUSTOM)</h4>
+            <zz-meta-tabella
+              [sezione]="sezioneCampiForm"
+              modo="custom"
+              [righe]="custom()['formFields'] ?? []"
+              [righeBase]="campiForm()"
+              [domini]="domini()"
+              [elenchi]="elenchi()"
+              titoloScheda="Personalizzazione del campo nella form"
+              testoVuoto="Nessun campo della form personalizzato"
+              [salva]="salvaCustomCampiForm"
+              [elimina]="eliminaCustomCampiForm"
+              (cambiate)="ricaricaCustom()"
+            />
+          }
+        }
+
+        @case ('anteprima') {
+          <div class="zz-meta-azioni">
+            <dx-button text="Mostra anteprima" icon="eyeopen" type="default" (onClick)="aggiornaAnteprima()"></dx-button>
+            <dx-button
+              text="Rigenera"
+              icon="refresh"
+              hint="Ricostruisce il JSON dei metadati: serve quando la tabella del dataset cambia nel database"
+              (onClick)="rigenera()"
+            ></dx-button>
+          </div>
+          @if (anteprima()) {
+            <h4>Griglia</h4>
+            <dx-data-grid [dataSource]="[]" [columns]="anteprimaColonne()" [showBorders]="true" [columnAutoWidth]="true" noDataText="Anteprima senza dati"></dx-data-grid>
+            <h4>Scheda</h4>
+            <div class="dx-card zz-meta-anteprima-form">
+              <dx-form [formData]="{}" [items]="anteprimaForm()" [colCount]="numeroColonneAnteprima()"></dx-form>
+            </div>
+            <h4>JSON</h4>
+            <dx-text-area [value]="anteprimaTesto()" [readOnly]="true" [height]="360" [elementAttr]="{ class: 'zz-meta-sql' }"></dx-text-area>
+          }
+        }
+      }
+    </div>
+  </dx-tab-panel>
+</div>
+
+<!-- Genera campi: conferma con l'elenco di quelli che spariranno -->
+<dx-popup
+  [visible]="!!sincronizzazione()"
+  (onHiding)="sincronizzazione.set(null)"
+  title="Genera campi dalla SELECT"
+  [width]="640"
+  height="auto"
+  [maxHeight]="'80vh'"
+  [showCloseButton]="true"
+  [wrapperAttr]="{ class: 'zz-meta-finestra' }"
+>
+  <div *dxTemplate="let _ of 'content'">
+    @if (sincronizzazione(); as s) {
+      @if (s.daEliminare.length) {
+        <p class="zz-meta-avviso">
+          Questi campi non stanno più nella SELECT e verranno <b>eliminati</b>, con la loro colonna nella griglia,
+          la posizione nella form e le personalizzazioni: {{ s.daEliminare.join(', ') }}
+        </p>
+      }
+      <dx-data-grid [dataSource]="s.campi" [showBorders]="true" [columnAutoWidth]="true" [height]="300">
+        <dxi-column dataField="FIELD" caption="Campo"></dxi-column>
+        <dxi-column dataField="FIELD_ORIGIN" caption="Origine"></dxi-column>
+        <dxi-column dataField="DATA_TYPE" caption="Tipo"></dxi-column>
+        <dxi-column dataField="esistente" caption="Già presente" dataType="boolean"></dxi-column>
+      </dx-data-grid>
+      <div class="zz-meta-azioni zz-meta-azioni--fondo">
+        <dx-button text="Genera" icon="check" type="default" (onClick)="confermaGeneraCampi()"></dx-button>
+        <dx-button text="Annulla" stylingMode="outlined" (onClick)="sincronizzazione.set(null)"></dx-button>
+      </div>
+    }
+  </div>
+</dx-popup>
+
+<!-- Esito della verifica delle SQL -->
+<dx-popup
+  [visible]="!!verificaSql()"
+  (onHiding)="verificaSql.set(null)"
+  title="Verifica delle istruzioni SQL"
+  [width]="640"
+  height="auto"
+  [showCloseButton]="true"
+  [wrapperAttr]="{ class: 'zz-meta-finestra' }"
+>
+  <div *dxTemplate="let _ of 'content'">
+    @for (esito of verificaSql() ?? []; track esito.istruzione) {
+      <p [class.zz-meta-avviso]="!esito.ok">
+        <b>{{ esito.istruzione }}</b>:
+        @if (esito.ok) {
+          corretta{{ esito.campi ? ', ' + esito.campi.length + ' colonne' : '' }}
+        } @else {
+          {{ esito.messaggio }}
+        }
+      </p>
+    } @empty {
+      <p>Nessuna istruzione da verificare.</p>
+    }
+  </div>
+</dx-popup>

@@ -1,0 +1,112 @@
+// JCL_DEBUG_EXPERT_INSERTJDBG OFF
+package zBase_XE104Sidney;
+{$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION OFF}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES ON}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE DEBUG}
+{$ENDIF IMPLICITBUILDING}
+{$DESCRIPTION 'zBase 1'}
+{$IMPLICITBUILD ON}
+
+requires
+  rtl,
+  vcl,
+  designide,
+  xmlrtl,
+  vclactnband,
+  vclx,
+  dbrtl,
+  soaprtl,
+  dbexpress,
+  DbxCommonDriver,
+  DataSnapProviderClient,
+  TeeUI,
+  Tee,
+  DataSnapCommon,
+  vcldb,
+  vcldsnap,
+  SynEditDR,
+  DataSnapClient,
+  IndyIPClient,
+  IndyIPCommon,
+  IndySystem,
+  IndyProtocols,
+  IndyCore,
+  AbbreviaD,
+  vclie,
+  zBase_Common_104,
+  zBase_FIB_104,
+  TeeDB,
+  acQueryBuilderD27,
+  dxPDFViewerRS27,
+  vclFireDAC,
+  FireDAC,
+  FireDACCommonDriver,
+  FireDACCommon,
+  FireDACIBDriver,
+  fs27,
+  frx27,
+  dxRichEditControlRS27,
+  dxRichEditControlCoreRS27,
+  dxRichEditDocumentModelRS27,
+  dxRichEditCoreRS27,
+  acSqlTextEditorD27,
+  dxPScxPCProdRS27,
+  dxPScxCommonRS27,
+  dxPScxExtCommonRS27,
+  dxPSdxPDFViewerLnkRS27,
+  dxPsPrVwAdvRS27,
+  dxPSPrVwRibbonRS27,
+  dxSpreadSheetCoreConditionalFormattingDialogsRS27,
+  dcldxOrgChartAdvancedCustomizeFormRS27,
+  dxPSdxSpreadSheetLnkRS27,
+  dxPScxGridLnkRS27,
+  dxPScxVGridLnkRS27,
+  dxPScxTLLnkRS27,
+  dxPScxSchedulerLnkRS27,
+  dxCoreRS27,
+  cxLibraryRS27,
+  dxGDIPlusRS27,
+  cxVerticalGridRS27,
+  dxSpellCheckerRS27,
+  dxSkinsCoreRS27,
+  cxPivotGridRS27,
+  cxTreeListdxBarPopupMenuRS27,
+  cxSchedulerRS27,
+  dxNavBarRS27,
+  frxDB27,
+  TatukGIS_DK9_DXE104_WIN32,
+  dxWizardControlRS27,
+  dxDockingRS27,
+  dxBarDBNavRS27,
+  dxFlowChartRS27,
+  dxFlowChartLayoutsRS27,
+  dxMapControlRS27,
+  TMSWebGMapsPkgDXE14,
+  adortl,
+  QExport4RT;
+
+contains
+  zBaseRegister in 'zBaseRegister.pas';
+
+end.

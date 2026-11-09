@@ -1,0 +1,35 @@
+<!-- zz-lookup.component.html -->
+
+<dx-drop-down-box
+  [value]="displayText()"
+  [width]="width()"
+  [readOnly]="readOnly() || disabled()"
+  [showClearButton]="!readOnly() && !disabled()"
+  [placeholder]="placeholder()"
+  (onValueChanged)="$event.value == null && onValueCleared()"
+  (onOpened)="onDropDownOpened()">
+
+  <div *dxTemplate="let _ of 'content'" class="zz-lookup-popup">
+    <dx-data-grid
+      [dataSource]="dataSource() ?? undefined"
+      [columns]="effectiveColumns()"
+      [remoteOperations]="{ paging: true, filtering: true }"
+      [paging]="{ pageSize: config().pageSize ?? 50 }"
+      [pager]="{ showPageSizeSelector: false, showInfo: true }"
+      [filterRow]="{ visible: true }"
+      [scrolling]="{ mode: 'virtual' }"
+      [selection]="{ mode: 'single' }"
+      [hoverStateEnabled]="true"
+      [focusedRowEnabled]="false"
+      [showBorders]="true"
+      [showRowLines]="true"
+      [showColumnLines]="true"
+      [columnAutoWidth]="true"
+      [height]="dropDownHeight()"
+      [width]="dropDownWidth()"
+      [noDataText]="'Nessun risultato'"
+      (onSelectionChanged)="onGridSelectionChanged($event)">
+    </dx-data-grid>
+  </div>
+
+</dx-drop-down-box>

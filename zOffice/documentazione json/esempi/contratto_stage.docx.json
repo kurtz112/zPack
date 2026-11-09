@@ -1,0 +1,22 @@
+{
+  "id": "contratto-stage",
+  "group": "Contratti",
+  "mainDataset": "qryContratto",
+  "word": {
+    "readOnly": true,
+    "fragments": [
+      { "variable": "CLAUSOLE", "template": "contratto_stage_clausole.docx", "dataset": "qryClausole" }
+    ],
+    "pdf": {
+      "method": "tempfile",
+      "fontEmbedding": "subset",
+      "openFileAfterExport": false,
+      "showMessageAfterExport": false
+    }
+  },
+  "azioni": {
+    "firma":         { "enabled": true, "engine": "ESIGNANYWHERE" },
+    "conservazione": { "enabled": true, "req": ["FIR"], "target": "FIR" },
+    "inviaMail":     { "enabled": true }
+  }
+}

@@ -1,0 +1,119 @@
+// JCL_DEBUG_EXPERT_INSERTJDBG OFF
+// JCL_DEBUG_EXPERT_GENERATEJDBG OFF
+// JCL_DEBUG_EXPERT_DELETEMAPFILE OFF
+package zBase_Delphi12_Athens;
+{$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION OFF}
+{$OVERFLOWCHECKS ON}
+{$RANGECHECKS ON}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES ON}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE DEBUG}
+{$ENDIF IMPLICITBUILDING}
+{$DESCRIPTION 'zBase 1'}
+{$IMPLICITBUILD ON}
+
+requires
+  rtl,
+  vcl,
+  designide,
+  xmlrtl,
+  vclactnband,
+  vclx,
+  dbrtl,
+  soaprtl,
+  dbexpress,
+  DbxCommonDriver,
+  DataSnapProviderClient,
+  TeeUI,
+  Tee,
+  DataSnapCommon,
+  vcldb,
+  IndyIPClient,
+  IndyIPCommon,
+  IndySystem,
+  IndyProtocols,
+  IndyCore,
+  vclie,
+  TeeDB,
+  acQueryBuilderD29,
+  dxPDFViewerRS29,
+  vclFireDAC,
+  FireDAC,
+  FireDACCommonDriver,
+  FireDACCommon,
+  FireDACIBDriver,
+  fs29,
+  frx29,
+  dxRichEditControlRS29,
+  dxRichEditControlCoreRS29,
+  dxRichEditDocumentModelRS29,
+  dxRichEditCoreRS29,
+  acSqlTextEditorD29,
+  dxPScxPCProdRS29,
+  dxPScxCommonRS29,
+  dxPScxExtCommonRS29,
+  dxPSdxPDFViewerLnkRS29,
+  dxPsPrVwAdvRS29,
+  dxPSPrVwRibbonRS29,
+  dxSpreadSheetCoreConditionalFormattingDialogsRS29,
+  dcldxOrgChartAdvancedCustomizeFormRS29,
+  dxPSdxSpreadSheetLnkRS29,
+  dxPScxGridLnkRS29,
+  dxPScxVGridLnkRS29,
+  dxCoreRS29,
+  cxLibraryRS29,
+  dxGDIPlusRS29,
+  cxVerticalGridRS29,
+  dxSpellCheckerRS29,
+  dxSkinsCoreRS29,
+  cxPivotGridRS29,
+  cxTreeListdxBarPopupMenuRS29,
+  cxSchedulerRS29,
+  dxNavBarRS29,
+  frxDB29,
+  dxWizardControlRS29,
+  dxDockingRS29,
+  dxBarDBNavRS29,
+  dxFlowChartRS29,
+  dxFlowChartLayoutsRS29,
+  dxMapControlRS29,
+  adortl,
+  QExport4RT,
+  dxPScxTLLnkRS29,
+  dxChartControlRS29,
+  dxPSdxChartControlLnkRS29,
+  dxPSRichEditControlLnkRS29,
+  VCLTMSFNCCorePkgDXE15,
+  SynEditDR,
+  AbbreviaD,
+  zBase_FIB_Delphi12_Athens,
+  RESTComponents,
+  dxRibbonCustomizationFormRS29,
+  dxSpreadSheetConditionalFormattingDialogsRS29,
+  dxPScxSchedulerLnkRS29,
+  VCLTMSFNCMapsPkgDXE15,
+  dclcxLibraryRS29;
+
+contains
+  zBaseRegister in 'zBaseRegister.pas';
+
+end.
+

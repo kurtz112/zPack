@@ -1,0 +1,72 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{884458F9-CB2E-4FCF-8346-6AC93E3CFBA4}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="zCommon\zBase_Common_Delphi13_Florence.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="zFIB\zBase_FIB_Delphi13_Florence.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="zBase\zBase_Delphi13_Florence.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="_UnitTest\_src\zPackTests.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="zBase_Common_Delphi13_Florence">
+        <MSBuild Projects="zCommon\zBase_Common_Delphi13_Florence.dproj"/>
+    </Target>
+    <Target Name="zBase_Common_Delphi13_Florence:Clean">
+        <MSBuild Projects="zCommon\zBase_Common_Delphi13_Florence.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="zBase_Common_Delphi13_Florence:Make">
+        <MSBuild Projects="zCommon\zBase_Common_Delphi13_Florence.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="zBase_FIB_Delphi13_Florence">
+        <MSBuild Projects="zFIB\zBase_FIB_Delphi13_Florence.dproj"/>
+    </Target>
+    <Target Name="zBase_FIB_Delphi13_Florence:Clean">
+        <MSBuild Projects="zFIB\zBase_FIB_Delphi13_Florence.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="zBase_FIB_Delphi13_Florence:Make">
+        <MSBuild Projects="zFIB\zBase_FIB_Delphi13_Florence.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="zBase_Delphi13_Florence">
+        <MSBuild Projects="zBase\zBase_Delphi13_Florence.dproj"/>
+    </Target>
+    <Target Name="zBase_Delphi13_Florence:Clean">
+        <MSBuild Projects="zBase\zBase_Delphi13_Florence.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="zBase_Delphi13_Florence:Make">
+        <MSBuild Projects="zBase\zBase_Delphi13_Florence.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="zPackTests">
+        <MSBuild Projects="_UnitTest\_src\zPackTests.dproj"/>
+    </Target>
+    <Target Name="zPackTests:Clean">
+        <MSBuild Projects="_UnitTest\_src\zPackTests.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="zPackTests:Make">
+        <MSBuild Projects="_UnitTest\_src\zPackTests.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="zBase_Common_Delphi13_Florence;zBase_FIB_Delphi13_Florence;zBase_Delphi13_Florence;zPackTests"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="zBase_Common_Delphi13_Florence:Clean;zBase_FIB_Delphi13_Florence:Clean;zBase_Delphi13_Florence:Clean;zPackTests:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="zBase_Common_Delphi13_Florence:Make;zBase_FIB_Delphi13_Florence:Make;zBase_Delphi13_Florence:Make;zPackTests:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

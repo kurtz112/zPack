@@ -1,0 +1,126 @@
+// JCL_DEBUG_EXPERT_INSERTJDBG OFF
+// JCL_DEBUG_EXPERT_GENERATEJDBG OFF
+// JCL_DEBUG_EXPERT_DELETEMAPFILE OFF
+package zBase_Delphi11_Alexandria;
+{$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION OFF}
+{$OVERFLOWCHECKS ON}
+{$RANGECHECKS ON}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES ON}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE DEBUG}
+{$ENDIF IMPLICITBUILDING}
+{$DESCRIPTION 'zBase 1'}
+{$IMPLICITBUILD ON}
+
+requires
+  rtl,
+  vcl,
+  designide,
+  xmlrtl,
+  vclactnband,
+  vclx,
+  dbrtl,
+  soaprtl,
+  dbexpress,
+  DbxCommonDriver,
+  DataSnapProviderClient,
+  TeeUI,
+  Tee,
+  DataSnapCommon,
+  vcldb,
+  vcldsnap,
+  SynEditDR,
+  DataSnapClient,
+  IndyIPClient,
+  IndyIPCommon,
+  IndySystem,
+  IndyProtocols,
+  IndyCore,
+  AbbreviaD,
+  vclie,
+  TeeDB,
+  acQueryBuilderD28,
+  dxPDFViewerRS28,
+  vclFireDAC,
+  FireDAC,
+  FireDACCommonDriver,
+  FireDACCommon,
+  FireDACIBDriver,
+  fs28,
+  frx28,
+  dxRichEditControlRS28,
+  dxRichEditControlCoreRS28,
+  dxRichEditDocumentModelRS28,
+  dxRichEditCoreRS28,
+  acSqlTextEditorD28,
+  dxPScxPCProdRS28,
+  dxPScxCommonRS28,
+  dxPScxExtCommonRS28,
+  dxPSdxPDFViewerLnkRS28,
+  dxPsPrVwAdvRS28,
+  dxPSPrVwRibbonRS28,
+  dxSpreadSheetCoreConditionalFormattingDialogsRS28,
+  dcldxOrgChartAdvancedCustomizeFormRS28,
+  dxPSdxSpreadSheetLnkRS28,
+  dxPScxGridLnkRS28,
+  dxPScxVGridLnkRS28,
+  dxCoreRS28,
+  cxLibraryRS28,
+  dxGDIPlusRS28,
+  cxVerticalGridRS28,
+  dxSpellCheckerRS28,
+  dxSkinsCoreRS28,
+  cxPivotGridRS28,
+  cxTreeListdxBarPopupMenuRS28,
+  cxSchedulerRS28,
+  dxNavBarRS28,
+  frxDB28,
+  dxWizardControlRS28,
+  dxDockingRS28,
+  dxBarDBNavRS28,
+  dxFlowChartRS28,
+  dxFlowChartLayoutsRS28,
+  dxMapControlRS28,
+  adortl,
+  QExport4RT,
+  TMSWebGMapsPkgDXE15,
+//  TatukGIS_DK9_DXED11_Alexandria_WIN32,
+  zBase_Common_Delphi11_Alexandria,
+  VCLTMSFNCCorePkgDXE14,
+  VCLTMSFNCMapsPkgDXE14,
+  TMSWEBCorePkgLibDXE14,
+  zBase_FIB_Delphi11_Alexandria,
+  dxPScxTLLnkRS28,
+  dxPScxSchedulerLnkRS28,
+  dxPSRichEditControlLnkRS28;
+
+contains
+  zBaseRegister in 'zBaseRegister.pas';
+
+end.
+
+  Winapi; System.Win; Data.Win; Datasnap.Win; Web.Win; Soap.Win; Xml.Win; Bde; vcl; vcl.Imaging; vcl.Touch; vcl.Samples; vcl.Shell; System; Xml; Data; Datasnap; Web; Soap; DUnitX.Loggers.GUI;
+dxEMF.DataProvider Winapi; System.Win; Data.Win; Datasnap.Win; Web.Win; Soap.Win; Xml.Win; Bde; vcl; vcl.Imaging; vcl.Touch; vcl.Samples; vcl.Shell; System; Xml; Data; Datasnap; Web; Soap;
+dxEMF.DataProvider
+
+
+cxfilter        zdbview.filter
+

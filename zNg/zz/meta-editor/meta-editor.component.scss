@@ -1,0 +1,182 @@
+// Stili dell'editor dei metadati. Il componente usa ViewEncapsulation.None
+// perche' le classi valgono anche nei componenti figli (dataset, lookup,
+// picklist, trasporto): tutto sta sotto .zz-meta-editor per non uscire.
+.zz-meta-editor {
+  padding: 16px;
+
+  // i titoli globali del tema sono pensati per le pagine, qui sono troppo grandi
+  h3 {
+    margin: 0 0 8px;
+    font-size: 20px;
+    line-height: 1.3;
+  }
+
+  h4 {
+    margin: 16px 0 8px;
+    font-size: 16px;
+    line-height: 1.3;
+
+    small {
+      font-weight: normal;
+      opacity: 0.7;
+      margin-left: 8px;
+    }
+  }
+
+  .zz-meta-scheda {
+    padding: 12px 4px;
+  }
+
+  .zz-meta-divisa {
+    display: grid;
+    grid-template-columns: minmax(260px, 340px) 1fr;
+    gap: 16px;
+    align-items: start;
+
+    @media (max-width: 900px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .zz-meta-divisa__dettaglio {
+    min-width: 0;
+
+    > dx-text-box,
+    > dx-check-box,
+    > dx-text-area {
+      display: block;
+      margin-bottom: 12px;
+    }
+  }
+
+  .zz-meta-barra {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .zz-meta-barra__titolo {
+    margin: 0;
+    font-size: 20px;
+
+    small {
+      font-weight: normal;
+      opacity: 0.7;
+      margin-left: 8px;
+    }
+  }
+
+  .zz-meta-azioni {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .zz-meta-azioni--fondo {
+    margin: 12px 0 0;
+    justify-content: flex-end;
+  }
+
+  .zz-meta-azioni__spazio {
+    flex: 1;
+  }
+
+  .zz-meta-affiancati {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .zz-meta-affiancati--due {
+    grid-template-columns: 1fr 1fr;
+
+    @media (max-width: 1200px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .zz-meta-sql textarea {
+    font-family: Consolas, 'Courier New', monospace;
+    font-size: 12px;
+  }
+
+  .zz-meta-ereditato {
+    font-style: italic;
+    opacity: 0.55;
+  }
+
+  .zz-meta-nota {
+    opacity: 0.75;
+    margin: 0 0 12px;
+  }
+
+  .zz-meta-avviso {
+    color: var(--dx-color-danger, #d9534f);
+  }
+
+  .zz-meta-riquadro {
+    padding: 16px;
+    margin-bottom: 16px;
+
+    dx-tag-box,
+    dx-radio-group {
+      display: block;
+      margin-bottom: 12px;
+    }
+  }
+
+  .zz-meta-trasporto {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+
+    @media (max-width: 1000px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .zz-meta-file {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 12px;
+  }
+
+  .zz-meta-esito {
+    border-collapse: collapse;
+
+    th,
+    td {
+      padding: 4px 12px;
+      text-align: left;
+      border-bottom: 1px solid rgba(128, 128, 128, 0.3);
+    }
+  }
+
+  .zz-meta-anteprima-form {
+    padding: 16px;
+  }
+}
+
+// Le finestre (dx-popup) vengono spostate da DevExtreme fuori da .zz-meta-editor
+.zz-meta-finestra {
+  .dx-popup-content {
+    padding: 12px 16px;
+  }
+
+  .zz-meta-avviso {
+    color: var(--dx-color-danger, #d9534f);
+  }
+
+  .zz-meta-azioni {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    margin-top: 12px;
+  }
+}

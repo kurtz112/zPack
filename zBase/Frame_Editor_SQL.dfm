@@ -1,0 +1,1398 @@
+object FrameEditor_Sql: TFrameEditor_Sql
+  Left = 0
+  Top = 0
+  Width = 663
+  Height = 559
+  TabOrder = 0
+  object Splitter: TcxSplitter
+    Left = 0
+    Top = 482
+    Width = 663
+    Height = 8
+    HotZoneClassName = 'TcxMediaPlayer8Style'
+    AlignSplitter = salBottom
+  end
+  object Log: TcxMemo
+    Left = 0
+    Top = 490
+    TabStop = False
+    Align = alBottom
+    ParentFont = False
+    Properties.ReadOnly = True
+    Style.Font.Charset = DEFAULT_CHARSET
+    Style.Font.Color = clWindowText
+    Style.Font.Height = -13
+    Style.Font.Name = 'Courier New'
+    Style.Font.Style = []
+    Style.IsFontAssigned = True
+    TabOrder = 0
+    Height = 69
+    Width = 663
+  end
+  object PanelEditor: TPanel
+    Left = 0
+    Top = 22
+    Width = 663
+    Height = 460
+    Align = alClient
+    BevelOuter = bvNone
+    TabOrder = 1
+    object StatusBar: TdxStatusBar
+      Left = 0
+      Top = 440
+      Width = 663
+      Height = 20
+      Panels = <
+        item
+          PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
+          Width = 66
+        end
+        item
+          PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
+          Width = 75
+        end
+        item
+          PanelStyleClassName = 'TdxStatusBarTextPanelStyle'
+          Width = 90
+        end
+        item
+          PanelStyleClassName = 'TdxStatusBarKeyboardStatePanelStyle'
+          PanelStyle.CapsLockKeyAppearance.ActiveCaption = 'CAPS'
+          PanelStyle.CapsLockKeyAppearance.InactiveCaption = 'CAPS'
+          PanelStyle.NumLockKeyAppearance.ActiveCaption = 'NUM'
+          PanelStyle.NumLockKeyAppearance.InactiveCaption = 'NUM'
+          PanelStyle.ScrollLockKeyAppearance.ActiveCaption = 'SCRL'
+          PanelStyle.ScrollLockKeyAppearance.InactiveCaption = 'SCRL'
+          PanelStyle.InsertKeyAppearance.ActiveCaption = 'OVR'
+          PanelStyle.InsertKeyAppearance.InactiveCaption = 'INS'
+          Width = 130
+        end
+        item
+          PanelStyleClassName = 'TdxStatusBarStateIndicatorPanelStyle'
+          PanelStyle.Indicators = <>
+        end>
+      SizeGrip = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Editor: TSynEdit
+      Left = 0
+      Top = 0
+      Width = 646
+      Height = 423
+      Align = alClient
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = -13
+      Font.Name = 'Courier New'
+      Font.Pitch = fpFixed
+      Font.Style = []
+      Font.Quality = fqClearTypeNatural
+      TabOrder = 0
+      CodeFolding.ShowCollapsedLine = True
+      UseCodeFolding = False
+      Gutter.Font.Charset = DEFAULT_CHARSET
+      Gutter.Font.Color = clWindowText
+      Gutter.Font.Height = -11
+      Gutter.Font.Name = 'Courier New'
+      Gutter.Font.Style = []
+      Gutter.Font.Quality = fqClearTypeNatural
+      Gutter.ShowLineNumbers = True
+      Gutter.Bands = <
+        item
+          Kind = gbkMarks
+          Width = 13
+        end
+        item
+          Kind = gbkLineNumbers
+        end
+        item
+          Kind = gbkFold
+        end
+        item
+          Kind = gbkTrackChanges
+        end
+        item
+          Kind = gbkMargin
+          Width = 3
+        end>
+      Highlighter = SynSQLSyn
+      ScrollBars = ssNone
+      ScrollbarAnnotations = <>
+      SearchEngine = SynEditRegexSearch
+      OnChange = EditorChange
+      OnSpecialLineColors = EditorSpecialLineColors
+      OnStatusChange = EditorStatusChange
+      RemovedKeystrokes = <
+        item
+          Command = ecContextHelp
+          ShortCut = 112
+        end>
+      AddedKeystrokes = <
+        item
+          Command = ecContextHelp
+          ShortCut = 16496
+        end>
+    end
+    object VScrollBar: TcxScrollBar
+      Left = 646
+      Top = 0
+      Width = 17
+      Height = 423
+      Align = alRight
+      Ctl3D = True
+      Kind = sbVertical
+      LargeChange = 3
+      PageSize = 0
+      ParentCtl3D = False
+      OnScroll = VScrollBarScroll
+    end
+    object HScrollBar: TcxScrollBar
+      AlignWithMargins = True
+      Left = 0
+      Top = 423
+      Width = 646
+      Height = 17
+      Margins.Left = 0
+      Margins.Top = 0
+      Margins.Right = 17
+      Margins.Bottom = 0
+      Align = alBottom
+      Ctl3D = True
+      PageSize = 0
+      ParentCtl3D = False
+      OnScroll = HScrollBarScroll
+    end
+  end
+  object CompletionProposal: TSynCompletionProposal
+    Options = [scoLimitToMatchedText, scoUseInsertList, scoUsePrettyText, scoUseBuiltInTimer, scoEndCharCompletion, scoCompleteWithTab, scoCompleteWithEnter]
+    NbLinesInWindow = 12
+    Width = 300
+    EndOfTokenChr = '()[]., '
+    TriggerChars = '.'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clBtnText
+    TitleFont.Height = -11
+    TitleFont.Name = 'MS Sans Serif'
+    TitleFont.Style = [fsBold]
+    GripperFont.Charset = DEFAULT_CHARSET
+    GripperFont.Color = clBtnText
+    GripperFont.Height = -12
+    GripperFont.Name = 'Segoe UI'
+    GripperFont.Style = []
+    Columns = <>
+    ItemHeight = 16
+    Images = CompletionImageList
+    OnExecute = CompletionProposalExecute
+    ShortCut = 16416
+    Editor = Editor
+    TimerInterval = 800
+    Left = 336
+    Top = 236
+  end
+  object ParamProposal: TSynCompletionProposal
+    DefaultType = ctParams
+    Options = [scoLimitToMatchedText, scoUsePrettyText, scoUseBuiltInTimer]
+    ClBackground = clInfoBk
+    Width = 500
+    EndOfTokenChr = '()[]. '
+    TriggerChars = '('
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clBtnText
+    TitleFont.Height = -11
+    TitleFont.Name = 'MS Sans Serif'
+    TitleFont.Style = [fsBold]
+    GripperFont.Charset = DEFAULT_CHARSET
+    GripperFont.Color = clBtnText
+    GripperFont.Height = -12
+    GripperFont.Name = 'Segoe UI'
+    GripperFont.Style = []
+    Columns = <>
+    OnExecute = ParamProposalExecute
+    ShortCut = 24608
+    Editor = Editor
+    TimerInterval = 800
+    Left = 336
+    Top = 170
+  end
+  object SynEditOptionsDialog: TSynEditOptionsDialog
+    UseExtendedStrings = False
+    Left = 336
+    Top = 40
+  end
+  object ActionList: TActionList
+    Images = dx.Immagini
+    Left = 72
+    Top = 43
+    object Prepara: TAction
+      Caption = 'Prepara'
+      ImageIndex = 435
+      ShortCut = 16504
+      OnExecute = PreparaExecute
+      OnUpdate = PreparaUpdate
+    end
+    object Esegui: TAction
+      Caption = 'Esegui'
+      ImageIndex = 165
+      ShortCut = 120
+      OnExecute = EseguiExecute
+      OnUpdate = EseguiUpdate
+    end
+    object CaricaDalFile: TdxFileOpen
+      Caption = 'Carica da File'
+      Dialog.DefaultExt = '*.sql'
+      Dialog.Filter = 'SQL|*.sql|Tutti|*.*'
+      Hint = 'Carica da File'
+      ImageIndex = 33
+      ShortCut = 16460
+      BeforeExecute = CaricaDalFileBeforeExecute
+      OnAccept = CaricaDalFileAccept
+    end
+    object SalvaSuFile: TdxFileSaveAs
+      Caption = 'Salva su File'
+      Dialog.DefaultExt = '*.SQL'
+      Dialog.Filter = 'SQL|*.sql|Tutti|*.*'
+      Hint = 'Salva su File'
+      ImageIndex = 92
+      ShortCut = 16467
+      BeforeExecute = SalvaSuFileBeforeExecute
+      OnAccept = SalvaSuFileAccept
+    end
+    object actTaglia: TEditCut
+      Caption = 'Taglia'
+      Hint = 'taglia'
+      ImageIndex = 65
+      ShortCut = 16472
+    end
+    object actCopia: TEditCopy
+      Caption = 'Copia'
+      Hint = 'copia'
+      ImageIndex = 64
+      ShortCut = 16451
+    end
+    object actIncolla: TEditPaste
+      Caption = 'Incolla'
+      Hint = 'incolla'
+      ImageIndex = 85
+      ShortCut = 16470
+    end
+    object actElimina: TEditDelete
+      Caption = 'Elimina'
+      Hint = 'elimina'
+      ImageIndex = 66
+    end
+    object actSelezionaTutto: TEditSelectAll
+      Caption = 'Seleziona Tutto'
+      Hint = 'seleziona tutto'
+      ImageIndex = 354
+      ShortCut = 16449
+    end
+    object actAnnulla: TEditUndo
+      Caption = 'Annulla'
+      Hint = 'annulla'
+      ImageIndex = 54
+      ShortCut = 16474
+    end
+    object actRipristina: TAction
+      Caption = 'Ripristina'
+      Hint = 'ripristina'
+      ImageIndex = 172
+      OnExecute = actRipristinaExecute
+      OnUpdate = actRipristinaUpdate
+    end
+    object actTrova: TAction
+      Caption = 'Trova...'
+      Hint = 'trova'
+      ImageIndex = 189
+      ShortCut = 16454
+      OnExecute = actTrovaExecute
+    end
+    object actSostituisci: TAction
+      Caption = 'Sostituisci'
+      Hint = 'sostituisci'
+      ImageIndex = 192
+      ShortCut = 16466
+      OnExecute = actSostituisciExecute
+    end
+    object actOpzioniEditor: TAction
+      Caption = 'Opzioni Editor'
+      Hint = 'Opzioni Editor'
+      ImageIndex = 83
+      OnExecute = actOpzioniEditorExecute
+    end
+    object DuplicaLinea: TAction
+      Caption = 'Duplica Linea'
+      ImageIndex = 64
+      ShortCut = 24644
+      OnExecute = DuplicaLineaExecute
+    end
+    object Maiuscolo: TAction
+      Caption = 'Maiuscolo'
+      ImageIndex = 352
+      ShortCut = 32806
+      OnExecute = MaiuscoloExecute
+    end
+    object Minuscolo: TAction
+      Caption = 'Minuscolo'
+      ImageIndex = 353
+      ShortCut = 32808
+      OnExecute = MinuscoloExecute
+    end
+    object FormatSQL: TAction
+      Caption = 'Format SQL'
+      ImageIndex = 337
+      ShortCut = 16452
+      OnExecute = FormatSQLExecute
+      OnUpdate = FormatSQLUpdate
+    end
+  end
+  object FindDialog: TFindDialog
+    OnFind = DoFindText
+    Left = 200
+    Top = 170
+  end
+  object ReplaceDialog: TReplaceDialog
+    OnFind = DoFindText
+    OnReplace = DoReplaceText
+    Left = 200
+    Top = 236
+  end
+  object SynEditRegexSearch: TSynEditRegexSearch
+    Left = 336
+    Top = 105
+  end
+  object SynSQLSyn: TSynSQLSyn
+    Left = 336
+    Top = 294
+  end
+  object dxBarManager: TdxBarManager
+    AutoAlignBars = True
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    CanCustomize = False
+    Categories.Strings = (
+      'Predefinito'
+      'PopupMenu')
+    Categories.ItemsVisibles = (
+      2
+      2)
+    Categories.Visibles = (
+      True
+      True)
+    ImageOptions.Images = dx.Immagini
+    NotDocking = [dsNone, dsLeft, dsTop, dsRight, dsBottom]
+    PopupMenuLinks = <
+      item
+        Control = Editor
+        PopupMenu = dxBarPopupMenu
+      end>
+    UseSystemFont = True
+    Left = 200
+    Top = 40
+    PixelsPerInch = 96
+    DockControlHeights = (
+      0
+      0
+      22
+      0)
+    object dxBarManagerBar1: TdxBar
+      AllowClose = False
+      AllowCustomizing = False
+      AllowQuickCustomizing = False
+      AllowReset = False
+      BorderStyle = bbsNone
+      Caption = 'Costume1'
+      CaptionButtons = <>
+      DockedDockingStyle = dsTop
+      DockedLeft = 0
+      DockedTop = 0
+      DockingStyle = dsTop
+      FloatLeft = 673
+      FloatTop = 0
+      FloatClientWidth = 0
+      FloatClientHeight = 0
+      ItemLinks = <
+        item
+          UserDefine = [udPaintStyle]
+          UserPaintStyle = psCaptionGlyph
+          Visible = True
+          ItemName = 'dxBarButton2'
+        end
+        item
+          UserDefine = [udPaintStyle]
+          UserPaintStyle = psCaptionGlyph
+          Visible = True
+          ItemName = 'dxBarButton3'
+        end
+        item
+          BeginGroup = True
+          Visible = True
+          ItemName = 'dxBarButton4'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarButton5'
+        end
+        item
+          BeginGroup = True
+          Visible = True
+          ItemName = 'dxBarButton6'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarButton7'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarButton8'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarButton9'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarButton10'
+        end
+        item
+          Visible = True
+          ItemName = 'dxBarButton11'
+        end
+        item
+          BeginGroup = True
+          Visible = True
+          ItemName = 'dxBarButton16'
+        end
+        item
+          BeginGroup = True
+          Visible = True
+          ItemName = 'dxBarButton15'
+        end>
+      NotDocking = [dsLeft, dsTop, dsRight, dsBottom]
+      OneOnRow = True
+      Row = 0
+      SizeGrip = False
+      UseOwnFont = False
+      Visible = True
+      WholeRow = True
+    end
+    object dxBarButton1: TdxBarButton
+      Action = Esegui
+      Category = 0
+    end
+    object dxBarButton2: TdxBarButton
+      Action = Prepara
+      Category = 0
+    end
+    object dxBarButton3: TdxBarButton
+      Action = Esegui
+      Category = 0
+    end
+    object dxBarButton4: TdxBarButton
+      Action = CaricaDalFile
+      Category = 0
+    end
+    object dxBarButton5: TdxBarButton
+      Action = SalvaSuFile
+      Category = 0
+    end
+    object dxBarButton6: TdxBarButton
+      Action = actTaglia
+      Category = 0
+    end
+    object dxBarButton7: TdxBarButton
+      Action = actCopia
+      Category = 0
+    end
+    object dxBarButton8: TdxBarButton
+      Action = actIncolla
+      Category = 0
+    end
+    object dxBarButton9: TdxBarButton
+      Action = actElimina
+      Category = 0
+    end
+    object dxBarButton10: TdxBarButton
+      Action = actAnnulla
+      Category = 0
+    end
+    object dxBarButton11: TdxBarButton
+      Action = actRipristina
+      Category = 0
+    end
+    object dxBarButton12: TdxBarButton
+      Action = FormatSQL
+      Category = 0
+    end
+    object dxBarButton13: TdxBarButton
+      Caption = 'New Button'
+      Category = 0
+      Hint = 'New Button'
+      Visible = ivAlways
+    end
+    object dxBarButton14: TdxBarButton
+      Caption = 'New Button'
+      Category = 0
+      Hint = 'New Button'
+      Visible = ivAlways
+    end
+    object dxBarButton15: TdxBarButton
+      Action = FormatSQL
+      Category = 0
+    end
+    object dxBarButton16: TdxBarButton
+      Action = actSelezionaTutto
+      Category = 0
+    end
+    object Prepara1: TdxBarButton
+      Action = Prepara
+      Category = 1
+    end
+    object Annulla1: TdxBarButton
+      Action = actAnnulla
+      Category = 1
+    end
+    object Ripristina1: TdxBarButton
+      Action = actRipristina
+      Category = 1
+    end
+    object Cut1: TdxBarButton
+      Action = actTaglia
+      Category = 1
+    end
+    object Copy1: TdxBarButton
+      Action = actCopia
+      Category = 1
+    end
+    object Paste1: TdxBarButton
+      Action = actIncolla
+      Category = 1
+    end
+    object Elimina1: TdxBarButton
+      Action = actElimina
+      Category = 1
+    end
+    object SelectAll1: TdxBarButton
+      Action = actSelezionaTutto
+      Category = 1
+    end
+    object FormatSQL1: TdxBarButton
+      Action = FormatSQL
+      Category = 1
+    end
+    object DuplicaLinea1: TdxBarButton
+      Action = DuplicaLinea
+      Category = 1
+    end
+    object Maiuscolo1: TdxBarButton
+      Action = Maiuscolo
+      Category = 1
+    end
+    object Minuscolo1: TdxBarButton
+      Action = Minuscolo
+      Category = 1
+    end
+    object Find1: TdxBarButton
+      Action = actTrova
+      Category = 1
+    end
+    object Searchagain1: TdxBarButton
+      Action = actSostituisci
+      Category = 1
+    end
+    object CaricadaFile1: TdxBarButton
+      Action = CaricaDalFile
+      Category = 1
+    end
+    object SalvasuFile1: TdxBarButton
+      Action = SalvaSuFile
+      Category = 1
+    end
+    object EditorOptions1: TdxBarButton
+      Action = actOpzioniEditor
+      Category = 1
+    end
+  end
+  object dxBarPopupMenu: TdxBarPopupMenu
+    BarManager = dxBarManager
+    ItemLinks = <
+      item
+        Visible = True
+        ItemName = 'Prepara1'
+      end
+      item
+        Visible = True
+        ItemName = 'dxBarButton1'
+      end
+      item
+        BeginGroup = True
+        Visible = True
+        ItemName = 'Annulla1'
+      end
+      item
+        Visible = True
+        ItemName = 'Ripristina1'
+      end
+      item
+        BeginGroup = True
+        Visible = True
+        ItemName = 'Cut1'
+      end
+      item
+        Visible = True
+        ItemName = 'Copy1'
+      end
+      item
+        Visible = True
+        ItemName = 'Paste1'
+      end
+      item
+        Visible = True
+        ItemName = 'Elimina1'
+      end
+      item
+        Visible = True
+        ItemName = 'SelectAll1'
+      end
+      item
+        BeginGroup = True
+        Visible = True
+        ItemName = 'FormatSQL1'
+      end
+      item
+        BeginGroup = True
+        Visible = True
+        ItemName = 'DuplicaLinea1'
+      end
+      item
+        Visible = True
+        ItemName = 'Maiuscolo1'
+      end
+      item
+        Visible = True
+        ItemName = 'Minuscolo1'
+      end
+      item
+        BeginGroup = True
+        Visible = True
+        ItemName = 'Find1'
+      end
+      item
+        Visible = True
+        ItemName = 'Searchagain1'
+      end
+      item
+        BeginGroup = True
+        Visible = True
+        ItemName = 'CaricadaFile1'
+      end
+      item
+        Visible = True
+        ItemName = 'SalvasuFile1'
+      end
+      item
+        BeginGroup = True
+        Visible = True
+        ItemName = 'EditorOptions1'
+      end>
+    UseOwnFont = False
+    Left = 200
+    Top = 105
+    PixelsPerInch = 96
+  end
+  object CompletionImageList: TcxImageList
+    SourceDPI = 96
+    FormatVersion = 1
+    DesignInfo = 11010120
+    ImageInfo = <
+      item
+        ImageClass = 'TdxSmartImage'
+        Image.Data = {
+          3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D227574
+          662D38223F3E0A3C212D2D2047656E657261746F723A2041646F626520496C6C
+          7573747261746F722032312E312E302C20535647204578706F727420506C7567
+          2D496E202E205356472056657273696F6E3A20362E3030204275696C64203029
+          20202D2D3E0A3C7376672076657273696F6E3D22312E31222069643D224C6179
+          65725F312220786D6C6E733D22687474703A2F2F7777772E77332E6F72672F32
+          3030302F7376672220786D6C6E733A786C696E6B3D22687474703A2F2F777777
+          2E77332E6F72672F313939392F786C696E6B2220783D223070782220793D2230
+          7078220A092076696577426F783D2230203020333220333222207374796C653D
+          22656E61626C652D6261636B67726F756E643A6E657720302030203332203332
+          3B2220786D6C3A73706163653D227072657365727665223E0A3C7374796C6520
+          747970653D22746578742F637373223E0A092E426C75657B66696C6C3A233131
+          373744373B7D0A092E59656C6C6F777B66696C6C3A234646423131353B7D0A09
+          2E426C61636B7B66696C6C3A233732373237323B7D0A092E477265656E7B6669
+          6C6C3A233033394332333B7D0A092E5265647B66696C6C3A234431314331433B
+          7D0A092E7374307B6F7061636974793A302E37353B7D0A092E7374317B6F7061
+          636974793A302E353B7D0A3C2F7374796C653E0A3C672069643D225365747469
+          6E6773223E0A093C7061746820636C6173733D22426C75652220643D224D3330
+          2C3138762D346C2D342E342D302E37632D302E322D302E382D302E352D312E35
+          2D302E392D322E316C322E362D332E366C2D322E382D322E386C2D332E362C32
+          2E36632D302E372D302E342D312E342D302E372D322E312D302E394C31382C32
+          682D340A09096C2D302E372C342E34632D302E382C302E322D312E352C302E35
+          2D322E312C302E394C372E352C342E374C342E372C372E356C322E362C332E36
+          632D302E342C302E372D302E372C312E342D302E392C322E314C322C31347634
+          6C342E342C302E3763302E322C302E382C302E352C312E352C302E392C322E31
+          0A09096C2D322E362C332E366C322E382C322E386C332E362D322E3663302E37
+          2C302E342C312E342C302E372C322E312C302E394C31342C333068346C302E37
+          2D342E3463302E382D302E322C312E352D302E352C322E312D302E396C332E36
+          2C322E366C322E382D322E386C2D322E362D332E360A090963302E342D302E37
+          2C302E372D312E342C302E392D322E314C33302C31387A204D31362C3230632D
+          322E322C302D342D312E382D342D3463302D322E322C312E382D342C342D3473
+          342C312E382C342C344332302C31382E322C31382E322C32302C31362C32307A
+          222F3E0A3C2F673E0A3C2F7376673E0A}
+        FileName = 'actions_settings.svg'
+      end
+      item
+        ImageClass = 'TdxSmartImage'
+        Image.Data = {
+          3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D227574
+          662D38223F3E0A3C212D2D2047656E657261746F723A2041646F626520496C6C
+          7573747261746F722032312E312E302C20535647204578706F727420506C7567
+          2D496E202E205356472056657273696F6E3A20362E3030204275696C64203029
+          20202D2D3E0A3C7376672076657273696F6E3D22312E31222069643D224C6179
+          65725F312220786D6C6E733D22687474703A2F2F7777772E77332E6F72672F32
+          3030302F7376672220786D6C6E733A786C696E6B3D22687474703A2F2F777777
+          2E77332E6F72672F313939392F786C696E6B2220783D223070782220793D2230
+          7078220A092076696577426F783D2230203020333220333222207374796C653D
+          22656E61626C652D6261636B67726F756E643A6E657720302030203332203332
+          3B2220786D6C3A73706163653D227072657365727665223E0A3C7374796C6520
+          747970653D22746578742F637373223E0A092E426C75657B66696C6C3A233131
+          373744373B7D0A092E59656C6C6F777B66696C6C3A234646423131353B7D0A09
+          2E426C75657B66696C6C3A233131373744373B7D0A092E477265656E7B66696C
+          6C3A233033394332333B7D0A092E5265647B66696C6C3A234431314331433B7D
+          0A092E7374307B6F7061636974793A302E37353B7D0A092E7374317B6F706163
+          6974793A302E353B7D0A3C2F7374796C653E0A3C672069643D2246696E64223E
+          0A093C7061746820636C6173733D22426C75652220643D224D32392E352C3139
+          2E374C32392E352C31392E374C32392E352C31392E374332392E352C31392E37
+          2C32392E352C31392E372C32392E352C31392E374C32332E382C366C302C3063
+          2D302E342D312E322D312E352D322D322E382D320A0909632D312E372C302D33
+          2C312E332D332C337633682D34563763302D312E372D312E332D332D332D3343
+          392E372C342C382E362C342E392C382E322C366C302C304C322E352C31392E37
+          63302C302C302C302C302C306C302C30683043322E322C32302E342C322C3231
+          2E322C322C32320A090963302C332E332C322E372C362C362C3673362D322E37
+          2C362D36762D346834763463302C332E332C322E372C362C362C3673362D322E
+          372C362D364333302C32312E322C32392E382C32302E342C32392E352C31392E
+          377A204D382C3236632D322E322C302D342D312E382D342D3473312E382D342C
+          342D340A090973342C312E382C342C345331302E322C32362C382C32367A204D
+          32342C3236632D322E322C302D342D312E382D342D3473312E382D342C342D34
+          73342C312E382C342C345332362E322C32362C32342C32367A222F3E0A3C2F67
+          3E0A3C2F7376673E0A}
+        FileName = 'actions_find.svg'
+      end
+      item
+        ImageClass = 'TdxSmartImage'
+        Image.Data = {
+          3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D227574
+          662D38223F3E0A3C212D2D2047656E657261746F723A2041646F626520496C6C
+          7573747261746F722032312E312E302C20535647204578706F727420506C7567
+          2D496E202E205356472056657273696F6E3A20362E3030204275696C64203029
+          20202D2D3E0A3C7376672076657273696F6E3D22312E31222069643D224C6179
+          65725F312220786D6C6E733D22687474703A2F2F7777772E77332E6F72672F32
+          3030302F7376672220786D6C6E733A786C696E6B3D22687474703A2F2F777777
+          2E77332E6F72672F313939392F786C696E6B2220783D223070782220793D2230
+          7078220A092076696577426F783D2230203020333220333222207374796C653D
+          22656E61626C652D6261636B67726F756E643A6E657720302030203332203332
+          3B2220786D6C3A73706163653D227072657365727665223E0A3C7374796C6520
+          747970653D22746578742F637373223E0A092E426C75657B66696C6C3A233131
+          373744373B7D0A092E59656C6C6F777B66696C6C3A234646423131353B7D0A09
+          2E426C75657B66696C6C3A233131373744373B7D0A092E477265656E7B66696C
+          6C3A233033394332333B7D0A092E5265647B66696C6C3A234431314331433B7D
+          0A092E7374307B6F7061636974793A302E37353B7D0A092E7374317B6F706163
+          6974793A302E353B7D0A3C2F7374796C653E0A3C672069643D22446174616261
+          7365223E0A093C7061746820636C6173733D2259656C6C6F772220643D224D31
+          362C3234632D352E352C302D31302D312E382D31302D34763463302C322E322C
+          342E352C342C31302C347331302D312E382C31302D34762D344332362C32322E
+          322C32312E352C32342C31362C32347A222F3E0A093C7061746820636C617373
+          3D2259656C6C6F772220643D224D31362C3138632D352E352C302D31302D312E
+          382D31302D34763463302C322E322C342E352C342C31302C347331302D312E38
+          2C31302D34762D344332362C31362E322C32312E352C31382C31362C31387A22
+          2F3E0A093C7061746820636C6173733D2259656C6C6F772220643D224D31362C
+          344331302E352C342C362C352E382C362C38763463302C322E322C342E352C34
+          2C31302C347331302D312E382C31302D3456384332362C352E382C32312E352C
+          342C31362C347A222F3E0A3C2F673E0A3C2F7376673E0A}
+        FileName = 'actions_database.svg'
+      end
+      item
+        ImageClass = 'TdxSmartImage'
+        Image.Data = {
+          3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D227574
+          662D38223F3E0A3C7376672076657273696F6E3D22312E312220786D6C6E733D
+          22687474703A2F2F7777772E77332E6F72672F323030302F7376672220766965
+          77426F783D22302030203332203332223E0A3C7374796C6520747970653D2274
+          6578742F637373223E0A092E426C61636B7B66696C6C3A233732373237323B7D
+          0A092E426C75657B66696C6C3A233131373744373B7D0A092E477265656E7B66
+          696C6C3A233033394332333B7D0A092E5265647B66696C6C3A23443131433143
+          3B7D0A092E59656C6C6F777B66696C6C3A234646423131353B7D0A092E737431
+          7B6F7061636974793A302E353B7D0A3C2F7374796C653E0A3C7061746820636C
+          6173733D2259656C6C6F772220643D224D342C3130563663302D322E322C342E
+          352D342C31302D347331302C312E382C31302C34763463302C322E322D342E35
+          2C342D31302C3453342C31322E322C342C31307A204D342C3136762D3463302C
+          322E322C342E352C342C31302C347331302D312E382C31302D34763463302C32
+          2E322D342E352C342D31302C3453342C31382E322C342C31367A204D31362C32
+          312E394331352E342C32322C31342E372C32322C31342C3232632D352E352C30
+          2D31302D312E382D31302D34763463302C322E322C342E352C342C31302C3463
+          302E372C302C312E342C302C322D302E315632312E397A222F3E3C7265637420
+          636C6173733D22426C75652220783D2231382220793D22323022207769647468
+          3D22313222206865696768743D2232222F3E3C6720636C6173733D2273743122
+          3E3C7265637420636C6173733D22426C61636B2220783D2231382220793D2232
+          33222077696474683D223522206865696768743D2233222F3E3C726563742063
+          6C6173733D22426C61636B2220783D2232352220793D22323322207769647468
+          3D223522206865696768743D2233222F3E3C7265637420636C6173733D22426C
+          61636B2220783D2231382220793D223237222077696474683D22352220686569
+          6768743D2233222F3E3C7265637420636C6173733D22426C61636B2220783D22
+          32352220793D223237222077696474683D223522206865696768743D2233222F
+          3E3C2F673E0A3C2F7376673E0A}
+        FileName = 'database_tabella.svg'
+      end
+      item
+        ImageClass = 'TdxSmartImage'
+        Image.Data = {
+          3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D227574
+          662D38223F3E0A3C212D2D2047656E657261746F723A2041646F626520496C6C
+          7573747261746F722032312E312E302C20535647204578706F727420506C7567
+          2D496E202E205356472056657273696F6E3A20362E3030204275696C64203029
+          20202D2D3E0A3C7376672076657273696F6E3D22312E31222069643D224C6179
+          65725F312220786D6C6E733D22687474703A2F2F7777772E77332E6F72672F32
+          3030302F7376672220786D6C6E733A786C696E6B3D22687474703A2F2F777777
+          2E77332E6F72672F313939392F786C696E6B2220783D223070782220793D2230
+          7078220A092076696577426F783D2230203020333220333222207374796C653D
+          22656E61626C652D6261636B67726F756E643A6E657720302030203332203332
+          3B2220786D6C3A73706163653D227072657365727665223E0A3C7374796C6520
+          747970653D22746578742F637373223E0A092E426C75657B66696C6C3A233131
+          373744373B7D0A092E59656C6C6F777B66696C6C3A234646423131353B7D0A09
+          2E426C75657B66696C6C3A233131373744373B7D0A092E477265656E7B66696C
+          6C3A233033394332333B7D0A092E5265647B66696C6C3A234431314331433B7D
+          0A092E7374307B6F7061636974793A302E37353B7D0A092E7374317B6F706163
+          6974793A302E353B7D0A3C2F7374796C653E0A3C672069643D22446174616261
+          7365223E0A093C7061746820636C6173733D2259656C6C6F772220643D224D31
+          362C3234632D352E352C302D31302D312E382D31302D34763463302C322E322C
+          342E352C342C31302C347331302D312E382C31302D34762D344332362C32322E
+          322C32312E352C32342C31362C32347A222F3E0A093C7061746820636C617373
+          3D2259656C6C6F772220643D224D31362C3138632D352E352C302D31302D312E
+          382D31302D34763463302C322E322C342E352C342C31302C347331302D312E38
+          2C31302D34762D344332362C31362E322C32312E352C31382C31362C31387A22
+          2F3E0A093C7061746820636C6173733D2259656C6C6F772220643D224D31362C
+          344331302E352C342C362C352E382C362C38763463302C322E322C342E352C34
+          2C31302C347331302D312E382C31302D3456384332362C352E382C32312E352C
+          342C31362C347A222F3E0A3C2F673E0A3C2F7376673E0A}
+        FileName = 'actions_database.svg'
+      end
+      item
+        ImageClass = 'TdxSmartImage'
+        Image.Data = {
+          3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D227574
+          662D38223F3E0A3C212D2D2047656E657261746F723A2041646F626520496C6C
+          7573747261746F722032312E312E302C20535647204578706F727420506C7567
+          2D496E202E205356472056657273696F6E3A20362E3030204275696C64203029
+          20202D2D3E0A3C7376672076657273696F6E3D22312E31222069643D224C6179
+          65725F312220786D6C6E733D22687474703A2F2F7777772E77332E6F72672F32
+          3030302F7376672220786D6C6E733A786C696E6B3D22687474703A2F2F777777
+          2E77332E6F72672F313939392F786C696E6B2220783D223070782220793D2230
+          7078220A092076696577426F783D2230203020333220333222207374796C653D
+          22656E61626C652D6261636B67726F756E643A6E657720302030203332203332
+          3B2220786D6C3A73706163653D227072657365727665223E0A3C7374796C6520
+          747970653D22746578742F637373223E0A092E426C75657B66696C6C3A233131
+          373744373B7D0A092E59656C6C6F777B66696C6C3A234646423131353B7D0A09
+          2E426C75657B66696C6C3A233131373744373B7D0A092E477265656E7B66696C
+          6C3A233033394332333B7D0A092E5265647B66696C6C3A234431314331433B7D
+          0A092E7374307B6F7061636974793A302E37353B7D0A092E7374317B6F706163
+          6974793A302E353B7D0A3C2F7374796C653E0A3C672069643D22446174616261
+          7365223E0A093C7061746820636C6173733D2259656C6C6F772220643D224D31
+          362C3234632D352E352C302D31302D312E382D31302D34763463302C322E322C
+          342E352C342C31302C347331302D312E382C31302D34762D344332362C32322E
+          322C32312E352C32342C31362C32347A222F3E0A093C7061746820636C617373
+          3D2259656C6C6F772220643D224D31362C3138632D352E352C302D31302D312E
+          382D31302D34763463302C322E322C342E352C342C31302C347331302D312E38
+          2C31302D34762D344332362C31362E322C32312E352C31382C31362C31387A22
+          2F3E0A093C7061746820636C6173733D2259656C6C6F772220643D224D31362C
+          344331302E352C342C362C352E382C362C38763463302C322E322C342E352C34
+          2C31302C347331302D312E382C31302D3456384332362C352E382C32312E352C
+          342C31362C347A222F3E0A3C2F673E0A3C2F7376673E0A}
+        FileName = 'actions_database.svg'
+      end
+      item
+        ImageClass = 'TdxSmartImage'
+        Image.Data = {
+          3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D227574
+          662D38223F3E0A3C212D2D2047656E657261746F723A2041646F626520496C6C
+          7573747261746F722032312E302E322C20535647204578706F727420506C7567
+          2D496E202E205356472056657273696F6E3A20362E3030204275696C64203029
+          20202D2D3E0A3C7376672076657273696F6E3D22312E31222069643D224D616E
+          6167655F446174615F536F757263652220786D6C6E733D22687474703A2F2F77
+          77772E77332E6F72672F323030302F7376672220786D6C6E733A786C696E6B3D
+          22687474703A2F2F7777772E77332E6F72672F313939392F786C696E6B222078
+          3D22307078220A0920793D22307078222076696577426F783D22302030203332
+          20333222207374796C653D22656E61626C652D6261636B67726F756E643A6E65
+          77203020302033322033323B2220786D6C3A73706163653D2270726573657276
+          65223E0A3C7374796C6520747970653D22746578742F637373223E0A092E5965
+          6C6C6F777B66696C6C3A234646423131353B7D0A092E426C75657B66696C6C3A
+          233131373744373B7D0A3C2F7374796C653E0A3C7061746820636C6173733D22
+          59656C6C6F772220643D224D322C3130563663302D322E322C342E352D342C31
+          302D347331302C312E382C31302C34763463302C322E322D342E352C342D3130
+          2C3453322C31322E322C322C31307A204D31322C3230762D302E376C322E352D
+          302E344C31332C31362E386C312D302E390A094331332E332C31362C31322E37
+          2C31362C31322C3136632D352E352C302D31302D312E382D31302D3476344332
+          2C31382E322C362E352C32302C31322C32307A204D31342E352C32352E314C31
+          322C32342E37563232632D352E352C302D31302D312E382D31302D3476346330
+          2C322E322C342E352C342C31302C340A0963302E372C302C312E332C302C312E
+          392D302E314C31342E352C32352E317A222F3E0A3C7061746820636C6173733D
+          22426C75652220643D224D33302C3233762D326C2D322E322D302E34632D302E
+          322D302E362D302E342D312E332D302E372D312E386C312E332D312E386C2D31
+          2E342D312E346C2D312E382C312E33632D302E352D302E332D312E322D302E36
+          2D312E382D302E374C32332C3134682D320A096C2D302E342C322E32632D302E
+          362C302E322D312E332C302E342D312E382C302E376C2D312E382D312E336C2D
+          312E342C312E346C312E332C312E38632D302E332C302E352D302E362C312E32
+          2D302E372C312E384C31342C323176326C322E322C302E3463302E322C302E36
+          2C302E342C312E332C302E372C312E380A096C2D312E332C312E386C312E342C
+          312E346C312E382D312E3363302E352C302E332C312E322C302E362C312E382C
+          302E374C32312C333068326C302E342D322E3263302E362D302E322C312E332D
+          302E342C312E382D302E376C312E382C312E336C312E342D312E346C2D312E33
+          2D312E380A0963302E332D302E352C302E362D312E322C302E372D312E384C33
+          302C32337A204D32322C3234632D312E312C302D322D302E392D322D3273302E
+          392D322C322D3273322C302E392C322C325332332E312C32342C32322C32347A
+          222F3E0A3C2F7376673E0A}
+        FileName = 'managedatasource.svg'
+      end
+      item
+        ImageClass = 'TdxSmartImage'
+        Image.Data = {
+          3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D227574
+          662D38223F3E0A3C7376672076657273696F6E3D22312E31222069643D224C61
+          7965725F312220786D6C6E733D22687474703A2F2F7777772E77332E6F72672F
+          323030302F7376672220786D6C6E733A786C696E6B3D22687474703A2F2F7777
+          772E77332E6F72672F313939392F786C696E6B2220783D223070782220793D22
+          307078220A092076696577426F783D2230203020333220333222207374796C65
+          3D22656E61626C652D6261636B67726F756E643A6E6577203020302033322033
+          323B2220786D6C3A73706163653D227072657365727665223E0A3C7374796C65
+          20747970653D22746578742F637373223E0A092E426C75657B66696C6C3A2331
+          31373744373B7D0A3C2F7374796C653E0A3C672069643D226461746162617365
+          2D636F6722207472616E73666F726D3D227363616C6528312E33333333333329
+          223E0A093C7061746820643D224D342037433420342E373920372E3538203320
+          3132203353323020342E373920323020372031362E3432203131203132203131
+          203420392E3231203420374D31322E30382031384C313220313843372E353820
+          313820342031362E3231203420313456313743342031392E323120372E353820
+          32312031322032314331322E312032312031322E322032312031322E32392032
+          314331322E31312032302E33362031322031392E363920313220313943313220
+          31382E36362031322E30332031382E33332031322E30382031384D3230203132
+          2E30384332302031322E30352032302031322E30332032302031325639433230
+          2031312E32312031362E343220313320313220313353342031312E3231203420
+          3956313243342031342E323120372E35382031362031322031364331322E3233
+          2031362031322E34362031362031322E36392031364331332E38322031332E36
+          332031362E32322031322031392031324331392E33342031322031392E363720
+          31322E30332032302031322E30384D32332E382032302E344332332E39203230
+          2E342032332E392032302E352032332E382032302E364C32322E382032322E33
+          4332322E372032322E342032322E362032322E342032322E352032322E344C32
+          312E332032324332312032322E322032302E382032322E332032302E35203232
+          2E354C32302E332032332E384332302E332032332E392032302E322032342032
+          302E312032344831382E314331382032342031372E392032332E392031372E38
+          2032332E384C31372E362032322E354331372E332032322E342031372032322E
+          322031362E382032324C31352E362032322E354331352E352032322E35203135
+          2E342032322E352031352E332032322E344C31342E332032302E374331342E32
+          2032302E362031342E332032302E352031342E342032302E344C31352E352031
+          392E365631382E364C31342E342031372E384331342E332031372E372031342E
+          332031372E362031342E332031372E354C31352E332031352E384331352E3420
+          31352E372031352E352031352E372031352E362031352E374C31362E38203136
+          2E324331372E312031362031372E332031352E392031372E362031352E374C31
+          372E382031342E344331372E382031342E332031372E392031342E322031382E
+          312031342E324832302E314332302E322031342E322032302E332031342E3320
+          32302E332031342E344C32302E352031352E374332302E382031352E38203231
+          2E312031362032312E342031362E324C32322E362031352E374332322E372031
+          352E372032322E392031352E372032322E392031352E384C32332E392031372E
+          354332342031372E362032332E392031372E372032332E382031372E384C3232
+          2E372031382E365631392E364C32332E382032302E344D32302E352031394332
+          302E352031382E322031392E382031372E352031392031372E355331372E3520
+          31382E322031372E352031392031382E322032302E352031392032302E352032
+          302E352031392E382032302E352031395A2220636C6173733D22426C75652220
+          2F3E0A3C2F673E0A3C2F7376673E0A}
+        FileName = 'database-cog.svg'
+      end
+      item
+        ImageClass = 'TdxSmartImage'
+        Image.Data = {
+          3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D227574
+          662D38223F3E0A3C7376672076657273696F6E3D22312E31222069643D224C61
+          7965725F312220786D6C6E733D22687474703A2F2F7777772E77332E6F72672F
+          323030302F7376672220786D6C6E733A786C696E6B3D22687474703A2F2F7777
+          772E77332E6F72672F313939392F786C696E6B2220783D223070782220793D22
+          307078220A092076696577426F783D2230203020333220333222207374796C65
+          3D22656E61626C652D6261636B67726F756E643A6E6577203020302033322033
+          323B2220786D6C3A73706163653D227072657365727665223E0A3C7374796C65
+          20747970653D22746578742F637373223E0A092E426C75657B66696C6C3A2331
+          31373744373B7D0A3C2F7374796C653E0A3C672069643D226461746162617365
+          2D6172726F772D757022207472616E73666F726D3D227363616C6528312E3333
+          3333333329223E0A093C7061746820643D224D31392031334331362E38332031
+          332031342E39332031342E31362031332E38382031352E38394331332E323820
+          31352E39362031322E363520313620313220313643372E353820313620342031
+          342E32312034203132563943342031312E323120372E35382031332031322031
+          335332302031312E323120323020395631324332302031322E33362031392E39
+          2031322E37312031392E37322031332E30354331392E352031332031392E3234
+          2031332031392031334D31322031314331362E343220313120323020392E3231
+          20323020375331362E343220332031322033203420342E37392034203720372E
+          35382031312031322031314D31332E312031372E39364331322E373420313820
+          31322E333720313820313220313843372E353820313820342031362E32312034
+          20313456313743342031392E323120372E35382032312031322032314331322E
+          34362032312031322E392032312031332E33332032302E39344331332E313220
+          32302E33332031332031392E36382031332031394331332031382E3634203133
+          2E30342031382E332031332E312031372E39364D31392031354C313620313848
+          31385632324832305631384832324C31392031355A2220636C6173733D22426C
+          756522202F3E0A3C2F673E0A3C2F7376673E0A}
+        FileName = 'database-arrow-up.svg'
+      end
+      item
+        ImageClass = 'TdxSmartImage'
+        Image.Data = {
+          3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D227574
+          662D38223F3E0A3C212D2D2047656E657261746F723A2041646F626520496C6C
+          7573747261746F722032312E312E302C20535647204578706F727420506C7567
+          2D496E202E205356472056657273696F6E3A20362E3030204275696C64203029
+          20202D2D3E0A3C7376672076657273696F6E3D22312E31222069643D224C6179
+          65725F312220786D6C6E733D22687474703A2F2F7777772E77332E6F72672F32
+          3030302F7376672220786D6C6E733A786C696E6B3D22687474703A2F2F777777
+          2E77332E6F72672F313939392F786C696E6B2220783D223070782220793D2230
+          7078220A092076696577426F783D2230203020333220333222207374796C653D
+          22656E61626C652D6261636B67726F756E643A6E657720302030203332203332
+          3B2220786D6C3A73706163653D227072657365727665223E0A3C7374796C6520
+          747970653D22746578742F637373223E0A092E59656C6C6F777B66696C6C3A23
+          4646423131353B7D0A092E5265647B66696C6C3A234431314331433B7D0A092E
+          426C75657B66696C6C3A233131373744373B7D0A092E477265656E7B66696C6C
+          3A233033394332333B7D0A092E426C61636B7B66696C6C3A233732373237323B
+          7D0A092E57686974657B66696C6C3A234646464646463B7D0A092E7374307B6F
+          7061636974793A302E353B7D0A092E7374317B646973706C61793A6E6F6E653B
+          7D0A092E7374327B646973706C61793A696E6C696E653B66696C6C3A23303339
+          4332333B7D0A092E7374337B646973706C61793A696E6C696E653B66696C6C3A
+          234431314331433B7D0A092E7374347B646973706C61793A696E6C696E653B66
+          696C6C3A233732373237323B7D0A3C2F7374796C653E0A3C672069643D224375
+          73746F6D657273223E0A093C7061746820636C6173733D22477265656E222064
+          3D224D31302C392E39632D302E312C302E352C302E322C302E392C302E342C31
+          2E34732D302E312C312E372C302E392C312E3663302C302C302C302E312C302C
+          302E3263302E362C322E332C322C342E392C342E372C342E3973342E322D322E
+          362C342E372D342E390A090956313363312C302E312C302E362D312E312C302E
+          392D312E3663302E322D302E352C302E342D302E392C302E332D312E34632D30
+          2E312D302E342D302E342D302E342D302E352D302E334332332E322C342E382C
+          32302E332C352C32302E332C355332302C322C31342E382C320A09094331302C
+          322C392E342C362C31302E352C392E364331302E342C392E362C31302E312C39
+          2E372C31302C392E397A204D32302C3138632D302E382C312E352D322E312C34
+          2D342C34732D332E322D322E352D342D34632D322E332C332E352D382C312D38
+          2C382E35563330683234762D332E350A09094332382C31392E312C32322E332C
+          32312E342C32302C31387A222F3E0A3C2F673E0A3C2F7376673E0A}
+        FileName = 'customers.svg'
+      end
+      item
+        ImageClass = 'TdxSmartImage'
+        Image.Data = {
+          3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D227574
+          662D38223F3E0A3C212D2D2047656E657261746F723A2041646F626520496C6C
+          7573747261746F722032312E312E302C20535647204578706F727420506C7567
+          2D496E202E205356472056657273696F6E3A20362E3030204275696C64203029
+          20202D2D3E0A3C7376672076657273696F6E3D22312E31222069643D224C6179
+          65725F312220786D6C6E733D22687474703A2F2F7777772E77332E6F72672F32
+          3030302F7376672220786D6C6E733A786C696E6B3D22687474703A2F2F777777
+          2E77332E6F72672F313939392F786C696E6B2220783D223070782220793D2230
+          7078220A092076696577426F783D2230203020333220333222207374796C653D
+          22656E61626C652D6261636B67726F756E643A6E657720302030203332203332
+          3B2220786D6C3A73706163653D227072657365727665223E0A3C7374796C6520
+          747970653D22746578742F637373223E0A092E426C75657B66696C6C3A233131
+          373744373B7D0A092E59656C6C6F777B66696C6C3A234646423131353B7D0A09
+          2E426C75657B66696C6C3A233131373744373B7D0A092E477265656E7B66696C
+          6C3A233033394332333B7D0A092E5265647B66696C6C3A234431314331433B7D
+          0A092E7374307B6F7061636974793A302E37353B7D0A092E7374317B6F706163
+          6974793A302E353B7D0A3C2F7374796C653E0A3C672069643D22446174616261
+          7365223E0A093C7061746820636C6173733D2259656C6C6F772220643D224D31
+          362C3234632D352E352C302D31302D312E382D31302D34763463302C322E322C
+          342E352C342C31302C347331302D312E382C31302D34762D344332362C32322E
+          322C32312E352C32342C31362C32347A222F3E0A093C7061746820636C617373
+          3D2259656C6C6F772220643D224D31362C3138632D352E352C302D31302D312E
+          382D31302D34763463302C322E322C342E352C342C31302C347331302D312E38
+          2C31302D34762D344332362C31362E322C32312E352C31382C31362C31387A22
+          2F3E0A093C7061746820636C6173733D2259656C6C6F772220643D224D31362C
+          344331302E352C342C362C352E382C362C38763463302C322E322C342E352C34
+          2C31302C347331302D312E382C31302D3456384332362C352E382C32312E352C
+          342C31362C347A222F3E0A3C2F673E0A3C2F7376673E0A}
+        FileName = 'actions_database.svg'
+      end
+      item
+        ImageClass = 'TdxSmartImage'
+        Image.Data = {
+          3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D227574
+          662D38223F3E0A3C212D2D2047656E657261746F723A2041646F626520496C6C
+          7573747261746F722032312E312E302C20535647204578706F727420506C7567
+          2D496E202E205356472056657273696F6E3A20362E3030204275696C64203029
+          20202D2D3E0A3C7376672076657273696F6E3D22312E31222069643D224C6179
+          65725F312220786D6C6E733D22687474703A2F2F7777772E77332E6F72672F32
+          3030302F7376672220786D6C6E733A786C696E6B3D22687474703A2F2F777777
+          2E77332E6F72672F313939392F786C696E6B2220783D223070782220793D2230
+          7078220A092076696577426F783D2230203020333220333222207374796C653D
+          22656E61626C652D6261636B67726F756E643A6E657720302030203332203332
+          3B2220786D6C3A73706163653D227072657365727665223E0A3C7374796C6520
+          747970653D22746578742F637373223E0A092E426C75657B66696C6C3A233131
+          373744373B7D0A092E59656C6C6F777B66696C6C3A234646423131353B7D0A09
+          2E426C75657B66696C6C3A233131373744373B7D0A092E477265656E7B66696C
+          6C3A233033394332333B7D0A092E5265647B66696C6C3A234431314331433B7D
+          0A092E7374307B6F7061636974793A302E37353B7D0A092E7374317B6F706163
+          6974793A302E353B7D0A3C2F7374796C653E0A3C672069643D22446174616261
+          7365223E0A093C7061746820636C6173733D2259656C6C6F772220643D224D31
+          362C3234632D352E352C302D31302D312E382D31302D34763463302C322E322C
+          342E352C342C31302C347331302D312E382C31302D34762D344332362C32322E
+          322C32312E352C32342C31362C32347A222F3E0A093C7061746820636C617373
+          3D2259656C6C6F772220643D224D31362C3138632D352E352C302D31302D312E
+          382D31302D34763463302C322E322C342E352C342C31302C347331302D312E38
+          2C31302D34762D344332362C31362E322C32312E352C31382C31362C31387A22
+          2F3E0A093C7061746820636C6173733D2259656C6C6F772220643D224D31362C
+          344331302E352C342C362C352E382C362C38763463302C322E322C342E352C34
+          2C31302C347331302D312E382C31302D3456384332362C352E382C32312E352C
+          342C31362C347A222F3E0A3C2F673E0A3C2F7376673E0A}
+        FileName = 'actions_database.svg'
+      end
+      item
+        ImageClass = 'TdxSmartImage'
+        Image.Data = {
+          3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D227574
+          662D38223F3E0A3C212D2D2047656E657261746F723A2041646F626520496C6C
+          7573747261746F722032312E312E302C20535647204578706F727420506C7567
+          2D496E202E205356472056657273696F6E3A20362E3030204275696C64203029
+          20202D2D3E0A3C7376672076657273696F6E3D22312E31222069643D224C6179
+          65725F312220786D6C6E733D22687474703A2F2F7777772E77332E6F72672F32
+          3030302F7376672220786D6C6E733A786C696E6B3D22687474703A2F2F777777
+          2E77332E6F72672F313939392F786C696E6B2220783D223070782220793D2230
+          7078220A092076696577426F783D2230203020333220333222207374796C653D
+          22656E61626C652D6261636B67726F756E643A6E657720302030203332203332
+          3B2220786D6C3A73706163653D227072657365727665223E0A3C7374796C6520
+          747970653D22746578742F637373223E0A092E59656C6C6F777B66696C6C3A23
+          4646423131353B7D0A092E5265647B66696C6C3A234431314331433B7D0A092E
+          59656C6C6F777B66696C6C3A234646423131353B7D0A092E477265656E7B6669
+          6C6C3A233033394332333B7D0A3C2F7374796C653E0A3C672069643D224B6579
+          223E0A093C7061746820636C6173733D2259656C6C6F772220643D224D32302C
+          34632D342E342C302D382C332E362D382C3863302C312E322C302E332C322E33
+          2C302E372C332E334C342C323476346834762D326832762D3268326C342E372D
+          342E3763312C302E352C322E312C302E372C332E332C302E370A090963342E34
+          2C302C382D332E362C382D385332342E342C342C32302C347A204D32322C3132
+          632D312E312C302D322D302E392D322D3263302D312E312C302E392D322C322D
+          3273322C302E392C322C324332342C31312E312C32332E312C31322C32322C31
+          327A222F3E0A3C2F673E0A3C2F7376673E0A}
+        FileName = 'security_key.svg'
+      end
+      item
+        ImageClass = 'TdxSmartImage'
+        Image.Data = {
+          3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D227574
+          662D38223F3E0A3C7376672076657273696F6E3D22312E31222069643D224C61
+          7965725F312220786D6C6E733D22687474703A2F2F7777772E77332E6F72672F
+          323030302F7376672220786D6C6E733A786C696E6B3D22687474703A2F2F7777
+          772E77332E6F72672F313939392F786C696E6B2220783D223070782220793D22
+          307078220A092076696577426F783D2230203020333220333222207374796C65
+          3D22656E61626C652D6261636B67726F756E643A6E6577203020302033322033
+          323B2220786D6C3A73706163653D227072657365727665223E0A3C7374796C65
+          20747970653D22746578742F637373223E0A092E426C61636B7B66696C6C3A23
+          3732373237323B7D0A3C2F7374796C653E0A3C672069643D226163636F756E74
+          2D636F6722207472616E73666F726D3D227363616C6528312E33333333333329
+          223E0A093C7061746820643D224D313020344134203420302030203020362038
+          4134203420302030203020313020313241342034203020302030203134203841
+          34203420302030203020313020344D31372031324331362E3837203132203136
+          2E37362031322E30392031362E37342031322E32314C31362E35352031332E35
+          334331362E32352031332E36362031352E39362031332E38322031352E372031
+          344C31342E34362031332E354331342E33352031332E352031342E3232203133
+          2E352031342E31352031332E36334C31332E31352031352E33364331332E3039
+          2031352E34372031332E31312031352E362031332E32312031352E36384C3134
+          2E32372031362E354331342E32352031362E36372031342E32342031362E3833
+          2031342E32342031374331342E32342031372E31372031342E32352031372E33
+          332031342E32372031372E354C31332E32312031382E33324331332E31322031
+          382E342031332E30392031382E35332031332E31352031382E36344C31342E31
+          352032302E33374331342E32312032302E352031342E33342032302E35203134
+          2E34362032302E354C31352E372032304331352E39362032302E31382031362E
+          32342032302E33352031362E35352032302E34374C31362E37342032312E3739
+          4331362E37362032312E39312031362E38362032322031372032324831394331
+          392E31312032322031392E32322032312E39312031392E32342032312E37394C
+          31392E34332032302E34374331392E37332032302E33342032302032302E3138
+          2032302E32372032304C32312E352032302E354332312E36332032302E352032
+          312E37362032302E352032312E38332032302E33374C32322E38332031382E36
+          344332322E38392031382E35332032322E38362031382E342032322E37372031
+          382E33324C32312E372031372E354332312E37322031372E33332032312E3734
+          2031372E31372032312E37342031374332312E37342031362E38332032312E37
+          332031362E36372032312E372031362E354C32322E37362031352E3638433232
+          2E38352031352E362032322E38382031352E34372032322E38322031352E3336
+          4C32312E38322031332E36334332312E37362031332E352032312E3633203133
+          2E352032312E352031332E354C32302E32372031344332302031332E38322031
+          392E37332031332E36352031392E34322031332E35334C31392E32332031322E
+          32314331392E32322031322E30392031392E3131203132203139203132483137
+          4D313020313443352E353820313420322031352E373920322031385632304831
+          312E363841372037203020302031203131203137413720372030203020312031
+          312E36342031342E30394331312E31312031342E30332031302E353620313420
+          31302031344D31382031352E354331382E38332031352E352031392E35203136
+          2E31372031392E352031374331392E352031372E38332031382E38332031382E
+          352031382031382E354331372E31362031382E352031362E352031372E383320
+          31362E352031374331362E352031362E31372031372E31372031352E35203138
+          2031352E355A2220636C6173733D22426C61636B22202F3E0A3C2F673E0A3C2F
+          7376673E0A}
+        FileName = 'account-cog.svg'
+      end
+      item
+        ImageClass = 'TdxSmartImage'
+        Image.Data = {
+          3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D227574
+          662D38223F3E0A3C212D2D2047656E657261746F723A2041646F626520496C6C
+          7573747261746F722032312E312E302C20535647204578706F727420506C7567
+          2D496E202E205356472056657273696F6E3A20362E3030204275696C64203029
+          20202D2D3E0A3C7376672076657273696F6E3D22312E31222069643D224C6179
+          65725F312220786D6C6E733D22687474703A2F2F7777772E77332E6F72672F32
+          3030302F7376672220786D6C6E733A786C696E6B3D22687474703A2F2F777777
+          2E77332E6F72672F313939392F786C696E6B2220783D223070782220793D2230
+          7078220A092076696577426F783D2230203020333220333222207374796C653D
+          22656E61626C652D6261636B67726F756E643A6E657720302030203332203332
+          3B2220786D6C3A73706163653D227072657365727665223E0A3C7374796C6520
+          747970653D22746578742F637373223E0A092E426C75657B66696C6C3A233131
+          373744373B7D0A092E59656C6C6F777B66696C6C3A234646423131353B7D0A09
+          2E426C75657B66696C6C3A233131373744373B7D0A092E477265656E7B66696C
+          6C3A233033394332333B7D0A092E5265647B66696C6C3A234431314331433B7D
+          0A092E7374307B6F7061636974793A302E37353B7D0A092E7374317B6F706163
+          6974793A302E353B7D0A3C2F7374796C653E0A3C672069643D22446174616261
+          7365223E0A093C7061746820636C6173733D2259656C6C6F772220643D224D31
+          362C3234632D352E352C302D31302D312E382D31302D34763463302C322E322C
+          342E352C342C31302C347331302D312E382C31302D34762D344332362C32322E
+          322C32312E352C32342C31362C32347A222F3E0A093C7061746820636C617373
+          3D2259656C6C6F772220643D224D31362C3138632D352E352C302D31302D312E
+          382D31302D34763463302C322E322C342E352C342C31302C347331302D312E38
+          2C31302D34762D344332362C31362E322C32312E352C31382C31362C31387A22
+          2F3E0A093C7061746820636C6173733D2259656C6C6F772220643D224D31362C
+          344331302E352C342C362C352E382C362C38763463302C322E322C342E352C34
+          2C31302C347331302D312E382C31302D3456384332362C352E382C32312E352C
+          342C31362C347A222F3E0A3C2F673E0A3C2F7376673E0A}
+        FileName = 'actions_database.svg'
+      end
+      item
+        ImageClass = 'TdxSmartImage'
+        Image.Data = {
+          3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D227574
+          662D38223F3E0A3C212D2D2047656E657261746F723A2041646F626520496C6C
+          7573747261746F722032312E312E302C20535647204578706F727420506C7567
+          2D496E202E205356472056657273696F6E3A20362E3030204275696C64203029
+          20202D2D3E0A3C7376672076657273696F6E3D22312E31222069643D224C6179
+          65725F312220786D6C6E733D22687474703A2F2F7777772E77332E6F72672F32
+          3030302F7376672220786D6C6E733A786C696E6B3D22687474703A2F2F777777
+          2E77332E6F72672F313939392F786C696E6B2220783D223070782220793D2230
+          7078220A092076696577426F783D2230203020333220333222207374796C653D
+          22656E61626C652D6261636B67726F756E643A6E657720302030203332203332
+          3B2220786D6C3A73706163653D227072657365727665223E0A3C7374796C6520
+          747970653D22746578742F637373223E0A092E477265656E7B66696C6C3A2330
+          33394332333B7D0A092E59656C6C6F777B66696C6C3A234646423131353B7D0A
+          092E426C75657B66696C6C3A233131373744373B7D0A092E477265656E7B6669
+          6C6C3A233033394332333B7D0A092E5265647B66696C6C3A234431314331433B
+          7D0A092E57686974657B66696C6C3A234646464646463B7D0A092E7374307B6F
+          7061636974793A302E37353B7D0A092E7374317B6F7061636974793A302E353B
+          7D0A092E7374327B6F7061636974793A302E32353B7D0A3C2F7374796C653E0A
+          3C672069643D22436865636B426F78223E0A093C7061746820636C6173733D22
+          477265656E2220643D224D32372C34483543342E352C342C342C342E352C342C
+          3576323263302C302E352C302E352C312C312C3168323263302E352C302C312D
+          302E352C312D3156354332382C342E352C32372E352C342C32372C347A204D31
+          342C32326C2D362D366C322D326C342C340A09096C382D386C322C324C31342C
+          32327A222F3E0A3C2F673E0A3C2F7376673E0A}
+        FileName = 'checkbox.svg'
+      end
+      item
+        ImageClass = 'TdxSmartImage'
+        Image.Data = {
+          3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D227574
+          662D38223F3E0A3C7376672076657273696F6E3D22312E31222069643D224C61
+          7965725F312220786D6C6E733D22687474703A2F2F7777772E77332E6F72672F
+          323030302F7376672220786D6C6E733A786C696E6B3D22687474703A2F2F7777
+          772E77332E6F72672F313939392F786C696E6B2220783D223070782220793D22
+          307078220A092076696577426F783D2230203020333220333222207374796C65
+          3D22656E61626C652D6261636B67726F756E643A6E6577203020302033322033
+          323B2220786D6C3A73706163653D227072657365727665223E0A3C7374796C65
+          20747970653D22746578742F637373223E0A092E426C61636B7B66696C6C3A23
+          3732373237323B7D0A3C2F7374796C653E0A3C672069643D22636C6970626F61
+          72645F706173746522207472616E73666F726D3D227363616C6528312E333333
+          33333329223E0A093C7061746820643D224D31322E3735333320324331332E39
+          31303920322031342E3836343120322E38373534392031342E3938363720342E
+          30303034364C31362E373520344331372E3934303920342031382E3931353620
+          342E39323531362031382E3939343820362E30393539354C313920362E323543
+          313920362E36323931392031382E3731383220362E39343235372031382E3335
+          323620362E39393231364C31382E32343920362E3939394331372E3836393820
+          362E3939392031372E3535363420362E37313732322031372E3530363820362E
+          33353136334C31372E3520362E32354331372E3520352E383730332031372E32
+          31373820352E35353635312031362E3835313820352E35303638354C31362E37
+          3520352E354C31342E3631373620352E35303038324331342E3231343120362E
+          30393935332031332E3532393720362E343933332031322E3735333320362E34
+          39333348392E323436363543382E343730333120362E3439333320372E373835
+          393420362E303939353320372E333832333720352E35303038324C352E323520
+          352E3543342E3837303320352E3520342E353536353120352E37383231352034
+          2E353036383520362E31343832334C342E3520362E32355631392E3735343643
+          342E352032302E3133343320342E37383231352032302E3434383120352E3134
+          3832332032302E343937374C352E32352032302E353034364C382E3235203230
+          2E3530343143382E36323936342032302E3530343120382E3934333433203230
+          2E3738363120382E39393331342032312E313532314C392032312E3235344339
+          2032312E3636383220382E36363432332032322E3030343120382E3235203232
+          2E303034314C352E32352032322E3030343643342E30353931342032322E3030
+          343620332E30383433362032312E3037393420332E30303531392031392E3930
+          38364C332031392E3735343656362E3235433320352E303539313420332E3932
+          35313620342E303834333620352E303935393520342E30303531394C352E3235
+          20344C372E303133333320342E303030343643372E313335393520322E383735
+          343920382E3038393036203220392E323436363520324831322E373533335A4D
+          31382E373520384331392E3934303920382032302E3931353620382E39323531
+          362032302E393934382031302E3039364C32312031302E32355631392E373543
+          32312032302E393430392032302E303734382032312E393135362031382E3930
+          342032312E393934384C31382E37352032324831322E32354331312E30353931
+          2032322031302E303834342032312E303734382031302E303035322031392E39
+          30344C31302031392E37355631302E323543313020392E30353931342031302E
+          3932353220382E30383433362031322E30393620382E30303531394C31322E32
+          3520384831382E37355A4D31322E3735333320332E3548392E32343636354338
+          2E383334323920332E3520382E3520332E383334323920382E3520342E323436
+          363543382E3520342E363539303220382E383334323920342E3939333320392E
+          323436363520342E393933334831322E373533334331332E3136353720342E39
+          3933332031332E3520342E36353930322031332E3520342E3234363635433133
+          2E3520332E38333432392031332E3136353720332E352031322E373533332033
+          2E355A2220636C6173733D22426C61636B22202F3E0A3C2F673E0A3C2F737667
+          3E0A}
+        FileName = 'clipboard_paste.svg'
+      end
+      item
+        ImageClass = 'TdxSmartImage'
+        Image.Data = {
+          3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D227574
+          662D38223F3E0A3C212D2D2047656E657261746F723A2041646F626520496C6C
+          7573747261746F722032312E312E302C20535647204578706F727420506C7567
+          2D496E202E205356472056657273696F6E3A20362E3030204275696C64203029
+          20202D2D3E0A3C7376672076657273696F6E3D22312E31222069643D224C6179
+          65725F312220786D6C6E733D22687474703A2F2F7777772E77332E6F72672F32
+          3030302F7376672220786D6C6E733A786C696E6B3D22687474703A2F2F777777
+          2E77332E6F72672F313939392F786C696E6B2220783D223070782220793D2230
+          7078220A092076696577426F783D2230203020333220333222207374796C653D
+          22656E61626C652D6261636B67726F756E643A6E657720302030203332203332
+          3B2220786D6C3A73706163653D227072657365727665223E0A3C7374796C6520
+          747970653D22746578742F637373223E0A092E426C75657B66696C6C3A233131
+          373744373B7D0A092E59656C6C6F777B66696C6C3A234646423131353B7D0A09
+          2E426C61636B7B66696C6C3A233732373237323B7D0A092E477265656E7B6669
+          6C6C3A233033394332333B7D0A092E5265647B66696C6C3A234431314331433B
+          7D0A092E7374307B6F7061636974793A302E37353B7D0A092E7374317B6F7061
+          636974793A302E353B7D0A3C2F7374796C653E0A3C672069643D224564697422
+          3E0A093C7061746820636C6173733D22426C75652220643D224D32372E362C38
+          2E326C2D332E382D332E38632D302E352D302E352D312E342D302E352D312E39
+          2C306C2D322E352C322E356C352E382C352E386C322E352D322E354332382E31
+          2C392E362C32382E312C382E382C32372E362C382E327A222F3E0A093C706F6C
+          79676F6E20636C6173733D22426C75652220706F696E74733D22342C32382039
+          2E382C323820342C32322E322009222F3E0A093C7265637420783D22352E3822
+          20793D2231332E3422207472616E73666F726D3D226D617472697828302E3730
+          37202D302E3730373220302E3730373220302E373037202D382E303732312031
+          352E34303438292220636C6173733D22426C7565222077696474683D2231372E
+          3622206865696768743D22382E32222F3E0A3C2F673E0A3C2F7376673E0A}
+        FileName = 'actions_edit.svg'
+      end>
+  end
+end

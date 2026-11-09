@@ -1,0 +1,287 @@
+:host {
+  display: block;
+}
+
+/* ── Loading ────────────────────────────────────────────────────────── */
+.zz-loading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 24px;
+  justify-content: center;
+  color: #666;
+}
+
+.zz-spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid #ddd;
+  border-top-color: #1a237e;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Error ──────────────────────────────────────────────────────────── */
+.zz-error {
+  padding: 12px 16px;
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+}
+
+/* ── Modal content padding ──────────────────────────────────────────── */
+/* Il tema azzera il margine di .dx-popup-content (dx-styles.scss): senza
+   questo i campi toccano i bordi della finestra. 20 px ai lati come il
+   titolo del popup e il piede dei pulsanti */
+.form-modal-content {
+  padding: 8px 20px 16px;
+}
+
+/* ── Inline: dev tools bar in alto a destra ─────────────────────────── */
+.zz-form-inline {
+  position: relative;
+}
+
+.dev-tools-bar {
+  position: absolute;
+  top: -4px;
+  right: 0;
+  z-index: 10;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+/* ── Form body wrapper ──────────────────────────────────────────────── */
+/*
+  Necessario per agganciare il context menu di design e gestire
+  il click su area vuota (deseleziona il campo focalizzato).
+*/
+.zz-form-body {
+  position: relative;
+  width: 100%;
+
+  /*
+    Indicatore visivo del campo focalizzato in design-mode.
+    Quando showDevTools=true, l'editor focalizzato riceve un outline
+    leggero per evidenziare quale campo è selezionato.
+    Il selettore agisce sul dx-field-item che contiene l'editor attivo.
+  */
+  &.design-mode-active {
+    .dx-field-item:has(.dx-state-focused) {
+      outline: 2px dashed #1565c0;
+      outline-offset: 2px;
+      border-radius: 3px;
+    }
+  }
+}
+
+/* ── Design menu: input inline nel context menu ─────────────────────── */
+/*
+  Stile per le righe con label + input usate nei templateItem del
+  context menu di design (colCount, caption, cardIndex).
+  Progettato per adattarsi al tema DevExtreme corrente.
+*/
+.dm-inline-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  min-width: 220px;
+}
+
+.dm-inline-label {
+  font-size: 12px;
+  color: var(--dx-color-text, #555);
+  white-space: nowrap;
+  flex: 0 0 auto;
+  min-width: 110px;
+}
+
+.dm-inline-input {
+  flex: 1 1 auto;
+  height: 24px;
+  padding: 2px 6px;
+  font-size: 12px;
+  border: 1px solid var(--dx-color-border, #ccc);
+  border-radius: 3px;
+  background: var(--dx-color-main-bg, #fff);
+  color: var(--dx-color-text, #333);
+  outline: none;
+
+  &:focus {
+    border-color: var(--dx-color-primary, #337ab7);
+  }
+}
+
+.dm-inline-number {
+  max-width: 60px;
+}
+
+.dm-inline-text {
+  min-width: 120px;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   FIX #1 — Context menu: icona e testo disallineati / testo va a capo
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* Il container dell'item del context menu deve essere flex row con nowrap */
+::ng-deep .dx-context-menu {
+  .dx-menu-item-content {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    gap: 8px;
+    white-space: nowrap !important;
+  }
+
+  .dx-menu-item-text {
+    white-space: nowrap !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* L'icona non deve avere margin-bottom che spinge il testo sotto */
+  .dx-icon {
+    flex-shrink: 0;
+    margin-right: 0 !important; /* il gap flex gestisce lo spacing */
+  }
+
+  /* Previeni che il submenu indicator forzi il wrap */
+  .dx-menu-item-popout {
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   FIX #2 — Footer pulsanti form (condiviso inline/modale)
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.zz-form-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  border-top: 1px solid var(--dx-color-border, #e5e7eb);
+  gap: 8px;
+  flex-shrink: 0;
+  background: inherit;
+}
+
+.zz-form-footer-left,
+.zz-form-footer-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Design menu inline controls (già presente, ma aggiunto nowrap per sicurezza)
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.design-menu-inline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  white-space: nowrap;
+
+  span {
+    flex-shrink: 0;
+  }
+}
+
+.design-input {
+  width: 60px;
+  padding: 2px 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 12px;
+
+  &.design-input-wide {
+    width: 160px;
+  }
+}
+
+/* ── Campi di sola lettura in una scheda modificabile ──────────────────
+   La chiave in modifica e i campi READONLY dei metadati devono sembrare
+   quello che sono: sfondo grigio e cursore di divieto. La scritta
+   "(non modificabile)" accanto all'etichetta, provata prima, allungava le
+   etichette e nelle schede a piu' colonne le mandava a capo. Il bordo resta
+   quello normale del campo: il tratteggio appesantiva la scheda. Solo quando
+   la scheda e' modificabile: in consultazione tutto e' in sola lettura e il
+   segno non serve. Le caselle (booleani) restano come sono. ::ng-deep perche'
+   il contenuto della finestra vive nel livello sovrapposto di DevExtreme,
+   fuori dal :host. */
+::ng-deep .zz-form--modificabile {
+  .dx-texteditor.dx-state-readonly {
+    background-color: var(--base-bg-darken-5, #f0f0f0);
+    cursor: not-allowed;
+
+    input {
+      cursor: not-allowed;
+    }
+  }
+}
+
+/* ── Caselle con l'etichetta accanto ───────────────────────────────────
+   Nelle schede a etichette sopra il campo la casella ha il testo accanto
+   (form-items-builder.service.ts, CLASSE_CAMPO_CASELLA) e niente etichetta:
+   senza questa regola starebbe in cima alla riga, all'altezza delle
+   etichette dei campi vicini. La cella si allunga quanto la riga (il
+   contenitore di DevExtreme e' una colonna flex: serve flex, non
+   align-self) e la casella scende in fondo, centrata sull'altezza di un
+   campo (--zz-altezza-campo, quella dei campi del tema Material). ::ng-deep
+   perche' il contenuto della finestra vive nel livello sovrapposto di
+   DevExtreme. */
+::ng-deep .dx-field-item.zz-campo-casella {
+  --zz-altezza-campo: 48px;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  .dx-field-item-content {
+    display: flex;
+    align-items: center;
+    min-height: var(--zz-altezza-campo);
+  }
+}
+
+/* Tema scuro: al buio un fondo piu' chiaro porta in primo piano, quindi la
+   regola si rovescia rispetto al tema chiaro. I campi da compilare hanno un
+   fondo leggermente piu' chiaro della scheda e un bordo piu' visibile; quelli
+   non modificabili restano sul fondo della scheda, con bordo tenue e testo
+   attenuato. Il bordo del tema Material e' un'ombra interna di 1 px
+   (box-shadow inset), non un border. Il bordo dei campi da compilare non
+   tocca passaggio del mouse e fuoco, che restano quelli di DevExtreme.
+   .dx-viewport serve a superare la regola del testo in sola lettura di
+   dx-styles.scss */
+::ng-deep .dx-viewport .dx-swatch-dark .zz-form--modificabile {
+  .dx-texteditor.dx-editor-outlined:not(.dx-state-readonly) {
+    background-color: color-mix(in srgb, var(--dx-color-text) 8%, var(--dx-color-main-bg));
+
+    &:not(.dx-state-hover):not(.dx-state-focused) {
+      box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--dx-color-text) 35%, var(--dx-color-main-bg));
+    }
+  }
+
+  .dx-texteditor.dx-editor-outlined.dx-state-readonly {
+    background-color: transparent;
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--dx-color-text) 15%, var(--dx-color-main-bg));
+
+    .dx-texteditor-input {
+      color: var(--base-text-color-alpha-7) !important;
+    }
+  }
+}

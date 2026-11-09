@@ -1,0 +1,57 @@
+object zDbCardForm: TzDbCardForm
+  Left = 504
+  Top = 131
+  BorderStyle = bsSizeToolWin
+  ClientHeight = 288
+  ClientWidth = 411
+  Color = clBtnFace
+  Font.Charset = ANSI_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Arial'
+  Font.Style = []
+  Position = poMainFormCenter
+  OnCloseQuery = FormCloseQuery
+  OnShow = FormShow
+  TextHeight = 15
+  object OkCancel: TOkCancel
+    Left = 0
+    Top = 258
+    Width = 411
+    Height = 30
+    Align = alBottom
+    TabOrder = 0
+    OnDblClick = OkCancelDblClick
+    DefaultOk = False
+    DefaultCancel = False
+  end
+  object zDbCard: TzDbCard
+    Left = 0
+    Top = 0
+    Width = 411
+    Height = 258
+    Align = alClient
+    DoubleBuffered = False
+    Color = clBtnFace
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Arial'
+    Font.Style = []
+    ParentBackground = False
+    ParentColor = False
+    ParentDoubleBuffered = False
+    ParentFont = False
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 1
+    ToolActions = <>
+    LookupsEnabled = True
+  end
+  object ButtonsDataSource: TDataSource
+    OnStateChange = ButtonsDataSourceStateChange
+    OnDataChange = ButtonsDataSourceDataChange
+    Left = 48
+    Top = 46
+  end
+end

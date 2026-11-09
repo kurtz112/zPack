@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{C6BF7196-CB99-4AB2-B98F-57CB70396F0B}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="zCommon\zBase_Common_Delphi12_Athens.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="zFIB\zBase_FIB_Delphi12_Athens.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="zBase\zBase_Delphi12_Athens.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="zBase_Common_Delphi12_Athens">
+        <MSBuild Projects="zCommon\zBase_Common_Delphi12_Athens.dproj"/>
+    </Target>
+    <Target Name="zBase_Common_Delphi12_Athens:Clean">
+        <MSBuild Projects="zCommon\zBase_Common_Delphi12_Athens.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="zBase_Common_Delphi12_Athens:Make">
+        <MSBuild Projects="zCommon\zBase_Common_Delphi12_Athens.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="zBase_FIB_Delphi12_Athens">
+        <MSBuild Projects="zFIB\zBase_FIB_Delphi12_Athens.dproj"/>
+    </Target>
+    <Target Name="zBase_FIB_Delphi12_Athens:Clean">
+        <MSBuild Projects="zFIB\zBase_FIB_Delphi12_Athens.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="zBase_FIB_Delphi12_Athens:Make">
+        <MSBuild Projects="zFIB\zBase_FIB_Delphi12_Athens.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="zBase_Delphi12_Athens">
+        <MSBuild Projects="zBase\zBase_Delphi12_Athens.dproj"/>
+    </Target>
+    <Target Name="zBase_Delphi12_Athens:Clean">
+        <MSBuild Projects="zBase\zBase_Delphi12_Athens.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="zBase_Delphi12_Athens:Make">
+        <MSBuild Projects="zBase\zBase_Delphi12_Athens.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="zBase_Common_Delphi12_Athens;zBase_FIB_Delphi12_Athens;zBase_Delphi12_Athens"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="zBase_Common_Delphi12_Athens:Clean;zBase_FIB_Delphi12_Athens:Clean;zBase_Delphi12_Athens:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="zBase_Common_Delphi12_Athens:Make;zBase_FIB_Delphi12_Athens:Make;zBase_Delphi12_Athens:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

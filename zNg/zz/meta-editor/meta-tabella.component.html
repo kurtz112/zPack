@@ -1,0 +1,33 @@
+<dx-data-grid
+  [dataSource]="dati()"
+  [keyExpr]="chiave()"
+  [columns]="colonne()"
+  [editing]="modifica()"
+  [showBorders]="true"
+  [showRowLines]="true"
+  [columnAutoWidth]="true"
+  [allowColumnResizing]="true"
+  [hoverStateEnabled]="true"
+  [focusedRowEnabled]="!!evidenziata()"
+  [focusedRowKey]="evidenziata()"
+  [autoNavigateToFocusedRow]="true"
+  [noDataText]="testoVuoto()"
+  (onEditorPreparing)="onEditorPreparing($event)"
+  (onRowInserting)="onRowInserting($event)"
+  (onRowUpdating)="onRowUpdating($event)"
+  (onRowRemoving)="onRowRemoving($event)"
+>
+  <dxo-search-panel [visible]="true" placeholder="Cerca..." [width]="220"></dxo-search-panel>
+  <dxo-paging [pageSize]="20"></dxo-paging>
+  <dxo-pager [visible]="true" [showInfo]="true" infoText="Pagina {0} di {1} ({2} righe)"></dxo-pager>
+
+  <div *dxTemplate="let cella of 'cellaCustom'">
+    @if (cella.value === null || cella.value === undefined || cella.value === '') {
+      <span class="zz-meta-ereditato" title="Valore di base: la personalizzazione non lo cambia">{{
+        ereditato(cella)
+      }}</span>
+    } @else {
+      <strong>{{ cella.text }}</strong>
+    }
+  </div>
+</dx-data-grid>

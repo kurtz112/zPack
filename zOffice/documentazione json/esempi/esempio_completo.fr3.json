@@ -1,0 +1,26 @@
+{
+  "id": "esempio-completo",
+  "group": "Esempi",
+  "mainDataset": "qryPrincipale",
+  "datasets": [
+    { "name": "qryDettaglio", "close": true },
+    { "name": "qryRiepilogo", "close": false }
+  ],
+  "variables": {
+    "TITOLO": "Documento di esempio",
+    "UFFICIO": "Ufficio Tributi"
+  },
+  "azioni": {
+    "firma":         { "enabled": true, "engine": "SIGNHUB" },
+    "protocollo":    { "enabled": true },
+    "conservazione": { "enabled": true, "req": ["PRO"], "target": "PRO" },
+    "inviaPec":      { "enabled": true, "req": ["FIR"], "target": "FIR" },
+    "inviaMail":     { "enabled": false }
+  },
+  "fastreport": {
+    "showDialog": false,
+    "openAfterExport": true,
+    "embeddedFonts": true,
+    "overwritePrompt": true
+  }
+}

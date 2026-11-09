@@ -1,0 +1,52 @@
+{
+  "id": "riferimento-tutte-le-voci",
+  "group": "Esempi",
+  "mainDataset": "qryPrincipale",
+  "datasets": [
+    { "name": "qryDettaglio", "close": true },
+    { "name": "qryRiepilogo", "close": false }
+  ],
+  "variables": {
+    "TITOLO": "Documento di riferimento",
+    "UFFICIO": "Ufficio Tributi"
+  },
+  "azioni": {
+    "firma":         { "enabled": true, "engine": "SIGNHUB" },
+    "protocollo":    { "enabled": true, "engine": "MAGGIOLI" },
+    "conservazione": { "enabled": true, "req": ["PRO"], "target": "PRO", "engine": "POSTEL" },
+    "inviaPec":      { "enabled": true, "req": ["FIR", "PRO"], "target": "FIR", "engine": "SMTP" },
+    "inviaMail":     { "enabled": false }
+  },
+  "word": {
+    "readOnly": true,
+    "fragments": [
+      { "variable": "CLAUSOLE", "template": "clausole.docx", "dataset": "qryClausole" },
+      { "variable": "ALLEGATO_A", "template": "allegato_a.docx", "dataset": "qryAllegatoA" }
+    ],
+    "pdf": {
+      "method": "filename",
+      "fileName": "documento.pdf",
+      "fieldName": "NOME_FILE",
+      "fontEmbedding": "subset",
+      "openFileAfterExport": false,
+      "showMessageAfterExport": false
+    }
+  },
+  "excel": {
+    "readOnly": false,
+    "allowBuildReport": true,
+    "pdf": {
+      "method": "fieldname",
+      "fieldName": "NOME_FILE",
+      "fontEmbedding": "subset",
+      "openFileAfterExport": true,
+      "showMessageAfterExport": true
+    }
+  },
+  "fastreport": {
+    "showDialog": false,
+    "openAfterExport": true,
+    "embeddedFonts": true,
+    "overwritePrompt": true
+  }
+}
